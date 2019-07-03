@@ -6,6 +6,7 @@ date: 'Last run at: `r Sys.time()`'
 output:
   bookdown::pdf_document2:
     fig_caption: yes
+    latex_engine: xelatex
     keep_tex: yes
     number_sections: yes
     toc: yes
@@ -63,7 +64,7 @@ pmPeakStart <- hms::as.hms("17:00:00") # see https://www.electrickiwi.co.nz/hour
 pmPeakEnd <- hms::as.hms("21:00:00") # see https://www.electrickiwi.co.nz/hour-of-power
 
 # Data file to use ----
-file <- "EVBB_processed_all_v1.0_20180125.csv" # latest
+file <- "EVBB_processed_all_v2.0_20190604.csv" # latest
 
 # > for Mac ----
 user <- Sys.info()[[7]]
@@ -75,6 +76,9 @@ if(user == "ben"){
     dPath <- "~/Data/NZ_FlipTheFleet/"
     dFile <- paste0(dPath, file, ".zip")
   }
+} else if(user == "daniel"){
+  dPath <- "~/working/ftf/output/"
+  dFile <- paste0(dPath, file)
 } else {
   # > for Xubuntu ----
   dPath <- "/run/user/1001/gvfs/smb-share:server=storage.hcs-p01.otago.ac.nz,share=hum-csafe,user=student%5Cparra358/Research Projects/GREEN Grid/externalData/flipTheFleet/safe/testData/2019_01_25/"
@@ -278,7 +282,7 @@ cleanAllDT <- clean2DT # use no threshold data
 
 # keep observations between 1st October and 1st January only - see Data: Initial Cleaning
 # no more processing of cleanDT after this ----
-cleanDT <- cleanAllDT[date >= as.Date("2018-10-01") & date < as.Date("2019-01-01")]
+cleanDT <- cleanAllDT[date >= as.Date("2018-10-01") & date < as.Date("2019-03-01")]
 ```
 
 ```{r getPairs, include=FALSE}
@@ -391,7 +395,7 @@ kableExtra::kable(t, caption = "Summary of original data") %>%
 ```
 
 
-Figure \@ref(fig:initialDataChecksPlotTile) shows the number of unique EVs observed by time of day and date. As we can see the early part of the sample is sparse and indeed the maximum number of EVs observed in any 15 minute time period was only `r max(plotDT$nEVs)` out of a possible total of `r data.table::uniqueN(rawDT$id)`. While this will not affect some analyses, it is likely to introduce error and small sample effects to summary analyses (e.g. means) or month by month analyses. In some sections the analysis will therefore be restricted to the data from September to January.
+Figure \@ref(fig:initialDataChecksPlotTile) shows the number of unique EVs observed by time of day and date. As we can see the early part of the sample is sparse and indeed the maximum number of EVs observed in any 15 minute time period was only `r max(plotDT$nEVs)` out of a possible total of `r data.table::uniqueN(rawDT$id)`. While this will not affect some analyses, it is likely to introduce error and small sample effects to summary analyses (e.g. means) or month by month analyses. In some sections the analysis will therefore be restricted to the data from September to March.
 
 ```{r initialDataChecksPlotTile, fig.cap="Number of unique EVs observed by time of day and date"}
 
@@ -430,7 +434,7 @@ p <- ggplot2::ggplot(dt, aes(x = date, y =  nEVs)) +
        )
 
 p + annotate("rect", xmin = as.Date("2018-10-01"), # cut
-             xmax = as.Date("2018-12-31"), # set earlier
+             xmax = as.Date("2019-02-28"), # set earlier
              ymin = min(dt$nEVS), ymax = max(dt$nEVS), 
              alpha = peaksAlpha, fill = peaksCol)
 ```

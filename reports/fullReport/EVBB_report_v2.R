@@ -19,7 +19,7 @@ require(lubridate) # for date & time manip
 # Parameters ----
 
 # > Data file to use ----
-file <- "EVBB_processed_all_v1.0_20180125.csv" # latest
+file <- "EVBB_processed_all_v2.0_20190604.csv" # latest
 
 # > for Mac ----
 user <- Sys.info()[[7]]
@@ -31,6 +31,9 @@ if(user == "ben"){
     dPath <- "~/Data/NZ_GREENGrid/ftf/"
     dFile <- paste0(dPath, file, ".zip")
   }
+} else if(user == "daniel"){
+  dPath <- "~/working/ftf/output/"
+  dFile <- paste0(dPath, file)
 } else {
   # > for Xubuntu ----
   dPath <- "/run/user/1001/gvfs/smb-share:server=storage.hcs-p01.otago.ac.nz,share=hum-csafe,user=student%5Cparra358/Research Projects/GREEN Grid/externalData/flipTheFleet/safe/testData/2019_01_25/"
@@ -208,7 +211,7 @@ processData <- function(rawData){
   
   # keep observations between 1st October and 1st January only - see Data: Initial Cleaning
   # no more processing of cleanDT after this ----
-  cleanDT <- cleanAllDT[date >= as.Date("2018-10-01") & date < as.Date("2019-01-01")]
+  cleanDT <- cleanAllDT[date >= as.Date("2018-10-01") & date < as.Date("2019-02-28")]
   return(cleanDT)
 }
 
@@ -260,6 +263,11 @@ plan <- drake::drake_plan(
   report = rmarkdown::render(
     knitr_in("EVBB_report_v2.Rmd"),
     output_file = file_out("EVBB_report_v2.html"),
+    quiet = TRUE
+  ),
+  report_pdf = rmarkdown::render(
+    knitr_in("EVBB_report_v2.Rmd"),
+    output_file = file_out("EVBB_report_v2.pdf"),
     quiet = TRUE
   )
 )

@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{Last run at: 2019-06-28 08:24:51}
+    \date{Last run at: 2019-07-04 10:50:04}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -153,7 +153,7 @@
 
 The New Zealand government has set a target of increasing the number of electric vehicles (EVs) in New Zealand to 64,000 by 2021 (Transpower New Zealand 2017). High penetration of EVs would cause EV recharging to contribute a substantial portion of total electricity load. A report prepared for lines companies Orion, Powerco and Unison by Concept Consulting Group entitled ``Driving change - Issues and options to maximise the opportunities from large-scale electric vehicle uptake in New Zealand'' predicts that if all current light private vehicles were electric, annual residential electricity consumption would increase by approximately 30\%, whereas if all vehicles including trucks were electric, this would increase the total electricity consumption of New Zealand by approximately 41\% (Concept Consulting 2018).
 
-New Zealand's total electricity demand varies throughout the day, with weekdays in particular having two distinct ``peaks''; one in the morning, and one in the evening (Transpower New Zealand 2015). Providing the electricity to meet these demand peaks is a costly and inefficient process (Khan, Jack, and Stephenson 2018). Concurrent electric vehicle charging, especially in the early evening when many motorists return home (Speidel and Bräunl 2014,@langbroek\_when\_2017), would have the potential to negatively impact the operation of the grid through drastically increasing peak loads (Azadfar, Sreeram, and Harries 2015,@langbroek\_when\_2017), leading to an increased cost of electricity due to the requirement of expensive upgrades to the electricity grid (Stephenson et al. 2017).
+New Zealand's total electricity demand varies throughout the day, with weekdays in particular having two distinct ``peaks''; one in the morning, and one in the evening (Transpower New Zealand 2015). Providing the electricity to meet these demand peaks is a costly and inefficient process (Khan, Jack, and Stephenson 2018). Concurrent electric vehicle charging, especially in the early evening when many motorists return home (Speidel and Bräunl 2014, @langbroek\_when\_2017), would have the potential to negatively impact the operation of the grid through drastically increasing peak loads (Azadfar, Sreeram, and Harries 2015, @langbroek\_when\_2017), leading to an increased cost of electricity due to the requirement of expensive upgrades to the electricity grid (Stephenson et al. 2017).
 
 The Concept Consulting report considers different methods of EV charging in its models. The assumption that most drivers would begin charging immediately after returning home is referred to as ``passive'' charging, while charging that is programmed (either by the driver or by an external entity) to occur during off-peak periods is referred to as ``smart''. The modelling undertaken in the Concept Consulting report suggests that under a scenario whereby 57\% of the current private vehicle fleet were EVs (corresponding to one EV per household), passive charging would cause an increase of peak electricity demand of approximately 3,000MW, whereas if all were charged in a ``smart'' fashion, there would be no increase in peak demand.
 
@@ -167,7 +167,7 @@ This report extends the work done by Concept Consulting, but utilises actual dat
 
 The data used has been provided by `Flip the Fleet', a community organisation that hopes to increase uptake of electric vehicles in New Zealand. Flip the Fleet have been collecting data on electric vehicle usage patterns, via Exact IOT Limited's \href{https://flipthefleet.org/ev-black-box/}{blackbox recorder}, a small electronic device that connects to the vehicle's internal computer and sends detailed data about the battery health, power demand, charging rate, speed and other performance information to a secure database.
 
-The subset of this data provided to the University of Otago was collected from 50 domestic electric vehicles monitored from April 2018 to January 2019. The data consisted of 1,515,812 1 minute interval observations of timestamped odometer readings (in km) together with measurements of charging power (kW) and battery charge state (\% charged) linked by a unique anonymised vehicle identifier. The data received contained \emph{all} available observations but charging was set to 0 kW if the vehicle was non-stationary (speed \textgreater{} 0 km/h) prior to data delivery to the University. This enabled us to automatically exclude charging through regenerative braking from the analysis.
+The subset of this data provided to the University of Otago was collected from 52 domestic electric vehicles monitored from April 2018 to March 2019. The data consisted of 1,882,040 1 minute interval observations of timestamped odometer readings (in km) together with measurements of charging power (kW) and battery charge state (\% charged) linked by a unique anonymised vehicle identifier. The data received contained \emph{all} available observations but charging was set to 0 kW if the vehicle was non-stationary (speed \textgreater{} 0 km/h) prior to data delivery to the University. This enabled us to automatically exclude charging through regenerative braking from the analysis.
 
 There are a number of important limitations to this data:
 
@@ -178,7 +178,7 @@ There are a number of important limitations to this data:
 \item
   data upload relied on mobile 3G data signal and the extent to which gaps in the data are due to data upload errors rather than the vehicle being switched off (as above) is currently unclear;
 \item
-  these vehicles are driven by `early adopters' who have opted to install the measuring devices in order to collect their vehicle usage data. As a result the data may not be representative of the usage patterns of current or future EV drivers (Rezvani, Jansson, and Bodin 2015,@li\_review\_2017).
+  these vehicles are driven by `early adopters' who have opted to install the measuring devices in order to collect their vehicle usage data. As a result the data may not be representative of the usage patterns of current or future EV drivers (Rezvani, Jansson, and Bodin 2015, @li\_review\_2017).
 \end{itemize}
 
 Even though the use of an anonymised vehicle identifier should prevent the identification of the vehicles in the sample, the fine-grained temporal nature of the data and the relatively small population of EV owners from whom the sample is drawn (Flip The Fleet members) means that the data cannot be publicly released.
@@ -186,7 +186,7 @@ Even though the use of an anonymised vehicle identifier should prevent the ident
 \hypertarget{cleaning}{%
 \subsection{Initial cleaning}\label{cleaning}}
 
-The original supplied data consisted of 1515812 observations for the period NA to NA.
+The original supplied data consisted of 1882040 observations for the period NA to NA.
 
 \begin{table}[t]
 
@@ -196,24 +196,24 @@ The original supplied data consisted of 1515812 observations for the period NA t
 \hline
   &      id &      date &    month &    day\_of\_week &     time & charge\_power\_kw & state\_of\_charge\_percent &  odometer\_km &    dateTime\\
 \hline
- & Length:1515812 & Min.   :2018-04-05 & Length:1515812 & Monday   :214568 & Length:1515812 & Min.   :    0.00 & Min.   :   0.00 & Min.   :-62920 & Min.   :2018-04-05 10:34:41\\
+ & Length:1882040 & Min.   :2018-04-05 & Length:1882040 & Monday   :269050 & Length:1882040 & Min.   :    0.00 & Min.   :   0.00 & Min.   :-62920 & Min.   :2018-04-05 10:34:41\\
 \hline
- & Class :character & 1st Qu.:2018-10-03 & Class :character & Tuesday  :219409 & Class1:hms & 1st Qu.:    0.00 & 1st Qu.:  56.43 & 1st Qu.:  1889 & 1st Qu.:2018-10-03 01:08:24\\
+ & Class :character & 1st Qu.:2018-10-12 & Class :character & Tuesday  :273804 & Class1:hms & 1st Qu.:    0.00 & 1st Qu.:  56.31 & 1st Qu.:  2166 & 1st Qu.:2018-10-12 13:27:42\\
 \hline
- & Mode  :character & Median :2018-11-09 & Mode  :character & Wednesday:245673 & Class2:difftime & Median :    1.37 & Median :  70.57 & Median :  4749 & Median :2018-11-09 14:11:43\\
+ & Mode  :character & Median :2018-11-25 & Mode  :character & Wednesday:301324 & Class2:difftime & Median :    1.30 & Median :  70.41 & Median :  5309 & Median :2018-11-25 21:21:08\\
 \hline
- & NA & Mean   :2018-11-02 & NA & Thursday :243071 & Mode  :numeric & Mean   :    1.73 & Mean   :  69.11 & Mean   :  7290 & Mean   :2018-11-03 01:42:49\\
+ & NA & Mean   :2018-11-22 & NA & Thursday :302335 & Mode  :numeric & Mean   :    1.59 & Mean   :  69.00 & Mean   :  7790 & Mean   :2018-11-22 14:22:36\\
 \hline
- & NA & 3rd Qu.:2018-12-13 & NA & Friday   :247612 & NA & 3rd Qu.:    1.90 & 3rd Qu.:  83.20 & 3rd Qu.: 10529 & 3rd Qu.:2018-12-13 21:25:56\\
+ & NA & 3rd Qu.:2019-01-13 & NA & Friday   :301212 & NA & 3rd Qu.:    1.85 & 3rd Qu.:  83.05 & 3rd Qu.: 11154 & 3rd Qu.:2019-01-13 22:10:02\\
 \hline
- & NA & Max.   :2019-01-25 & NA & Saturday :178093 & NA & Max.   :74940.42 & Max.   :1677.72 & Max.   : 69394 & Max.   :2019-01-25 12:00:52\\
+ & NA & Max.   :2019-03-01 & NA & Saturday :223379 & NA & Max.   :74940.42 & Max.   :1677.72 & Max.   : 73607 & Max.   :2019-03-01 17:42:35\\
 \hline
- & NA & NA & NA & Sunday   :167386 & NA & NA & NA & NA's   :1000156 & NA's   :137\\
+ & NA & NA & NA & Sunday   :210936 & NA & NA & NA & NA's   :1255614 & NA's   :137\\
 \hline
 \end{tabular}
 \end{table}
 
-Figure \ref{fig:initialDataChecksPlotTile} shows the number of unique EVs observed by time of day and date. As we can see the early part of the sample is sparse and indeed the maximum number of EVs observed in any 15 minute time period was only 22 out of a possible total of 50. While this will not affect some analyses, it is likely to introduce error and small sample effects to summary analyses (e.g.~means) or month by month analyses. In some sections the analysis will therefore be restricted to the data from September to January.
+Figure \ref{fig:initialDataChecksPlotTile} shows the number of unique EVs observed by time of day and date. As we can see the early part of the sample is sparse and indeed the maximum number of EVs observed in any 15 minute time period was only 22 out of a possible total of 52. While this will not affect some analyses, it is likely to introduce error and small sample effects to summary analyses (e.g.~means) or month by month analyses. In some sections the analysis will therefore be restricted to the data from September to March.
 
 \begin{figure}
 \centering
@@ -247,9 +247,9 @@ id & nObs & startTime & endTime & meanWhCharging & maxWhCharging & nDaysObserved
 \hline
 126c8759ec95ba40070b16a11fe0e587 & 258 & 2018-09-30 11:54:18 & 2018-09-30 19:24:05 & 1.5869526 & 1.960213 & 1 days\\
 \hline
-4e48f4155c29c763ffe6d9e17a495200 & 530 & 2019-01-17 14:12:57 & 2019-01-25 10:31:16 & 0.0000000 & 0.000000 & 7 days\\
-\hline
 6e3293c77f562262ed6608db1b596d36 & 4315 & 2018-05-15 14:48:15 & 2018-12-06 13:25:56 & 0.2872577 & 47.245786 & 205 days\\
+\hline
+781f06f7d7bb80b74c399326be0d3e28 & 5469 & 2018-09-28 11:25:58 & 2018-10-15 16:21:57 & 2.3686450 & 47.687105 & 18 days\\
 \hline
 \end{tabular}
 \end{table}
@@ -259,16 +259,16 @@ Taking all of the above into account we have therefore discarded:
 \begin{itemize}
 \tightlist
 \item
-  the 6 vehicles that had no recorded \emph{charging} observations (this also discarded those with very few observations - see Table \ref{tab:noObsEVs});
+  the 5 vehicles that had no recorded \emph{charging} observations (this also discarded those with very few observations - see Table \ref{tab:noObsEVs});
 \item
   45 instances of charging power greater than 120kW. These were considered anomalies and as these exceed the capacity of the highest charging stations currently available in New Zealand (Concept Consulting 2018);
 \item
-  53 instances of battery state of charge observations of greater than 100\%;
+  61 instances of battery state of charge observations of greater than 100\%;
 \item
   all observations collected before 1st October and after 1st January in order to focus analysis on the periods with most EVs present in the data. It is hoped that this will reduce the extent to which the charging behaviour of a small number of EV owners will skew the aggregated results.
 \end{itemize}
 
-This left 45 remaining vehicles, and 941,415 observations as shown in Table \ref{tab:finalTable}.
+This left 48 remaining vehicles, and 1,518,388 observations as shown in Table \ref{tab:finalTable}.
 
 \begin{table}[t]
 
@@ -278,15 +278,15 @@ This left 45 remaining vehicles, and 941,415 observations as shown in Table \ref
 \hline
   & Weekdays & Weekends & NA & Sum\\
 \hline
-Standard charging & 467705 & 160286 & 0 & 627991\\
+Standard charging & 659474 & 220663 & 0 & 880137\\
 \hline
-Rapid charging & 3724 & 1810 & 0 & 5534\\
+Rapid charging & 5558 & 2804 & 0 & 8362\\
 \hline
-Not charging & 246438 & 61452 & 0 & 307890\\
+Not charging & 494990 & 134899 & 0 & 629889\\
 \hline
 NA & 0 & 0 & 0 & 0\\
 \hline
-Sum & 717867 & 223548 & 0 & 941415\\
+Sum & 1160022 & 358366 & 0 & 1518388\\
 \hline
 \end{tabular}
 \end{table}
@@ -299,11 +299,11 @@ Sum & 717867 & 223548 & 0 & 941415\\
 
 Charging data has been broadly separated into two separate categories, `Standard' and `Rapid'. Standard charging is defined to be when the charger is reading less than 7kW - this is considered the upper limit of ordinary home charging without an expensive wiring upgrade (Concept Consulting 2018). Rapid charging is defined as all charging equal to or greater than 7kW, and would likely occur at designated and purpose-built public charging stations.
 
-It should be noted that this method is not always accurate since we can identify apparent sequences of charging which start at \textgreater{} 7kW and decline to \textless{} 7kW over a relatively short period or vice versa (see Section \ref{chargeFlagTest}). In this circumstance the first observation will be correctly classified as `Rapid' but the lower observations, which we assume are lower power `top-ups' at the end of a rapid charge will be incorrectly classified as `Standard'. As an example, we know that there are 73 sequences of charging events (out of a total of 12060) where the first and last charge types do not match.
+It should be noted that this method is not always accurate since we can identify apparent sequences of charging which start at \textgreater{} 7kW and decline to \textless{} 7kW over a relatively short period or vice versa (see Section \ref{chargeFlagTest}). In this circumstance the first observation will be correctly classified as `Rapid' but the lower observations, which we assume are lower power `top-ups' at the end of a rapid charge will be incorrectly classified as `Standard'. As an example, we know that there are 99 sequences of charging events (out of a total of 16880) where the first and last charge types do not match.
 
 This is clarified and corrected in Section \ref{codeSequences} for charging begin/end pairs (and thus in the results that use this data) but has yet to be resolved in other sections which use all charging observations. As a result we may currently be \emph{under-estimating} the number of rapid charge observations and \emph{over-estimating} the mean power demand of standard charges where we conduct analysis using all charging observations.
 
-Figure \ref{fig:obsPower} shows the distribution of observed charging kW demand by inferred charge type without correcting for potential mis-classifications. Setting aside the small number of potential misclassifications noted above, the plot confirms the validity of our definition and shows that rapid charges were relatively rare in the dataset. rapid charges have two distinct power demand `peaks' at \textasciitilde{}22kW and \textasciitilde{}45kW while the far more common standard charging was mostly concentrated around 1.8kW and 3kW, with a smaller concentration around 6kW.
+Figure \ref{fig:obsPower} shows the distribution of observed charging kW demand by inferred charge type without correcting for potential mis-classifications. Setting aside the small number of potential misclassifications noted above, the plot confirms the validity of our definition and shows that rapid charges were relatively rare in the dataset. rapid charges have two distinct power demand `peaks' at \textasciitilde22kW and \textasciitilde45kW while the far more common standard charging was mostly concentrated around 1.8kW and 3kW, with a smaller concentration around 6kW.
 
 \begin{figure}
 \centering
@@ -336,24 +336,24 @@ In order to determine charging durations, we have identified and extracted obser
 \hline
   & Standard charging & Rapid charging & Not charging & NA & Sum\\
 \hline
-Charging in a seq & 612644 & 4862 & 0 & 0 & 617506\\
+Charging in a seq & 858209 & 7375 & 0 & 0 & 865584\\
 \hline
-First charge obs in a seq & 5717 & 310 & 0 & 0 & 6027\\
+First charge obs in a seq & 7980 & 459 & 0 & 0 & 8439\\
 \hline
-Last charge in a seq & 5770 & 263 & 0 & 0 & 6033\\
+Last charge in a seq & 8049 & 392 & 0 & 0 & 8441\\
 \hline
-Not charging (0 kW) & 0 & 0 & 307890 & 0 & 307890\\
+Not charging (0 kW) & 0 & 0 & 629889 & 0 & 629889\\
 \hline
-Single charge observation & 3858 & 98 & 0 & 0 & 3956\\
+Single charge observation & 5897 & 135 & 0 & 0 & 6032\\
 \hline
 NA & 2 & 1 & 0 & 0 & 3\\
 \hline
-Sum & 627991 & 5534 & 307890 & 0 & 941415\\
+Sum & 880137 & 8362 & 629889 & 0 & 1518388\\
 \hline
 \end{tabular}
 \end{table}
 
-Table \ref{tab:seqCodeTable} shows the results of this coding for all clean observations within the selected dates (2018-10-01 - 2018-12-31). As we can see most observations were coded using this scheme and we obtained 6,027 instances of charging starting, and 6,033 instances of charge ending. The additional 6 instances of charge ending than there are of the charge beginning may be due to the first (or last) instance of data collection occurring during mid-charge for some vehicles.
+Table \ref{tab:seqCodeTable} shows the results of this coding for all clean observations within the selected dates (2018-10-01 - 2019-02-28). As we can see most observations were coded using this scheme and we obtained 8,439 instances of charging starting, and 8,441 instances of charge ending. The additional 2 instances of charge ending than there are of the charge beginning may be due to the first (or last) instance of data collection occurring during mid-charge for some vehicles.
 
 An alternative classification method, tested in Section \ref{chargeFlagTest}, added a 120 second maximim threshold to sequences of observations but was not used as it failed to identify sparse sequences of charging events.
 
@@ -367,15 +367,15 @@ Comparison of the begining and end charge types showed, as suspected, that a num
 \hline
   & Standard charging & Rapid charging & Not charging & Sum\\
 \hline
-Error: first = Rapid, last = Standard & 0 & 60 & 0 & 60\\
+Error: first = Rapid, last = Standard & 0 & 83 & 0 & 83\\
 \hline
-Error: first = Standard, last = Rapid & 13 & 0 & 0 & 13\\
+Error: first = Standard, last = Rapid & 16 & 0 & 0 & 16\\
 \hline
-OK: first = Rapid, last = Rapid & 0 & 250 & 0 & 250\\
+OK: first = Rapid, last = Rapid & 0 & 376 & 0 & 376\\
 \hline
-OK: first = Standard, last = Standard & 5704 & 0 & 0 & 5704\\
+OK: first = Standard, last = Standard & 7964 & 0 & 0 & 7964\\
 \hline
-Sum & 5717 & 310 & 0 & 6027\\
+Sum & 7980 & 459 & 0 & 8439\\
 \hline
 \end{tabular}
 \end{table}
@@ -400,9 +400,9 @@ Table \ref{tab:durationDescTable} shows the overall distributions and indicates 
 \hline
 chargeTypeCorrected & N & mean & median & min & max\\
 \hline
-Standard charging & 5702 & 97.38 mins & 3.38 & 0.27 mins & 1442.3 mins\\
+Standard charging & 7958 & 98.86 mins & 3.40 & 0.27 mins & 3029.12 mins\\
 \hline
-Rapid charging & 323 & 23.16 mins & 14.27 & 0.02 mins & 865.7 mins\\
+Rapid charging & 475 & 23.98 mins & 14.28 & 0.02 mins & 922.03 mins\\
 \hline
 \end{tabular}
 \end{table}
@@ -417,25 +417,25 @@ Table \ref{tab:durationLongTableStd} shows the longest duration `standard' charg
 \hline
 dvID & startTime & day\_of\_week & chargeType & chargeTypeCorrected & pairDuration & duration\_hours\\
 \hline
-Vehicle 27 & 01:54:06 & Monday & Standard charging & Standard charging & 1442.30 mins & 24.04\\
+Vehicle 37 & 17:33:33 & Saturday & Standard charging & Standard charging & 3029.12 mins & 50.49\\
 \hline
-Vehicle 32 & 09:28:58 & Saturday & Standard charging & Standard charging & 1353.40 mins & 22.56\\
+Vehicle 31 & 12:39:44 & Monday & Standard charging & Standard charging & 1776.83 mins & 29.61\\
 \hline
-Vehicle 37 & 04:40:33 & Friday & Standard charging & Standard charging & 1341.80 mins & 22.36\\
+Vehicle 39 & 10:03:05 & Friday & Standard charging & Standard charging & 1616.72 mins & 26.95\\
 \hline
-Vehicle 37 & 21:44:13 & Sunday & Standard charging & Standard charging & 1324.10 mins & 22.07\\
+Vehicle 28 & 13:54:06 & Monday & Standard charging & Standard charging & 1442.30 mins & 24.04\\
 \hline
-Vehicle 37 & 03:54:34 & Thursday & Standard charging & Standard charging & 1264.10 mins & 21.07\\
+Vehicle 39 & 15:39:53 & Tuesday & Standard charging & Standard charging & 1380.53 mins & 23.01\\
 \hline
-Vehicle 18 & 00:37:53 & Thursday & Standard charging & Standard charging & 1228.23 mins & 20.47\\
+Vehicle 34 & 22:28:58 & Saturday & Standard charging & Standard charging & 1353.40 mins & 22.56\\
 \hline
-Vehicle 32 & 14:31:56 & Sunday & Standard charging & Standard charging & 1125.35 mins & 18.76\\
+Vehicle 39 & 17:40:33 & Friday & Standard charging & Standard charging & 1341.80 mins & 22.36\\
 \hline
-Vehicle 37 & 02:35:00 & Friday & Standard charging & Standard charging & 1063.82 mins & 17.73\\
+Vehicle 39 & 10:44:13 & Sunday & Standard charging & Standard charging & 1324.10 mins & 22.07\\
 \hline
-Vehicle 5 & 00:41:37 & Sunday & Standard charging & Standard charging & 1034.12 mins & 17.24\\
+Vehicle 39 & 17:52:46 & Friday & Standard charging & Standard charging & 1323.92 mins & 22.07\\
 \hline
-Vehicle 29 & 02:20:28 & Saturday & Standard charging & Standard charging & 999.90 mins & 16.66\\
+Vehicle 35 & 16:58:43 & Saturday & Standard charging & Standard charging & 1315.95 mins & 21.93\\
 \hline
 \end{tabular}
 \end{table}
@@ -448,25 +448,25 @@ Vehicle 29 & 02:20:28 & Saturday & Standard charging & Standard charging & 999.9
 \hline
 dvID & startTime & day\_of\_week & chargeType & chargeTypeCorrected & pairDuration & duration\_hours\\
 \hline
-Vehicle 34 & 04:10:19 & Wednesday & Standard charging & Rapid charging & 865.70 mins & 14.43\\
+Vehicle 43 & 09:51:43 & Saturday & Rapid charging & Rapid charging & 922.03 mins & 15.37\\
 \hline
-Vehicle 12 & 08:08:02 & Thursday & Rapid charging & Rapid charging & 582.53 mins & 9.71\\
+Vehicle 36 & 17:10:19 & Wednesday & Standard charging & Rapid charging & 865.70 mins & 14.43\\
 \hline
-Vehicle 38 & 23:37:03 & Thursday & Rapid charging & Rapid charging & 398.27 mins & 6.64\\
+Vehicle 12 & 21:08:02 & Thursday & Rapid charging & Rapid charging & 582.53 mins & 9.71\\
 \hline
-Vehicle 41 & 02:39:24 & Tuesday & Rapid charging & Rapid charging & 227.85 mins & 3.80\\
+Vehicle 40 & 12:37:03 & Thursday & Rapid charging & Rapid charging & 398.27 mins & 6.64\\
 \hline
-Vehicle 1 & 18:20:46 & Thursday & Rapid charging & Rapid charging & 173.58 mins & 2.89\\
+Vehicle 40 & 10:39:13 & Tuesday & Rapid charging & Rapid charging & 346.25 mins & 5.77\\
 \hline
-Vehicle 47 & 23:40:40 & Tuesday & Rapid charging & Rapid charging & 116.37 mins & 1.94\\
+Vehicle 43 & 15:39:24 & Tuesday & Rapid charging & Rapid charging & 227.85 mins & 3.80\\
 \hline
-Vehicle 21 & 07:04:03 & Sunday & Rapid charging & Rapid charging & 90.57 mins & 1.51\\
+Vehicle 1 & 07:20:46 & Thursday & Rapid charging & Rapid charging & 173.58 mins & 2.89\\
 \hline
-Vehicle 42 & 03:02:37 & Monday & Standard charging & Rapid charging & 80.27 mins & 1.34\\
+Vehicle 19 & 00:52:01 & Friday & Rapid charging & Rapid charging & 155.42 mins & 2.59\\
 \hline
-Vehicle 33 & 03:23:22 & Saturday & Rapid charging & Rapid charging & 50.43 mins & 0.84\\
+Vehicle 49 & 12:40:40 & Tuesday & Rapid charging & Rapid charging & 116.37 mins & 1.94\\
 \hline
-Vehicle 1 & 02:59:40 & Thursday & Rapid charging & Rapid charging & 49.83 mins & 0.83\\
+Vehicle 21 & 20:04:03 & Sunday & Rapid charging & Rapid charging & 90.57 mins & 1.51\\
 \hline
 \end{tabular}
 \end{table}
@@ -491,9 +491,9 @@ Table \ref{tab:durationDescTableReduced} repeats the same descriptive statistics
 \hline
 chargeTypeCorrected & N & mean & median & min & max\\
 \hline
-Standard charging & 2244 & 244.11 mins & 210.10 & 8.03 mins & 1442.3 mins\\
+Standard charging & 3211 & 241.89 mins & 205.57 & 8.03 mins & 3029.12 mins\\
 \hline
-Rapid charging & 235 & 30.46 mins & 18.22 & 8.12 mins & 865.7 mins\\
+Rapid charging & 356 & 30.72 mins & 18.14 & 8.12 mins & 922.03 mins\\
 \hline
 \end{tabular}
 \end{table}
@@ -503,9 +503,9 @@ In addition to the many `short' charging duration values, a small number of unre
 \begin{itemize}
 \tightlist
 \item
-  duration \textless{} 8 minutes for standard charging (3458 observations - noting that some of these may be short low power `Rapid charge' events as discussed in Section \ref{chargeType})
+  duration \textless{} 8 minutes for standard charging (4747 observations - noting that some of these may be short low power `Rapid charge' events as discussed in Section \ref{chargeType})
 \item
-  duration \textgreater{} 840 minutes (14 hours) for rapid charging (1 observations)
+  duration \textgreater{} 840 minutes (14 hours) for rapid charging (2 observations)
 \end{itemize}
 
 Figure \ref{fig:longDuration} shows the distribution of charging sequences with the excessively long or short events removed. These charging durations appear more reasonable when considering standard battery capacities and available charge power.
@@ -520,9 +520,9 @@ Figure \ref{fig:longDuration} shows the distribution of charging sequences with 
 \hline
 chargeTypeCorrected & N & mean & median & min & max\\
 \hline
-Standard charging & 2244 & 244.11 mins & 210.10 & 8.03 mins & 1442.30 mins\\
+Standard charging & 3211 & 241.89 mins & 205.57 & 8.03 mins & 3029.12 mins\\
 \hline
-Rapid charging & 322 & 20.54 mins & 14.26 & 0.02 mins & 582.53 mins\\
+Rapid charging & 473 & 20.30 mins & 14.27 & 0.02 mins & 582.53 mins\\
 \hline
 \end{tabular}
 \end{table}
@@ -596,7 +596,7 @@ Rapid charging events were most likely to begin at 11:30am on weekdays and 1pm d
 
 Given this distribution of charging events, it is important to understand their magnitude to understand the potential effect on the electricity network. Although we are hampered by the lack of observations when the EV is inactive, this section analyses the patterns of power demand for the observations we have.
 
-Overall 75\% of standard charging observations were 1.45 kW or more but the figure was 20.05 kW or more for rapid charging.
+Overall 75\% of standard charging observations were 1.47 kW or more but the figure was 19.44 kW or more for rapid charging.
 
 Figure \ref{fig:nonRapidPowerPlotDT} shows the mean charging demand in kW calculated across all observations after setting rapid charge observations to 0 kW. As we would expect the kW load due to the EVs follows essentially the same shape as the charging event proportions shown above but with slightly more evidence of a 13:00 and 16:00 mini-peak and distinct differences between weekday and weekend mornings. As before, the apparent rapid increase in demand (and the pre-20:00 spike) are more likely to be due to decreasing numbers of `non-charging' observations than increases in charging (see Figure \ref{fig:chargeTimePC}.
 
@@ -667,9 +667,9 @@ This section analyses the duration of observed charging events to understand whe
 \hline
 chargeTypeCorrected & mean & median & min & max & sd\\
 \hline
-Standard charging & 244.11 mins & 210.10 mins & 8.03 mins & 1442.30 mins & 186.98\\
+Standard charging & 241.89 mins & 205.57 mins & 8.03 mins & 3029.12 mins & 196.77\\
 \hline
-Rapid charging & 20.54 mins & 14.26 mins & 0.02 mins & 582.53 mins & 42.86\\
+Rapid charging & 20.30 mins & 14.27 mins & 0.02 mins & 582.53 mins & 39.41\\
 \hline
 \end{tabular}
 \end{table}
@@ -682,13 +682,7 @@ Rapid charging & 20.54 mins & 14.26 mins & 0.02 mins & 582.53 mins & 42.86\\
 \hline
 qHour & chargeTypeCorrected & weekdays & meanDuration & nEVs\\
 \hline
-10:30:00 & Standard charging & Weekends & 1324.10 mins & 1\\
-\hline
-02:30:00 & Standard charging & Weekends & 528.46 mins & 4\\
-\hline
-02:45:00 & Standard charging & Weekends & 497.73 mins & 1\\
-\hline
-11:45:00 & Standard charging & Weekends & 495.30 mins & 1\\
+21:00:00 & Standard charging & Weekends & 484.05 mins & 10\\
 \hline
 \end{tabular}
 \end{table}
@@ -747,14 +741,14 @@ Finally, Figure \ref{fig:SoCplotTiming} shows the mean \% charge by time of firs
 \hypertarget{summary}{%
 \section{Summary}\label{summary}}
 
-Based on a relatively small and probably non-representative sample of 45 domestic electric vehicles provided by our research partner \href{https://flipthefleet.org/}{FlipTheFleet} and which were monitored from April 2018 to January 2019 we have found that:
+Based on a relatively small and probably non-representative sample of 48 domestic electric vehicles provided by our research partner \href{https://flipthefleet.org/}{FlipTheFleet} and which were monitored from April 2018 to March 2019 we have found that:
 
 \begin{itemize}
 \tightlist
 \item
-  \emph{Power supplied}: The median power supplied during a charging event coded as `standard' was 1.76 kW. The mean was slightly higher at 2.08 kW. Charging observations coded as `Rapid' had a median of 1.76 kW (mean = 2.08 kW). Mean power when charging showed a complex temporal profile for weekday standard charging (Figure \ref{fig:meanChargeByTimeStd}) with a peak of \textasciitilde{} 2.5kw at 10:00 and a second of the same value at around 18:00 with further peaks just after midnight. The inverse is seen on weekends with a charge peak during the middle of the day;
+  \emph{Power supplied}: The median power supplied during a charging event coded as `standard' was 1.76 kW. The mean was slightly higher at 2.09 kW. Charging observations coded as `Rapid' had a median of 1.76 kW (mean = 2.09 kW). Mean power when charging showed a complex temporal profile for weekday standard charging (Figure \ref{fig:meanChargeByTimeStd}) with a peak of \textasciitilde{} 2.5kw at 10:00 and a second of the same value at around 18:00 with further peaks just after midnight. The inverse is seen on weekends with a charge peak during the middle of the day;
 \item
-  \emph{Charging duration}: Charging durations tended to fall into one of two groups. Longer `standard' charges had a median duration of 210.1 minutes and a mean duration of 244.11 minutes. High power `Rapid' charge events had a median duration of 14.26 minutes and a mean duration of 14.26 minutes;
+  \emph{Charging duration}: Charging durations tended to fall into one of two groups. Longer `standard' charges had a median duration of 205.57 minutes and a mean duration of 241.89 minutes. High power `Rapid' charge events had a median duration of 14.27 minutes and a mean duration of 14.27 minutes;
 \item
   \emph{Time of day}: Standard charging events tended to be the most frequent around 22:00 on both weekdays and weekends, suggesting the drivers in our dataset utilise timers to take advantage of off-peak electricity although this is not universal with a substantial proportion of charging events starting earlier in the day and potentially at higher power levels (see above). Rapid charging events tended to begin at 11:30am on weekdays and 1pm during weekends;
 \item
@@ -773,7 +767,7 @@ Data used:
 \begin{itemize}
 \tightlist
 \item
-  /Volumes/hum-csafe/Research Projects/GREEN Grid/externalData/flipTheFleet/safe/testData/2019\_01\_25/EVBB\_processed\_all\_v1.0\_20180125.csv.zip
+  \textasciitilde/working/ftf/output/EVBB\_processed\_all\_v2.0\_20190604.csv
 \end{itemize}
 
 If this is not what you expect this may be a test run using preliminary data.
@@ -794,34 +788,34 @@ Data description for original data supplied (before processing or filtering).
 
 \begin{verbatim}
 ## Skim summary statistics
-##  n obs: 1515812 
+##  n obs: 1882040 
 ##  n variables: 8 
 ## 
-## -- Variable type:character --------------------------------------------------------------------------------------
+## -- Variable type:character ----------------------------------------------------------------------------------
 ##     variable missing complete       n min max empty n_unique
-##  day_of_week       0  1515812 1515812   6   9     0        7
-##           id       0  1515812 1515812  32  32     0       50
-##        month       0  1515812 1515812   3   3     0       10
+##  day_of_week       0  1882040 1882040   6   9     0        7
+##           id       0  1882040 1882040  32  32     0       52
+##        month       0  1882040 1882040   3   3     0       12
 ## 
-## -- Variable type:Date -------------------------------------------------------------------------------------------
+## -- Variable type:Date ---------------------------------------------------------------------------------------
 ##  variable missing complete       n        min        max     median
-##      date       0  1515812 1515812 2018-04-05 2019-01-25 2018-11-09
+##      date       0  1882040 1882040 2018-04-05 2019-03-01 2018-11-25
 ##  n_unique
-##       293
+##       328
 ## 
-## -- Variable type:difftime ---------------------------------------------------------------------------------------
+## -- Variable type:difftime -----------------------------------------------------------------------------------
 ##  variable missing complete       n    min        max     median n_unique
-##      time       0  1515812 1515812 0 secs 86399 secs 44827 secs    86400
+##      time       0  1882040 1882040 0 secs 86399 secs 44877 secs    86400
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------------------------------
+## -- Variable type:numeric ------------------------------------------------------------------------------------
 ##                 variable missing complete       n    mean      sd     p0
-##          charge_power_kw       0  1515812 1515812    1.73   71         0
-##              odometer_km 1000156   515656 1515812 7290.5  7954.38 -62920
-##  state_of_charge_percent       0  1515812 1515812   69.11   20.85      0
-##      p25     p50     p75     p100     hist
-##     0       1.37     1.9 74940.42 ▇▁▁▁▁▁▁▁
-##  1889    4749    10529   69394    ▁▁▁▆▇▂▁▁
-##    56.43   70.57    83.2  1677.72 ▇▁▁▁▁▁▁▁
+##          charge_power_kw       0  1882040 1882040    1.59   63.73      0
+##              odometer_km 1255614   626426 1882040 7789.97 8268.44 -62920
+##  state_of_charge_percent       0  1882040 1882040   69      20.66      0
+##      p25     p50      p75     p100     hist
+##     0       1.3      1.85 74940.42 ▇▁▁▁▁▁▁▁
+##  2166.25 5309    11154    73607    ▁▁▁▇▇▁▁▁
+##    56.31   70.41    83.05  1677.72 ▇▁▁▁▁▁▁▁
 \end{verbatim}
 
 \hypertarget{processedCheck}{%
@@ -837,67 +831,67 @@ Data description for cleaned data (all observations).
 
 \begin{verbatim}
 ## Skim summary statistics
-##  n obs: 941415 
+##  n obs: 1518388 
 ##  n variables: 21 
 ## 
-## -- Variable type:character --------------------------------------------------------------------------------------
-##     variable missing complete      n min max empty n_unique
-##   chargeFlag       3   941412 941415  17  25     0        5
-##  chargingStr       0   941415 941415   2   3     0        2
-##         dvID       0   941415 941415   9  10     0       45
-##           id       0   941415 941415  32  32     0       45
-##   peakPeriod       0   941415 941415   8  12     0        3
-##     weekdays       0   941415 941415   8   8     0        2
+## -- Variable type:character ----------------------------------------------------------------------------------
+##     variable missing complete       n min max empty n_unique
+##   chargeFlag       3  1518385 1518388  17  25     0        5
+##  chargingStr       0  1518388 1518388   2   3     0        2
+##         dvID       0  1518388 1518388   9  10     0       48
+##           id       0  1518388 1518388  32  32     0       48
+##   peakPeriod       0  1518388 1518388   8  12     0        3
+##     weekdays       0  1518388 1518388   8   8     0        2
 ## 
-## -- Variable type:Date -------------------------------------------------------------------------------------------
-##  variable missing complete      n        min        max     median
-##      date       0   941415 941415 2018-10-01 2018-12-31 2018-11-16
+## -- Variable type:Date ---------------------------------------------------------------------------------------
+##  variable missing complete       n        min        max     median
+##      date       0  1518388 1518388 2018-10-01 2019-02-28 2018-12-12
 ##  n_unique
-##        92
+##       151
 ## 
-## -- Variable type:difftime ---------------------------------------------------------------------------------------
-##      variable missing complete      n    min          max   median
-##  dateTimeDiff      12   941403 941415 0 secs 2486002 secs  50 secs
-##         qHour       0   941415 941415 0 secs   85500 secs 12:00:00
-##     startTime       0   941415 941415 0 secs   86399 secs 11:35:58
-##          time       0   941415 941415 0 secs   86399 secs 12:10:19
+## -- Variable type:difftime -----------------------------------------------------------------------------------
+##      variable missing complete       n    min          max     median
+##  dateTimeDiff      15  1518373 1518388 0 secs 2486002 secs    50 secs
+##         qHour       0  1518388 1518388 0 secs   85500 secs 43200 secs
+##     startTime       0  1518388 1518388 0 secs   86399 secs 43969 secs
+##          time       0  1518388 1518388 0 secs   86399 secs 43969 secs
 ##  n_unique
-##     10354
+##     14681
 ##        96
-##     86394
-##     86392
+##     86400
+##     86400
 ## 
-## -- Variable type:factor -----------------------------------------------------------------------------------------
-##     variable missing complete      n n_unique
-##   chargeType       0   941415 941415        3
-##  day_of_week       0   941415 941415        7
-##        month       0   941415 941415        3
+## -- Variable type:factor -------------------------------------------------------------------------------------
+##     variable missing complete       n n_unique
+##   chargeType       0  1518388 1518388        3
+##  day_of_week       0  1518388 1518388        7
+##        month       0  1518388 1518388        5
 ##                                          top_counts ordered
-##          Sta: 627991, Not: 307890, Rap: 5534, NA: 0   FALSE
-##  Fri: 152881, Thu: 146464, Wed: 146461, Mon: 138453    TRUE
-##       Nov: 332960, Oct: 309239, Dec: 299216, Jan: 0   FALSE
+##          Sta: 880137, Not: 629889, Rap: 8362, NA: 0   FALSE
+##  Thu: 244939, Wed: 240497, Fri: 232824, Mon: 222218    TRUE
+##  Nov: 332960, Oct: 309239, Dec: 299216, Jan: 291236   FALSE
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------------------------------
-##         variable missing complete      n    mean      sd     p0     p25
-##  charge_power_kw       0   941415 941415    1.57    2.76      0    0   
-##         charging       0   941415 941415    0.67    0.47      0    0   
-##      odometer_km  656757   284658 941415 7148.04 8395.07 -62920 1847   
-##     odometerDiff  661777   279638 941415    1.01 2584.06 -64324    0   
-##      SoC_percent      24   941391 941415   68.96   18.51      0   56.29
-##           tempkW       0   941415 941415    0.18    2.55      0    0   
-##      p50     p75     p100     hist
-##     1.47    1.93    70.16 ▇▁▁▁▁▁▁▁
-##     1       1        1    ▃▁▁▁▁▁▁▇
-##  4449    8865    69163    ▁▁▁▆▇▂▁▁
-##     0       1    64261    ▁▁▁▁▇▁▁▁
-##    70.33   82.98    98.1  ▁▁▂▃▆▇▇▇
-##     0       0       70.16 ▇▁▁▁▁▁▁▁
+## -- Variable type:numeric ------------------------------------------------------------------------------------
+##         variable missing complete       n    mean      sd     p0     p25
+##  charge_power_kw       0  1518388 1518388    1.38    2.68      0    0   
+##         charging       0  1518388 1518388    0.59    0.49      0    0   
+##      odometer_km 1058334   460054 1518388 8139.03 8632.56 -62920 2530   
+##     odometerDiff 1067454   450934 1518388    1.07 2549.69 -64324    0   
+##      SoC_percent      53  1518335 1518388   68.82   18.5       0   56.15
+##           tempkW       0  1518388 1518388    0.17    2.44      0    0   
+##      p50      p75     p100     hist
+##     1.34     1.84    70.16 ▇▁▁▁▁▁▁▁
+##     1        1        1    ▆▁▁▁▁▁▁▇
+##  5659    10343.75 73607    ▁▁▁▇▇▂▁▁
+##     0        1    64261    ▁▁▁▁▇▁▁▁
+##    70.19    82.84    98.1  ▁▁▂▃▆▇▇▇
+##     0        0       70.16 ▇▁▁▁▁▁▁▁
 ## 
-## -- Variable type:POSIXct ----------------------------------------------------------------------------------------
-##  variable missing complete      n        min        max     median
-##  dateTime       0   941415 941415 2018-10-01 2018-12-31 2018-11-16
+## -- Variable type:POSIXct ------------------------------------------------------------------------------------
+##  variable missing complete       n        min        max     median
+##  dateTime       0  1518388 1518388 2018-10-01 2019-02-28 2018-12-12
 ##  n_unique
-##    884889
+##   1429770
 \end{verbatim}
 
 Data description for cleaned data (first observations in a charging sequence).
@@ -910,67 +904,67 @@ Data description for cleaned data (first observations in a charging sequence).
 
 \begin{verbatim}
 ## Skim summary statistics
-##  n obs: 2566 
+##  n obs: 3684 
 ##  n variables: 23 
 ## 
-## -- Variable type:character --------------------------------------------------------------------------------------
+## -- Variable type:character ----------------------------------------------------------------------------------
 ##         variable missing complete    n min max empty n_unique
-##       chargeFlag       0     2566 2566  25  25     0        1
-##  chargeTypeError       0     2566 2566  31  37     0        4
-##             dvID       0     2566 2566   9  10     0       44
-##               id       0     2566 2566  32  32     0       44
-##       peakPeriod       0     2566 2566   8  12     0        3
-##         weekdays       0     2566 2566   8   8     0        2
+##       chargeFlag       0     3684 3684  25  25     0        1
+##  chargeTypeError       0     3684 3684  31  37     0        4
+##             dvID       0     3684 3684   9  10     0       48
+##               id       0     3684 3684  32  32     0       48
+##       peakPeriod       0     3684 3684   8  12     0        3
+##         weekdays       0     3684 3684   8   8     0        2
 ## 
-## -- Variable type:Date -------------------------------------------------------------------------------------------
+## -- Variable type:Date ---------------------------------------------------------------------------------------
 ##  variable missing complete    n        min        max     median n_unique
-##      date       0     2566 2566 2018-10-01 2018-12-31 2018-11-15       92
+##      date       0     3684 3684 2018-10-01 2019-02-28 2018-12-05      142
 ## 
-## -- Variable type:difftime ---------------------------------------------------------------------------------------
-##      variable missing complete    n                    min
-##  dateTimeDiff       0     2566 2566   0 secs              
-##       endTime       0     2566 2566 165 secs              
-##  pairDuration       0     2566 2566        0.01666667 mins
-##         qHour       0     2566 2566   0 secs              
-##     startTime       0     2566 2566  54 secs              
-##          time       0     2566 2566  63 secs              
-##                 max               median n_unique
-##  230025 secs          338 secs               1484
-##   86384 secs        46815 secs               2518
-##         1442.3 mins        185.5583 mins     2394
-##   85500 secs        55800 secs                 96
-##   86393 secs             33389.5 secs        2466
-##   86246 secs             56583.5 secs        2471
+## -- Variable type:difftime -----------------------------------------------------------------------------------
+##      variable missing complete    n                   min
+##  dateTimeDiff       0     3684 3684  0 secs              
+##       endTime       0     3684 3684 31 secs              
+##  pairDuration       0     3684 3684       0.01666667 mins
+##         qHour       0     3684 3684  0 secs              
+##     startTime       0     3684 3684 40 secs              
+##          time       0     3684 3684 40 secs              
+##                   max              median n_unique
+##  230025 secs            318 secs              1994
+##   86342 secs               41046.5 secs       3573
+##         3029.117 mins        178.275 mins     3345
+##   85500 secs          54900 secs                96
+##   86246 secs          55665 secs              3514
+##   86246 secs          55665 secs              3514
 ## 
-## -- Variable type:factor -----------------------------------------------------------------------------------------
+## -- Variable type:factor -------------------------------------------------------------------------------------
 ##             variable missing complete    n n_unique
-##           chargeType       0     2566 2566        2
-##  chargeTypeCorrected       0     2566 2566        2
-##          day_of_week       0     2566 2566        7
-##              endType       0     2566 2566        2
-##                month       0     2566 2566        3
+##           chargeType       0     3684 3684        2
+##  chargeTypeCorrected       0     3684 3684        2
+##          day_of_week       0     3684 3684        7
+##              endType       0     3684 3684        2
+##                month       0     3684 3684        5
 ##                              top_counts ordered
-##      Sta: 2256, Rap: 310, Not: 0, NA: 0   FALSE
-##      Sta: 2244, Rap: 322, Not: 0, NA: 0   FALSE
-##  Fri: 416, Thu: 391, Mon: 386, Wed: 383    TRUE
-##      Sta: 2304, Rap: 262, Not: 0, NA: 0   FALSE
-##    Nov: 912, Oct: 846, Dec: 808, Jan: 0   FALSE
+##      Sta: 3226, Rap: 458, Not: 0, NA: 0   FALSE
+##      Sta: 3211, Rap: 473, Not: 0, NA: 0   FALSE
+##  Wed: 568, Thu: 564, Fri: 563, Mon: 533    TRUE
+##      Sta: 3293, Rap: 391, Not: 0, NA: 0   FALSE
+##  Nov: 912, Oct: 846, Dec: 810, Feb: 641   FALSE
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------------------------------
+## -- Variable type:numeric ------------------------------------------------------------------------------------
 ##         variable missing complete    n    mean      sd        p0     p25
-##  charge_power_kw       0     2566 2566    6.49   11.81      0.5     1.55
-##      odometer_km    2033      533 2566 6463.61 7758.75 -52352    1574   
-##     odometerDiff    2047      519 2566   63.03 2601    -18760       0   
-##      SoC_percent       0     2566 2566   50.43   19.25      4.11   36.33
-##      p50     p75     p100     hist
-##     2.08    3.29    70.16 ▇▁▁▁▁▁▁▁
-##  4072    8746    38453    ▁▁▁▁▇▅▂▁
-##     0       0    37626    ▁▁▇▁▁▁▁▁
-##    49.02   61       98.1  ▁▃▆▇▇▃▂▂
+##  charge_power_kw       0     3684 3684    6.64   12.04      0.5     1.57
+##      odometer_km    2905      779 3684 7600.63 8311.28 -52352    2022   
+##     odometerDiff    2923      761 3684  136.5  3704.63 -45299       0   
+##      SoC_percent       0     3684 3684   50.38   19.04      4.11   36.41
+##      p50      p75     p100     hist
+##     2.08     3.3     70.16 ▇▁▁▁▁▁▁▁
+##  5110    10545    54443    ▁▁▁▁▇▂▁▁
+##     0        0    44500    ▁▁▁▁▇▁▁▁
+##    49.07    61.24    98.1  ▁▃▆▇▇▅▂▂
 ## 
-## -- Variable type:POSIXct ----------------------------------------------------------------------------------------
+## -- Variable type:POSIXct ------------------------------------------------------------------------------------
 ##  variable missing complete    n        min        max     median n_unique
-##  dateTime       0     2566 2566 2018-10-01 2018-12-31 2018-11-15     2566
+##  dateTime       0     3684 3684 2018-10-01 2019-02-28 2018-12-05     3684
 \end{verbatim}
 
 \hypertarget{odometer-data-checks}{%
@@ -1000,105 +994,109 @@ There are many NAs in the odometer data and also -ve values as Table \ref{tab:ch
 \hline
   & -ve & +ve & 0 & NA\\
 \hline
-009e8a24229d1c7723588ceec2b95f6a & 186 & 70934 & 0 & 2152\\
+009e8a24229d1c7723588ceec2b95f6a & 186 & 82476 & 0 & 2537\\
 \hline
-0155fb80d2ef801d7086a159c5fe8df0 & 11 & 5894 & 3 & 24819\\
+0155fb80d2ef801d7086a159c5fe8df0 & 11 & 7876 & 3 & 32998\\
 \hline
 01583b8a5f0344cc4aa3b3939a27af2a & 4 & 0 & 0 & 0\\
 \hline
-0564346e7607d1c21e5a6e3878399307 & 39 & 12756 & 2 & 30774\\
+0564346e7607d1c21e5a6e3878399307 & 40 & 15940 & 2 & 39263\\
 \hline
-0af7e964b7e72ab184fbead5d30106e3 & 0 & 8293 & 5 & 60516\\
+0af7e964b7e72ab184fbead5d30106e3 & 22 & 10751 & 5 & 77445\\
 \hline
 0cc746a3f5ae75ee94068a8354b6be08 & 0 & 3 & 0 & 0\\
 \hline
-1256011bed883244df94d560795904e8 & 280 & 28110 & 0 & 1338\\
+1256011bed883244df94d560795904e8 & 310 & 33783 & 0 & 1364\\
 \hline
 126c8759ec95ba40070b16a11fe0e587 & 3 & 0 & 0 & 255\\
 \hline
-12f1e87977249e72358c12dcd197f753 & 153 & 14332 & 1 & 44435\\
+12f1e87977249e72358c12dcd197f753 & 153 & 16504 & 1 & 50609\\
 \hline
-16b47e88aec68658c5f03db9546db91b & 0 & 1905 & 2 & 3135\\
+16b47e88aec68658c5f03db9546db91b & 2 & 2711 & 2 & 4185\\
 \hline
-19c4d7520e9d65c364ff0729a7caf426 & 117 & 11735 & 1 & 114\\
+19c4d7520e9d65c364ff0729a7caf426 & 117 & 12847 & 1 & 480\\
 \hline
-1c43f265e57e648c89a427add181e58f & 73 & 13436 & 0 & 39332\\
+1c43f265e57e648c89a427add181e58f & 73 & 16525 & 0 & 47822\\
 \hline
-2f1aeb0d0c5d7a823533b8633d808332 & 4 & 3218 & 4 & 6707\\
+2f1aeb0d0c5d7a823533b8633d808332 & 4 & 3230 & 4 & 6707\\
 \hline
-32346e168dbccf81c465ed657e5fc371 & 76 & 15958 & 17 & 40375\\
+32346e168dbccf81c465ed657e5fc371 & 76 & 19917 & 17 & 50582\\
 \hline
 3993011700868644dc948d58dd3bf9d7 & 93 & 3494 & 9 & 11768\\
 \hline
-3aa51bc2789088cf6a3804c50f362f34 & 4 & 8616 & 1 & 37780\\
+3aa51bc2789088cf6a3804c50f362f34 & 4 & 11685 & 1 & 50299\\
 \hline
 3c218d73c404cc8a552f3449b64f403a & 19 & 3204 & 47 & 4097\\
 \hline
-3dfd17f381f439bc351065cff0d83c69 & 753 & 18959 & 1 & 48168\\
+3dfd17f381f439bc351065cff0d83c69 & 851 & 21524 & 1 & 54441\\
 \hline
-3fcc39331391ecd9280917d6bdf321bb & 308 & 10856 & 2 & 26163\\
+3fcc39331391ecd9280917d6bdf321bb & 414 & 14609 & 2 & 34223\\
 \hline
-41930b96d7e6cc4a5eb6542ca36f09e2 & 0 & 3660 & 3 & 8965\\
+41930b96d7e6cc4a5eb6542ca36f09e2 & 0 & 5256 & 3 & 11877\\
 \hline
-49be6e824b8a4196cc514c2ce4cb6e68 & 304 & 34260 & 0 & 33793\\
+49be6e824b8a4196cc514c2ce4cb6e68 & 296 & 31792 & 0 & 26927\\
 \hline
 4a6bb6e7ffc28d9d8eda7b4c6377a027 & 16 & 3 & 0 & 0\\
 \hline
-4e48f4155c29c763ffe6d9e17a495200 & 0 & 223 & 2 & 305\\
+4e48f4155c29c763ffe6d9e17a495200 & 79 & 1854 & 2 & 4338\\
 \hline
-5580d13143df1b944fdc1d89ec402b8e & 164 & 17293 & 15 & 32522\\
+5580d13143df1b944fdc1d89ec402b8e & 175 & 20005 & 15 & 37670\\
 \hline
-5bf3a96857982acaa939fd1adc988e07 & 0 & 5195 & 4 & 8252\\
+5bf3a96857982acaa939fd1adc988e07 & 0 & 5745 & 4 & 9862\\
 \hline
-5ddc10f96e80630519747ba6a8fe682f & 1 & 8315 & 1 & 74\\
+5ddc10f96e80630519747ba6a8fe682f & 1 & 9631 & 1 & 80\\
 \hline
-616cde60ad25ddc1db4dd832ff1231ca & 125 & 5074 & 2 & 26096\\
+60593731dff536355c4bd88c1c1e5cdb & 103 & 5100 & 4 & 14445\\
+\hline
+616cde60ad25ddc1db4dd832ff1231ca & 126 & 6782 & 2 & 33292\\
 \hline
 6e3293c77f562262ed6608db1b596d36 & 0 & 4288 & 0 & 27\\
 \hline
 70102a8511c6454814b7ca1506d461dd & 33 & 5308 & 45 & 12491\\
 \hline
-746039182479252e9d1c9eeb071695ec & 312 & 8138 & 2 & 16621\\
+7023838bd3a5004be2d10784bc116d54 & 0 & 1619 & 1 & 6974\\
+\hline
+746039182479252e9d1c9eeb071695ec & 349 & 11902 & 2 & 23483\\
 \hline
 781f06f7d7bb80b74c399326be0d3e28 & 419 & 1419 & 14 & 3617\\
 \hline
-7c234b2fb2fc9db5a1a1321167606eba & 119 & 26298 & 1 & 60738\\
+7c234b2fb2fc9db5a1a1321167606eba & 97 & 29619 & 1 & 69761\\
 \hline
-80160eb40e4f12004b46d4cf77dcd62f & 109 & 16133 & 2 & 88933\\
+80160eb40e4f12004b46d4cf77dcd62f & 131 & 21159 & 2 & 117518\\
 \hline
-8a217a62f385a9c6698033b38b169d70 & 97 & 25250 & 0 & 900\\
+8a217a62f385a9c6698033b38b169d70 & 97 & 28408 & 0 & 1541\\
 \hline
-8ccb51191dcf0dd9152b867f6e1f74d4 & 146 & 2605 & 1 & 13492\\
+8ccb51191dcf0dd9152b867f6e1f74d4 & 176 & 3970 & 1 & 20941\\
 \hline
-8d4a65c57c5d778786189f96df2c65c5 & 223 & 7205 & 2 & 12506\\
+8d4a65c57c5d778786189f96df2c65c5 & 227 & 9130 & 2 & 15644\\
 \hline
-9447d58925397798b076e4b5bf42fd43 & 4 & 4301 & 5 & 14184\\
+9447d58925397798b076e4b5bf42fd43 & 9 & 5829 & 5 & 18892\\
 \hline
-a1c8e57bfcf815f25844c49f4535a8ef & 4 & 4994 & 2 & 16849\\
+a1c8e57bfcf815f25844c49f4535a8ef & 4 & 7832 & 2 & 27540\\
 \hline
-bb1a2db7ae160eba9d77bb7c35c57f05 & 2 & 6966 & 3 & 26556\\
+bb1a2db7ae160eba9d77bb7c35c57f05 & 2 & 8931 & 3 & 32765\\
 \hline
-bc3bd38c67b3b2cb2757c94b54a5b408 & 36 & 4462 & 0 & 6486\\
+bc3bd38c67b3b2cb2757c94b54a5b408 & 36 & 7147 & 0 & 9816\\
 \hline
-bdbbb99fdb70e1e108bb69eff77ee48a & 140 & 19609 & 2 & 53186\\
+bdbbb99fdb70e1e108bb69eff77ee48a & 141 & 24744 & 2 & 65667\\
 \hline
-c05b76de4b11ef7ec0c84e6dc3d05f9c & 0 & 10242 & 339 & 42482\\
+c05b76de4b11ef7ec0c84e6dc3d05f9c & 16 & 14598 & 339 & 52110\\
 \hline
-da5dcd6efbca045af6759f645f51b6a0 & 132 & 7940 & 2 & 19270\\
+da5dcd6efbca045af6759f645f51b6a0 & 137 & 9617 & 2 & 24606\\
 \hline
 e11e3f82945d94d288a7e47c06515f26 & 26 & 7558 & 1 & 38693\\
 \hline
-f616ac16a4a9af35eacd2afa9a98f7f1 & 19 & 7499 & 3 & 24959\\
+f616ac16a4a9af35eacd2afa9a98f7f1 & 19 & 10146 & 3 & 31736\\
 \hline
-f8afdd8b06b89cfcfadd75f5146736cd & 44 & 12628 & 0 & 1676\\
+f8afdd8b06b89cfcfadd75f5146736cd & 44 & 14552 & 0 & 1678\\
 \hline
-f99c233aec9005793d82e64afb45aa23 & 26 & 3418 & 3 & 8765\\
+f99c233aec9005793d82e64afb45aa23 & 41 & 4637 & 3 & 10469\\
 \hline
-fc6a67af46efb8ab97e2e014173af954 & 84 & 8498 & 5 & 34103\\
+fc6a67af46efb8ab97e2e014173af954 & 128 & 11862 & 5 & 46543\\
 \hline
-fc9cb5463304eb870e70f6720185d653 & 0 & 4798 & 1 & 5288\\
+fc9cb5463304eb870e70f6720185d653 & 0 & 6646 & 1 & 6942\\
 \hline
-fd60aa4d6f3748b3f36495ff1a823407 & 0 & 5105 & 5 & 6399\\
+fd60aa4d6f3748b3f36495ff1a823407 & 0 & 6383 & 5 & 8594\\
 \hline
 NA & 0 & 0 & 0 & 0\\
 \hline
@@ -1128,19 +1126,19 @@ This is used to identify observations that form part of a sequence. The logic is
 \hline
   & Standard charging & Rapid charging & Not charging & NA\\
 \hline
-Charging in a seq & 861871 & 10871 & 0 & 0\\
+Charging in a seq & 1015294 & 11992 & 0 & 0\\
 \hline
-First charge obs in a seq & 6511 & 509 & 0 & 0\\
+First charge obs in a seq & 7540 & 562 & 0 & 0\\
 \hline
-Last charge in a seq & 8925 & 589 & 0 & 0\\
+Last charge in a seq & 10344 & 651 & 0 & 0\\
 \hline
-Not charging (0 kW) & 0 & 0 & 600049 & 0\\
+Not charging (0 kW) & 0 & 0 & 805358 & 0\\
 \hline
-Not classified (what is this??) & 17908 & 627 & 0 & 0\\
+Not classified (what is this??) & 20357 & 675 & 0 & 0\\
 \hline
-Single charge observation & 7301 & 372 & 0 & 0\\
+Single charge observation & 8584 & 400 & 0 & 0\\
 \hline
-NA & 226 & 53 & 0 & 0\\
+NA & 230 & 53 & 0 & 0\\
 \hline
 \end{tabular}
 \end{table}
@@ -1160,17 +1158,17 @@ NA & 226 & 53 & 0 & 0\\
 \hline
   & Standard charging & Rapid charging & Not charging & NA\\
 \hline
-Charging in a seq & 877184 & 11238 & 0 & 0\\
+Charging in a seq & 1032623 & 12388 & 0 & 0\\
 \hline
-First charge obs in a seq & 9016 & 745 & 0 & 0\\
+First charge obs in a seq & 10453 & 817 & 0 & 0\\
 \hline
-Last charge in a seq & 9158 & 615 & 0 & 0\\
+Last charge in a seq & 10602 & 677 & 0 & 0\\
 \hline
-Not charging (0 kW) & 0 & 0 & 600049 & 0\\
+Not charging (0 kW) & 0 & 0 & 805358 & 0\\
 \hline
-Single charge observation & 7301 & 372 & 0 & 0\\
+Single charge observation & 8584 & 400 & 0 & 0\\
 \hline
-NA & 83 & 51 & 0 & 0\\
+NA & 87 & 51 & 0 & 0\\
 \hline
 \end{tabular}
 \end{table}
@@ -1212,15 +1210,15 @@ For now we therefore do not use the 120 second rule.
 \hline
   & Standard charging & Rapid charging & Not charging & NA\\
 \hline
-Charging in a seq & 612644 & 4862 & 0 & 0\\
+Charging in a seq & 858209 & 7375 & 0 & 0\\
 \hline
-First charge obs in a seq & 5717 & 310 & 0 & 0\\
+First charge obs in a seq & 7980 & 459 & 0 & 0\\
 \hline
-Last charge in a seq & 5770 & 263 & 0 & 0\\
+Last charge in a seq & 8049 & 392 & 0 & 0\\
 \hline
-Not charging (0 kW) & 0 & 0 & 307890 & 0\\
+Not charging (0 kW) & 0 & 0 & 629889 & 0\\
 \hline
-Single charge observation & 3858 & 98 & 0 & 0\\
+Single charge observation & 5897 & 135 & 0 & 0\\
 \hline
 NA & 2 & 1 & 0 & 0\\
 \hline
@@ -1472,15 +1470,15 @@ Figure \ref{fig:RapidPowerDeltaDensity} shows the distribution of charge power d
 \hline
   & Standard charging & Rapid charging & Not charging & NA\\
 \hline
-Error: first = Rapid, last = Standard & 0 & 60 & 0 & 0\\
+Error: first = Rapid, last = Standard & 0 & 83 & 0 & 0\\
 \hline
-Error: first = Standard, last = Rapid & 13 & 0 & 0 & 0\\
+Error: first = Standard, last = Rapid & 16 & 0 & 0 & 0\\
 \hline
-OK: first = Rapid, last = Rapid & 0 & 250 & 0 & 0\\
+OK: first = Rapid, last = Rapid & 0 & 376 & 0 & 0\\
 \hline
-OK: first = Standard, last = Standard & 5704 & 0 & 0 & 0\\
+OK: first = Standard, last = Standard & 7964 & 0 & 0 & 0\\
 \hline
-NA & 5770 & 263 & 0 & 0\\
+NA & 8049 & 392 & 0 & 0\\
 \hline
 \end{tabular}
 \end{table}
@@ -1494,7 +1492,7 @@ NA & 5770 & 263 & 0 & 0\\
 \end{Shaded}
 
 \begin{verbatim}
-## There are 73 pairs (out of a total of 6030) from 23 EVs where charge type doesn't match.
+## There are 99 pairs (out of a total of 8440) from 27 EVs where charge type doesn't match.
 \end{verbatim}
 
 \hypertarget{references}{%
@@ -1503,7 +1501,7 @@ NA & 5770 & 263 & 0 & 0\\
 
 \hypertarget{refs}{}
 \leavevmode\hypertarget{ref-Azadfar2015}{}%
-Azadfar, Elham, Victor Sreeram, and David Harries. 2015. ``The investigation of the major factors influencing plug-in electric vehicle driving patterns and charging behaviour.'' \emph{Renewable and Sustainable Energy Reviews} 42. Elsevier: 1065--76. \url{https://doi.org/10.1016/j.rser.2014.10.058}.
+Azadfar, Elham, Victor Sreeram, and David Harries. 2015. ``The investigation of the major factors influencing plug-in electric vehicle driving patterns and charging behaviour.'' \emph{Renewable and Sustainable Energy Reviews} 42: 1065--76. \url{https://doi.org/10.1016/j.rser.2014.10.058}.
 
 \leavevmode\hypertarget{ref-ConceptConsulting2018}{}%
 Concept Consulting. 2018. ``` Driving change ' -- Issues and options to maximise the opportunities from large-scale electric vehicle uptake in New Zealand,'' no. March.
@@ -1512,7 +1510,7 @@ Concept Consulting. 2018. ``` Driving change ' -- Issues and options to maximise
 Eyers, Lisa. 2018. ``Electric Chargepoint Analysis 2017 : Domestics Key findings :'' no. December.
 
 \leavevmode\hypertarget{ref-Khan2018}{}%
-Khan, Imran, Michael W. Jack, and Janet Stephenson. 2018. ``Analysis of greenhouse gas emissions in electricity systems using time-varying carbon intensity.'' \emph{Journal of Cleaner Production} 184. Elsevier Ltd: 1091--1101. \url{https://doi.org/10.1016/j.jclepro.2018.02.309}.
+Khan, Imran, Michael W. Jack, and Janet Stephenson. 2018. ``Analysis of greenhouse gas emissions in electricity systems using time-varying carbon intensity.'' \emph{Journal of Cleaner Production} 184: 1091--1101. \url{https://doi.org/10.1016/j.jclepro.2018.02.309}.
 
 \leavevmode\hypertarget{ref-langbroek_when_2017}{}%
 Langbroek, Joram H. M., Joel P. Franklin, and Yusak O. Susilo. 2017. ``When Do You Charge Your Electric Vehicle? A Stated Adaptation Approach.'' \emph{Energy Policy} 108 (September): 565--73. \url{https://doi.org/10.1016/j.enpol.2017.06.023}.
@@ -1533,7 +1531,7 @@ Stephenson, Janet, Rebecca Ford, Nirmal-Kumar Nair, Neville Watson, Alan Wood, a
 Transpower New Zealand. 2015. ``Transmission Planning Report,'' no. July: 320.
 
 \leavevmode\hypertarget{ref-TranspowerNewZealand2017}{}%
----------. 2017. ``Battery Storage in New Zealand,'' no. September: 41. \href{https://www.transpower.co.nz/sites/default/files/publications/resources/Battery\%20Storage\%20in\%20New\%20Zealand.pdf}{https://www.transpower.co.nz/sites/default/files/publications/resources/Battery Storage in New Zealand.pdf}.
+---------. 2017. ``Battery Storage in New Zealand,'' no. September: 41. \url{https://www.transpower.co.nz/sites/default/files/publications/resources/Battery\%20Storage\%20in\%20New\%20Zealand.pdf}.
 
 
 \end{document}

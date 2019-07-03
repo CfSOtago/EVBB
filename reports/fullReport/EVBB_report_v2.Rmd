@@ -148,16 +148,6 @@ This report extends the work done by Concept Consulting, but utilises actual dat
 
 The data used has been provided by 'Flip the Fleet', a community organisation that hopes to increase uptake of electric vehicles in New Zealand. Flip the Fleet have been collecting data on electric vehicle usage patterns, via Exact IOT Limited's [blackbox recorder](https://flipthefleet.org/ev-black-box/), a small electronic  device that connects to the vehicle's internal computer and sends detailed data about the battery health, power demand, charging rate, speed and other performance information to a secure database.
 
-The subset of this data provided to the University of Otago was collected from `r data.table::uniqueN(rawDT$id)` domestic electric vehicles monitored from `r format(min(rawDT$date), format = "%B %Y")` to `r format(max(rawDT$date), format = "%B %Y")`. The data consisted of `r prettyNum(nrow(rawDT), big.mark = ",")` 1 minute interval observations of timestamped odometer readings (in km) together with measurements of charging power (kW) and battery charge state (% charged) linked to a unique anonymised vehicle identifier.
-
-There are a number of important limitations to this data:
-
- * measurement of observations only occurs when the car is switched on and/or plugged in and charging. As a result no data will be collected when the EV is switched off. This means that there are large non-erroneous 'gaps' in the data which represent 'no charging' (and also 'no driving') but which are not included as '0 power demand' in the analyses since to do so would require imputation of a very large number of missing time stamps for each vehicle. This means we are only really able to analyse power demand profiles for vehicles that were charging, _not for all vehicles in all time periods_;
- * data upload relied on mobile 3G data signal and the extent to which gaps in the data are due to data upload errors rather than vehicle non-use (as above) is currently unclear;
- * these vehicles are driven by 'early adopters' who have opted to install the measuring devices in order to collect their vehicle usage data. As a result the data may not be representative of the usage patterns of current or future EV drivers [@rezvani_advances_2015,@li_review_2017].
-
-Even though the use of an anonymised vehicle identifier should prevent the identification of the vehicles in the sample, the fine-grained temporal nature of the data and the relatively small population of EV owners from whom the sample is drawn (Flip The Fleet members) means that the data cannot be publicly released.
-
 ## Initial cleaning{#cleaning}
 
 ```{r initialDataChecks}
@@ -169,7 +159,19 @@ plotDT <- rawDT[, .(nEVs = uniqueN(id),
 plotDT <- plotDT[, nObsPerEV := nObs/nEVs]
 ```
 
-Figure \@ref(fig:initialDataChecksPlotTile) shows the number of unique EVs observed by time of day and date. As we can see the early part of the sample is sparse and indeed the maximum number of EVs observed in any 15 minute time period was only `r max(plotDT$nEVs)` out of a possible total of `r data.table::uniqueN(rawDT$id)`. While this will not affect some analyses, it is likely to introduce error and small sample effects to summary analyses (e.g. means) or month by month analyses. In some sections the analysis will therefore be restricted to the data from September to January.
+
+The subset of this data provided to the University of Otago was collected from `r data.table::uniqueN(rawDT$id)` domestic electric vehicles monitored from `r format(min(rawDT$date), format = "%B %Y")` to `r format(max(rawDT$date), format = "%B %Y")`. The data consisted of `r prettyNum(nrow(rawDT), big.mark = ",")` 1 minute interval observations of timestamped odometer readings (in km) together with measurements of charging power (kW) and battery charge state (% charged) linked to a unique anonymised vehicle identifier.
+
+There are a number of important limitations to this data:
+
+ * measurement of observations only occurs when the car is switched on and/or plugged in and charging. As a result no data will be collected when the EV is switched off. This means that there are large non-erroneous 'gaps' in the data which represent 'no charging' (and also 'no driving') but which are not included as '0 power demand' in the analyses since to do so would require imputation of a very large number of missing time stamps for each vehicle. This means we are only really able to analyse power demand profiles for vehicles that were charging, _not for all vehicles in all time periods_;
+ * data upload relied on mobile 3G data signal and the extent to which gaps in the data are due to data upload errors rather than vehicle non-use (as above) is currently unclear;
+ * these vehicles are driven by 'early adopters' who have opted to install the measuring devices in order to collect their vehicle usage data. As a result the data may not be representative of the usage patterns of current or future EV drivers [@rezvani_advances_2015,@li_review_2017].
+
+Even though the use of an anonymised vehicle identifier should prevent the identification of the vehicles in the sample, the fine-grained temporal nature of the data and the relatively small population of EV owners from whom the sample is drawn (Flip The Fleet members) means that the data cannot be publicly released.
+
+
+Figure \@ref(fig:initialDataChecksPlotTile) shows the number of unique EVs observed by time of day and date. As we can see the early part of the sample is sparse and indeed the maximum number of EVs observed in any 15 minute time period was only `r max(plotDT$nEVs)` out of a possible total of `r data.table::uniqueN(rawDT$id)`. While this will not affect some analyses, it is likely to introduce error and small sample effects to summary analyses (e.g. means) or month by month analyses. In some sections the analysis will therefore be restricted to the data from September to March.
 
 ```{r initialDataChecksPlotTile, fig.cap="Number of unique EVs observed by time of day and date"}
 ggplot2::ggplot(plotDT, aes(x = date, y = time15m, alpha = nEVs)) +
@@ -206,7 +208,7 @@ p <- ggplot2::ggplot(dt, aes(x = date, y =  nEVs)) +
        )
 
 p + annotate("rect", xmin = as.Date("2018-10-01"), # cut
-             xmax = as.Date("2018-12-31"), # set earlier
+             xmax = as.Date("2019-02-28"), # set earlier
              ymin = min(dt$nEVS), ymax = max(dt$nEVS), 
              alpha = peaksAlpha, fill = peaksCol)
 ```
@@ -233,11 +235,11 @@ kableExtra::kable(t,
 
 
 Taking all of the above into account we have therefore discarded:
-
- * the `r nrow(summaryDT) - nrow(includeDT)` vehicles that had no recorded _charging_ observations (this also discarded those with very few observations - see Table \@ref(tab:noObsEVs));
+#FIX: r nrow(summaryDT) - nrow(includeDT)
+ * the FIX vehicles that had no recorded _charging_ observations (this also discarded those with very few observations - see Table \@ref(tab:noObsEVs));
  * `r nrow(rawDT[ charge_power_kw > 120])` instances of charging power greater than 120kW. These were considered anomalies and as these exceed the capacity of the highest charging stations currently available in New Zealand [@ConceptConsulting2018];
  * `r nrow(rawDT[SoC_percent > 100])` instances of battery state of charge observations of greater than 100%;
- * all observations collected before 1st October and after 1st January in order to focus analysis on the periods with most EVs present in the data. It is hoped that this will reduce the extent to which the charging behaviour of a small number of EV owners will skew the aggregated results.
+ * all observations collected before 1st October and after 1st March in order to focus analysis on the periods with most EVs present in the data. It is hoped that this will reduce the extent to which the charging behaviour of a small number of EV owners will skew the aggregated results.
 
 This left `r data.table::uniqueN(cleanDT$dvID)` remaining vehicles, and `r prettyNum(nrow(cleanDT), big.mark = ",")` observations as shown in Table \@ref(tab:finalTable).
 
@@ -934,7 +936,7 @@ knitr::opts_chunk$set(message = TRUE) # for final tidy run
 Data description for original data supplied (before processing or filtering).
 
 ```{r ftfRawDataSkim}
-skimr::skim(rawDF)
+skimr::skim(rawDT)
 ```
 
 ### Processed and cleaned data{#processedCheck}
@@ -959,11 +961,11 @@ This is used to identify observations that form part of a sequence. The logic is
 
 ```{r checkChargeFlagMethods}
 
-kableExtra::kable(sequenceMethod1_T, caption = "Charge sequence flags (120 second rule)") %>%
-  kable_styling()
+#kableExtra::kable(sequenceMethod1_T, caption = "Charge sequence flags (120 second rule)") #%>%
+#  kable_styling()
 
-kableExtra::kable(sequenceMethod2_T, caption = "Charge sequence flags (no 120 second rule)") %>%
-  kable_styling()
+#kableExtra::kable(sequenceMethod2_T, caption = "Charge sequence flags (no 120 second rule)") %>%
+#  kable_styling()
 ```
 
 As we can see, applying the 120 second rule reduces the number of observations categorised as part of a sequence as it will not know what to do with:
