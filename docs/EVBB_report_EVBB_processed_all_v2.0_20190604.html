@@ -263,7 +263,7 @@ div.tocify {
 <h1 class="title toc-ignore">Analysis of electric vehicle usage patterns in New Zealand</h1>
 <h3 class="subtitle">Statistical report using Flip The Fleet data</h3>
 <h4 class="author">Rafferty Parker and Ben Anderson (<a href="https://www.otago.ac.nz/centre-sustainability/">Centre for Sustainability</a>, University of Otago, <a href="mailto:ben.anderson@otago.ac.nz">ben.anderson@otago.ac.nz</a>); Daniel Myall (Flip The Fleet, <a href="mailto:daniel@zeno.nz">daniel@zeno.nz</a>)</h4>
-<h4 class="date">Last run at: 2019-09-19 23:01:28</h4>
+<h4 class="date">Last run at: 2019-09-19 23:08:30</h4>
 
 </div>
 
@@ -3607,7 +3607,7 @@ Late evening
 Figure 5.11: Estimates of available kWh by time period
 </p>
 </div>
-<p>These show, for example, that the mean kWh available during the evening peak period is ~11.6721797 with a range of 2 to ’r dt[chargeType %like% “Standard” &amp; peakPeriod %like% “Evening”, round(max(kWh),2))]` kWh. We can also see that similar values are available in the morning peak period but further analysis would be required to estimate how much of this could be used during the period without impacting subsequent use. Other analyses could include:</p>
+<p>These show, for example, that the mean kWh available during the evening peak period is 11.67 with a range of 2.14 to 21.58 kWh. We can also see that similar values are available in the morning peak period but further analysis would be required to estimate how much of this could be used during the period without impacting subsequent use. Other analyses could include:</p>
 <ul>
 <li>estimating the overall kWh available at any given time for co-ordinated demand response purposes;</li>
 <li>estimating the effect of different demand response or V2G uses of the battery capacity on the patterns of use before next charge assuming no change in usage behaviour to that observed;</li>
@@ -4696,9 +4696,12 @@ Rapid charging
 <pre><code>##           chargeType % of total kWh
 ## 1: Standard charging       87.54514
 ## 2:    Rapid charging       12.45486</code></pre>
-<pre><code>##           chargeType Mean daily kWh where any charging   median      min      max
-## 1: Standard charging                          8.109985 7.352705 0.008349 39.72797
-## 2:    Rapid charging                         10.116335 6.742691 0.122358 85.34038</code></pre>
+<pre><code>##           chargeType Mean daily kWh where any charging   median      min
+## 1: Standard charging                          8.109985 7.352705 0.008349
+## 2:    Rapid charging                         10.116335 6.742691 0.122358
+##         max
+## 1: 39.72797
+## 2: 85.34038</code></pre>
 <p>Table <a href="#tab:plotKWh">5.12</a> and Figure <a href="#tab:plotKWh">5.12</a> summarise the energy consumption across peak periods without weekday disaggregation. This shows that overall 55% of the energy drawn was overnight off-peak standard charging. Day time standard charging was 19% of the total and day-time rapid only 9%. Evenng peak standard charging was 12% of total energy.</p>
 <p>Overall, the EVs in this sample drew relatively little energy during the potentially problematic evening peak period.</p>
 </div>
@@ -5283,15 +5286,22 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##   timeChr       0  1882040 1882040 0 secs 86399 secs 44877 secs    86400
 ## 
 ## ── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-##                 variable missing complete       n    mean      sd     p0     p25     p50      p75     p100     hist
-##          charge_power_kw       0  1882040 1882040    1.59   63.73      0    0       1.3      1.85 74940.42 ▇▁▁▁▁▁▁▁
-##              odometer_km 1255614   626426 1882040 7789.97 8268.44 -62920 2166.25 5309    11154    73607    ▁▁▁▇▇▁▁▁
-##  state_of_charge_percent       0  1882040 1882040   69      20.66      0   56.31   70.41    83.05  1677.72 ▇▁▁▁▁▁▁▁
+##                 variable missing complete       n    mean      sd     p0
+##          charge_power_kw       0  1882040 1882040    1.59   63.73      0
+##              odometer_km 1255614   626426 1882040 7789.97 8268.44 -62920
+##  state_of_charge_percent       0  1882040 1882040   69      20.66      0
+##      p25     p50      p75     p100     hist
+##     0       1.3      1.85 74940.42 ▇▁▁▁▁▁▁▁
+##  2166.25 5309    11154    73607    ▁▁▁▇▇▁▁▁
+##    56.31   70.41    83.05  1677.72 ▇▁▁▁▁▁▁▁
 ## 
 ## ── Variable type:POSIXct ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-##            variable missing complete       n        min        max     median n_unique
-##          r_dateTime     137  1881903 1882040 2018-04-05 2019-03-01 2018-11-25  1784161
-##  r_dateTimeHalfHour     137  1881903 1882040 2018-04-05 2019-03-01 2018-11-25    12831</code></pre>
+##            variable missing complete       n        min        max
+##          r_dateTime     137  1881903 1882040 2018-04-05 2019-03-01
+##  r_dateTimeHalfHour     137  1881903 1882040 2018-04-05 2019-03-01
+##      median n_unique
+##  2018-11-25  1784161
+##  2018-11-25    12831</code></pre>
 </div>
 <div id="processedCheck" class="section level3">
 <h3><span class="header-section-number">8.1.2</span> Processed and cleaned data</h3>
@@ -5311,39 +5321,64 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##      weekdays       0  1074730 1074730   8   8     0        2
 ## 
 ## ── Variable type:Date ──────────────────────────────────────────────────────────────────────────────────────────────────────────────
-##  variable missing complete       n        min        max     median n_unique
-##      date       0  1074730 1074730 2018-10-01 2019-01-16 2018-11-22      108
+##  variable missing complete       n        min        max     median
+##      date       0  1074730 1074730 2018-10-01 2019-01-16 2018-11-22
+##  n_unique
+##       108
 ## 
 ## ── Variable type:difftime ──────────────────────────────────────────────────────────────────────────────────────────────────────────
-##        variable missing complete       n    min          max     median n_unique
-##             hms       0  1074730 1074730 0 secs   86399 secs 43858 secs    86394
-##           qHour       0  1074730 1074730 0 secs   85500 secs 43200 secs       96
-##  r_dateTimeDiff      14  1074716 1074730 0 secs 2486002 secs    50 secs    11447
-##         timeChr       0  1074730 1074730 0 secs   86399 secs 43858 secs    86394
+##        variable missing complete       n    min          max     median
+##             hms       0  1074730 1074730 0 secs   86399 secs 43858 secs
+##           qHour       0  1074730 1074730 0 secs   85500 secs 43200 secs
+##  r_dateTimeDiff      14  1074716 1074730 0 secs 2486002 secs    50 secs
+##         timeChr       0  1074730 1074730 0 secs   86399 secs 43858 secs
+##  n_unique
+##     86394
+##        96
+##     11447
+##     86394
 ## 
 ## ── Variable type:factor ────────────────────────────────────────────────────────────────────────────────────────────────────────────
-##     variable missing complete       n n_unique                                         top_counts ordered
-##   chargeType       0  1074730 1074730        3         Sta: 716868, Not: 350923, Rap: 6939, NA: 0   FALSE
-##  day_of_week       0  1074730 1074730        7 Fri: 173053, Wed: 170267, Thu: 165276, Tue: 156780    TRUE
-##   peakPeriod       0  1074730 1074730        5 Ear: 356511, Day: 347804, Eve: 163020, Lat: 147782   FALSE
+##     variable missing complete       n n_unique
+##   chargeType       0  1074730 1074730        3
+##  day_of_week       0  1074730 1074730        7
+##   peakPeriod       0  1074730 1074730        5
+##                                          top_counts ordered
+##          Sta: 716868, Not: 350923, Rap: 6939, NA: 0   FALSE
+##  Fri: 173053, Wed: 170267, Thu: 165276, Tue: 156780    TRUE
+##  Ear: 356511, Day: 347804, Eve: 163020, Lat: 147782   FALSE
 ## 
 ## ── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-##         variable missing complete       n    mean      sd     p0    p25     p50     p75     p100     hist
-##  charge_power_kw       0  1074730 1074730    1.59    2.87      0    0      1.47    1.92    70.16 ▇▁▁▁▁▁▁▁
-##            month       0  1074730 1074730    9.71    3.42      1   10     11      12       12    ▂▁▁▁▁▁▃▇
-##     odometerDiff  756512   318218 1074730    1.59 2499.84 -64324    0      0       1    64261    ▁▁▁▁▇▁▁▁
-##      odometer_km  750182   324548 1074730 7287.47 8339.26 -62920 1991   4752    9142    69394    ▁▁▁▆▇▂▁▁
-##      SoC_percent      41  1074689 1074730   68.81   18.58      0   56.1   70.21   82.89    98.1  ▁▁▂▃▆▇▇▇
-##           tempkW       0  1074730 1074730    0.2     2.66      0    0      0       0       70.16 ▇▁▁▁▁▁▁▁
+##         variable missing complete       n    mean      sd     p0    p25
+##  charge_power_kw       0  1074730 1074730    1.59    2.87      0    0  
+##            month       0  1074730 1074730    9.71    3.42      1   10  
+##     odometerDiff  756512   318218 1074730    1.59 2499.84 -64324    0  
+##      odometer_km  750182   324548 1074730 7287.47 8339.26 -62920 1991  
+##      SoC_percent      41  1074689 1074730   68.81   18.58      0   56.1
+##           tempkW       0  1074730 1074730    0.2     2.66      0    0  
+##      p50     p75     p100     hist
+##     1.47    1.92    70.16 ▇▁▁▁▁▁▁▁
+##    11      12       12    ▂▁▁▁▁▁▃▇
+##     0       1    64261    ▁▁▁▁▇▁▁▁
+##  4752    9142    69394    ▁▁▁▆▇▂▁▁
+##    70.21   82.89    98.1  ▁▁▂▃▆▇▇▇
+##     0       0       70.16 ▇▁▁▁▁▁▁▁
 ## 
 ## ── Variable type:POSIXct ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-##            variable missing complete       n        min        max     median n_unique
-##          r_dateTime       0  1074730 1074730 2018-10-01 2019-01-16 2018-11-22  1011415
-##    r_dateTime1MinFl       0  1074730 1074730 2018-10-01 2019-01-16 2018-11-22   152837
-##     r_dateTime1MinR       0  1074730 1074730 2018-10-01 2019-01-16 2018-11-22   152843
-##  r_dateTimeHalfHour       0  1074730 1074730 2018-10-01 2019-01-16 2018-11-22     5135
-##     r_dateTimeQhour       0  1074730 1074730 2018-10-01 2019-01-16 2018-11-22    10253
-##           startTime       0  1074730 1074730 2018-10-01 2019-01-16 2018-11-22  1011415</code></pre>
+##            variable missing complete       n        min        max
+##          r_dateTime       0  1074730 1074730 2018-10-01 2019-01-16
+##    r_dateTime1MinFl       0  1074730 1074730 2018-10-01 2019-01-16
+##     r_dateTime1MinR       0  1074730 1074730 2018-10-01 2019-01-16
+##  r_dateTimeHalfHour       0  1074730 1074730 2018-10-01 2019-01-16
+##     r_dateTimeQhour       0  1074730 1074730 2018-10-01 2019-01-16
+##           startTime       0  1074730 1074730 2018-10-01 2019-01-16
+##      median n_unique
+##  2018-11-22  1011415
+##  2018-11-22   152837
+##  2018-11-22   152843
+##  2018-11-22     5135
+##  2018-11-22    10253
+##  2018-11-22  1011415</code></pre>
 <p>Data description for cleaned data (first observations in a charging sequence).</p>
 <pre class="r"><code>skimr::skim(firstCleanDT)</code></pre>
 <pre><code>## Skim summary statistics
@@ -5365,35 +5400,58 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##      date       0     2987 2987 2018-10-01 2019-01-16 2018-11-22      108
 ## 
 ## ── Variable type:difftime ──────────────────────────────────────────────────────────────────────────────────────────────────────────
-##        variable missing complete    n                   min                  max           median n_unique
-##         endTime       0     2987 2987 31 secs                86342 secs          11:18:59             2922
-##             hms       0     2987 2987 40 secs                86246 secs          15:37:40             2872
-##    pairDuration       0     2987 2987       0.01666667 mins        1616.717 mins      181.55 mins     2753
-##           qHour       0     2987 2987  0 secs                85500 secs          15:30:00               96
-##  r_dateTimeDiff       0     2987 2987  0 secs               230025 secs          339 secs             1685
-##         timeChr       0     2987 2987 40 secs                86246 secs          15:37:40             2872
+##        variable missing complete    n                   min
+##         endTime       0     2987 2987 31 secs              
+##             hms       0     2987 2987 40 secs              
+##    pairDuration       0     2987 2987       0.01666667 mins
+##           qHour       0     2987 2987  0 secs              
+##  r_dateTimeDiff       0     2987 2987  0 secs              
+##         timeChr       0     2987 2987 40 secs              
+##                   max           median n_unique
+##   86342 secs          11:18:59             2922
+##   86246 secs          15:37:40             2872
+##         1616.717 mins      181.55 mins     2753
+##   85500 secs          15:30:00               96
+##  230025 secs          339 secs             1685
+##   86246 secs          15:37:40             2872
 ## 
 ## ── Variable type:factor ────────────────────────────────────────────────────────────────────────────────────────────────────────────
-##             variable missing complete    n n_unique                              top_counts ordered
-##           chargeType       0     2987 2987        2      Sta: 2607, Rap: 380, Not: 0, NA: 0   FALSE
-##  chargeTypeCorrected       0     2987 2987        2      Sta: 2594, Rap: 393, Not: 0, NA: 0   FALSE
-##          day_of_week       0     2987 2987        7  Fri: 474, Wed: 451, Mon: 445, Thu: 443    TRUE
-##              endType       0     2987 2987        2      Sta: 2663, Rap: 324, Not: 0, NA: 0   FALSE
-##           peakPeriod       0     2987 2987        5 Day: 1147, Lat: 699, Eve: 556, Ear: 408   FALSE
+##             variable missing complete    n n_unique
+##           chargeType       0     2987 2987        2
+##  chargeTypeCorrected       0     2987 2987        2
+##          day_of_week       0     2987 2987        7
+##              endType       0     2987 2987        2
+##           peakPeriod       0     2987 2987        5
+##                               top_counts ordered
+##       Sta: 2607, Rap: 380, Not: 0, NA: 0   FALSE
+##       Sta: 2594, Rap: 393, Not: 0, NA: 0   FALSE
+##   Fri: 474, Wed: 451, Mon: 445, Thu: 443    TRUE
+##       Sta: 2663, Rap: 324, Not: 0, NA: 0   FALSE
+##  Day: 1147, Lat: 699, Eve: 556, Ear: 408   FALSE
 ## 
 ## ── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-##         variable missing complete    n    mean      sd        p0     p25     p50     p75     p100     hist
-##  charge_power_kw       0     2987 2987    6.73   12.13      0.5     1.56    2.08    3.3     70.16 ▇▁▁▁▁▁▁▁
-##            month       0     2987 2987    9.56    3.58      1      10      11      12       12    ▂▁▁▁▁▁▃▇
-##     odometerDiff    2382      605 2987   54.12 2408.83 -18760       0       0       0    37626    ▁▁▇▁▁▁▁▁
-##      odometer_km    2367      620 2987 6631.06 7565.35 -52352    1769.5  4342    9437.5  38453    ▁▁▁▁▇▆▂▁
-##      SoC_percent       0     2987 2987   50.29   19.22      4.11   36.28   49.02   60.95    98.1  ▁▃▆▇▇▃▂▂
+##         variable missing complete    n    mean      sd        p0     p25
+##  charge_power_kw       0     2987 2987    6.73   12.13      0.5     1.56
+##            month       0     2987 2987    9.56    3.58      1      10   
+##     odometerDiff    2382      605 2987   54.12 2408.83 -18760       0   
+##      odometer_km    2367      620 2987 6631.06 7565.35 -52352    1769.5 
+##      SoC_percent       0     2987 2987   50.29   19.22      4.11   36.28
+##      p50     p75     p100     hist
+##     2.08    3.3     70.16 ▇▁▁▁▁▁▁▁
+##    11      12       12    ▂▁▁▁▁▁▃▇
+##     0       0    37626    ▁▁▇▁▁▁▁▁
+##  4342    9437.5  38453    ▁▁▁▁▇▆▂▁
+##    49.02   60.95    98.1  ▁▃▆▇▇▃▂▂
 ## 
 ## ── Variable type:POSIXct ───────────────────────────────────────────────────────────────────────────────────────────────────────────
-##            variable missing complete    n        min        max     median n_unique
-##          r_dateTime       0     2987 2987 2018-10-01 2019-01-16 2018-11-22     2987
-##  r_dateTimeHalfHour       0     2987 2987 2018-10-01 2019-01-16 2018-11-22     2183
-##           startTime       0     2987 2987 2018-10-01 2019-01-16 2018-11-22     2987</code></pre>
+##            variable missing complete    n        min        max     median
+##          r_dateTime       0     2987 2987 2018-10-01 2019-01-16 2018-11-22
+##  r_dateTimeHalfHour       0     2987 2987 2018-10-01 2019-01-16 2018-11-22
+##           startTime       0     2987 2987 2018-10-01 2019-01-16 2018-11-22
+##  n_unique
+##      2987
+##      2183
+##      2987</code></pre>
 </div>
 </div>
 <div id="odometer-data-checks" class="section level2">
