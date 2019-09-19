@@ -1100,7 +1100,7 @@ makeSocPlot(dt, version = "first90pc")
 
 Figure \@ref(fig:SoCplot2corrected) repeats this analysis but uses the cleaned and corrected inferred start/end of charging sequence data instead of all charging observations. Figure \@ref(fig:SoCplot3) shows very similar distributions to the previous 'all-observations' plot (Figure \@ref(fig:SoCplot1)) and confirms that sequences of standard charging in particular most frequently start with battery state of charge over 50%. 
 
-```{r SoCplot2corrected, fig.cap= "Value of state of charge at beginning of charging sequence (chargeType corrected, values > 90% removed)"}
+```{r SoCplot2corrected, fig.cap="Value of state of charge at beginning of charging sequence (chargeType corrected, values > 90% removed)"}
 dt <- firstCleanDT[SoC_percent < 90]
 
 kableExtra::kable(reportSocTable(dt), digits = 2, 
@@ -1169,7 +1169,7 @@ batteryCapacity <- 24
 
 Making the assumption that each EV has a `r batteryCapacity` kWh battery we can calculate the _available_ kWh at the start of each charge for V2G purposes. This is shown in Table \@ref(tab:v2gEstimates) and Figure \@ref(fig:v2gEstimates).
 
-```{r v2gEstimates, fig.cap = "Estimates of available kWh by time period"}
+```{r v2gEstimates, fig.cap= "Estimates of available kWh by time period"}
 
 dt <- dt[, kWh := SoC_percent/100 * batteryCapacity]
 
@@ -1196,7 +1196,7 @@ p <- ggplot2::ggplot(dt, aes(x = peakPeriod, y = kWh, fill = chargeType)) +
 p
 ```
 
-These show, for example, that the mean kWh available during the evening peak period is ~`r dt[chargeType %like% "Standard" & peakPeriod %like% "Evening", mean(kWh)]` with a range of `r dt[chargeType %like% "Standard" & peakPeriod %like% "Evening", round(min(kWh,2))]` to 'r dt[chargeType %like% "Standard" & peakPeriod %like% "Evening", round(max(kWh),2))]` kWh. We can also see that similar values are available in the morning peak period but further analysis would be required to estimate how much of this could be used during the period without impacting subsequent use. Other analyses could include:
+These show, for example, that the mean kWh available during the evening peak period is `r dt[chargeType %like% "Standard" & peakPeriod %like% "Evening", round(mean(kWh),2)]` with a range of `r dt[chargeType %like% "Standard" & peakPeriod %like% "Evening", round(min(kWh),2)]` to `r dt[chargeType %like% "Standard" & peakPeriod %like% "Evening", round(max(kWh),2)]` kWh. We can also see that similar values are available in the morning peak period but further analysis would be required to estimate how much of this could be used during the period without impacting subsequent use. Other analyses could include:
 
  * estimating the overall kWh available at any given time for co-ordinated demand response purposes;
  * estimating the effect of different demand response or V2G uses of the battery capacity on the patterns of use before next charge assuming no change in usage behaviour to that observed;
