@@ -1169,7 +1169,7 @@ batteryCapacity <- 24
 
 Making the assumption that each EV has a `r batteryCapacity` kWh battery we can calculate the _available_ kWh at the start of each charge for V2G purposes. This is shown in Table \@ref(tab:v2gEstimates) and Figure \@ref(fig:v2gEstimates).
 
-```{r v2gEstimates, fig.caption = "Estimates of available kWh by time period"}
+```{r v2gEstimates, fig.cap = "Estimates of available kWh by time period"}
 
 dt <- dt[, kWh := SoC_percent/100 * batteryCapacity]
 
