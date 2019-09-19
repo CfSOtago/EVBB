@@ -8,6 +8,8 @@
 require(bookdown)
 require(data.table)
 require(here)
+require(hms)
+require(lubridate)
 require(rmarkdown)
 
 # Parameters ----
@@ -43,10 +45,10 @@ peaksAlpha <- 0.1
 peaksCol <- "#0072B2" # http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette
 
 # > defn of peak ----
-amPeakStart <- hms::as.hms("07:00:00")
-amPeakEnd <- hms::as.hms("09:00:00")
-pmPeakStart <- hms::as.hms("17:00:00") # see https://www.electrickiwi.co.nz/hour-of-power
-pmPeakEnd <- hms::as.hms("21:00:00") # see https://www.electrickiwi.co.nz/hour-of-power
+amPeakStart <- hms::as_hms("07:00:00")
+amPeakEnd <- hms::as_hms("09:00:00")
+pmPeakStart <- hms::as_hms("17:00:00") # see https://www.electrickiwi.co.nz/hour-of-power
+pmPeakEnd <- hms::as_hms("21:00:00") # see https://www.electrickiwi.co.nz/hour-of-power
 
 rmd <- paste0(here::here(), "/reports/fullReport/EVBB_report.Rmd")
 outF <- paste0(here::here(), "/docs/EVBB_report_", dataFile ,'.html') # for easier github pages management
@@ -106,7 +108,7 @@ getGenData <- function(files){
   dt[, date := lubridate::date(rDateTime)]
   dt[, month := lubridate::month(rDateTime)]
   dt[, day_of_week := lubridate::wday(rDateTime, label = TRUE)]
-  dt[, hms := hms::as.hms(rDateTime)] # set to middle of half-hour
+  dt[, hms := hms::as_hms(rDateTime)] # set to middle of half-hour
   dt[, halfHour := hms::trunc_hms(hms, 30*60)] # truncate to previous half-hour
   
   # Create factor for weekdays/weekends ----
