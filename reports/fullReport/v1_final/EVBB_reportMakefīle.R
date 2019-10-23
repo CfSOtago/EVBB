@@ -30,12 +30,14 @@ dFile <- paste0(dPath, dataFile, ".csv")
 if(user == "dataknut" & nodename == "gridcrawler"){
   # for CS RStudio server
   # use local
+  genPath <- path.expand("/home/dataknut/greenGridData/externalData/EA_Generation_Data/processed/yearly/")
   dPath <- path.expand("/home/dataknut/greenGridData/Self_contained_Projects/2018_evChargingRafferty/data/processed/")
   dFile <- paste0(dPath, dataFile, ".csv.gz")
 }
 if(user == "ben"){
  # for Mac
  # use local
+  genPath <- path.expand("~/Data/NZ_EA_EMI/gridGen/processed/monthly/")
   dPath <- path.expand("~/Data/NZ_FlipTheFleet/processed/")
   dFile <- paste0(dPath, dataFile, ".csv.gz")
 }
@@ -50,8 +52,6 @@ amPeakEnd <- hms::as_hms("09:00:00")
 pmPeakStart <- hms::as_hms("17:00:00") # see https://www.electrickiwi.co.nz/hour-of-power
 pmPeakEnd <- hms::as_hms("21:00:00") # see https://www.electrickiwi.co.nz/hour-of-power
 
-rmd <- paste0(here::here(), "/reports/fullReport/EVBB_report.Rmd")
-outF <- paste0(here::here(), "/docs/EVBB_report_", dataFile ,'.html') # for easier github pages management
 
 setPeakPeriod <- function(dt){
   # assumes hms exists
@@ -83,7 +83,6 @@ loadData <- function(dFile){
 }
 
 # load the EA gen data ----
-genPath <- paste0(here::here(), "/data/")
 getGenFileList <- function(dPath){
   all.files <- list.files(path = dPath, pattern = ".csv")
   dt <- as.data.table(all.files)
@@ -122,7 +121,7 @@ getGenData <- function(files){
 }
 
 # run report
-doReport <- function(){
+doReport <- function(rmd, outF){
   message("Running ", rmd)
   message("Saving as ", outF) 
   rmarkdown::render(input = rmd,
@@ -132,13 +131,16 @@ doReport <- function(){
 # code ----
 # EA data
 genFiles <- getGenFileList(genPath)
-genDataDT <- getGenData(genFiles)
+genDataDT <- getGenData(genFiles[all.files %like% 2018]) # the ones that we want
 
 # EV data
 rawDT <- loadData(dFile)
 
 # Report
-doReport()
+rmd <- paste0(here::here(), "/reports/fullReport/v1_final/EVBB_report.Rmd")
+outF <- paste0(here::here(), "/docs/EVBB_report_v1_final_", dataFile ,'.html') # for easier github pages management
+
+doReport(rmd, outF)
 
 
 
