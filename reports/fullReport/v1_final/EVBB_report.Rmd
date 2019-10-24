@@ -807,7 +807,7 @@ standardDurMean <- mean(dt$pairDuration, na.rm = TRUE)
 
 It has been suggested that EV charging is more likely to occur in the early evening when drivers return from daily commutes or school pick-ups [@langbroek2017]. 
 
-Figure \@ref(fig:chargeTimeCount) plots the distribution of each charge type over time of day and confirms the very low incidence of rapid charging. It also supports the suggestion that standard charging (at home) does not appear to begin until later in the evening. Figure \@ref(fig:chargeTimeCountLog) shows the same results but using a log10 transform of the y axis so that the tmeporal patterns of the (very few) rapid charging events is visible.
+Figure \@ref(fig:chargeTimeCount) plots the distribution of each charge type over time of day and confirms the very low incidence of rapid charging. It also supports the suggestion that standard charging (at home) does not appear to begin until later in the evening. Figure \@ref(fig:chargeTimeCountLog) shows the same results but using a log10 transform of the y axis so that the temporal patterns of the (very few) rapid charging events is visible.
 
 ```{r chargeTimeCount, fig.cap="Frequency plot of charging start times during weekdays"}
 
