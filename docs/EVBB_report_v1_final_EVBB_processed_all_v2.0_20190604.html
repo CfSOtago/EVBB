@@ -263,7 +263,7 @@ div.tocify {
 <h1 class="title toc-ignore">Analysis of electric vehicle usage patterns in New Zealand</h1>
 <h3 class="subtitle">Statistical report using Flip The Fleet data</h3>
 <h4 class="author">Rafferty Parker and Ben Anderson (<a href="https://www.otago.ac.nz/centre-sustainability/">Centre for Sustainability</a>, University of Otago, <a href="mailto:ben.anderson@otago.ac.nz" class="email">ben.anderson@otago.ac.nz</a>); Daniel Myall (Flip The Fleet, <a href="mailto:daniel@zeno.nz" class="email">daniel@zeno.nz</a>)</h4>
-<h4 class="date">Last run at: 2019-10-24 12:33:57</h4>
+<h4 class="date">Last run at: 2019-10-24 13:00:32</h4>
 
 </div>
 
@@ -2459,15 +2459,15 @@ Rapid charging
 <p>It has been suggested that EV charging is more likely to occur in the early evening when drivers return from daily commutes or school pick-ups <span class="citation">(Langbroek, Franklin, and Susilo 2017)</span>.</p>
 <p>Figure <a href="#fig:chargeTimeCount"><strong>??</strong></a> plots the distribution of each charge type over time of day and confirms the very low incidence of rapid charging. It also supports the suggestion that standard charging (at home) does not appear to begin until later in the evening.</p>
 <div class="figure"><span id="fig:chargeTimeCount1"></span>
-<img src="EVBB_report_v1_final_EVBB_processed_all_v2.0_20190604_files/figure-html/chargeTimeCount-1.png" alt="Density plot of charging start times during weekdays" width="672" />
+<img src="EVBB_report_v1_final_EVBB_processed_all_v2.0_20190604_files/figure-html/chargeTimeCount-1.png" alt="Frequency plot of charging start times during weekdays" width="672" />
 <p class="caption">
-Figure 5.1: Density plot of charging start times during weekdays
+Figure 5.1: Frequency plot of charging start times during weekdays
 </p>
 </div>
 <div class="figure"><span id="fig:chargeTimeCount2"></span>
-<img src="EVBB_report_v1_final_EVBB_processed_all_v2.0_20190604_files/figure-html/chargeTimeCount-2.png" alt="Density plot of charging start times during weekdays" width="672" />
+<img src="EVBB_report_v1_final_EVBB_processed_all_v2.0_20190604_files/figure-html/chargeTimeCount-2.png" alt="Frequency plot of charging start times during weekdays" width="672" />
 <p class="caption">
-Figure 5.2: Density plot of charging start times during weekdays
+Figure 5.2: Frequency plot of charging start times during weekdays
 </p>
 </div>
 <p>Figure <a href="#fig:chargeTimeDensity">5.3</a> extends this analysis by showing charging and non-charging observations at different times of day by weekday vs weekends using a density plot to show relative distributions over time within each type. The plot clearly shows non-charging during day-time use and also shows a bi-model distribution for rapid charging (non-corrected categorisation). Standard charging also shows a bi-modal distribution with a peak around 22:00 on weekdays and another at 01:00 presumably indicating the use of timed or ‘smart’ charging or trickle events.</p>
@@ -5287,18 +5287,18 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  n obs: 1882040 
 ##  n variables: 10 
 ## 
-## ── Variable type:character ─────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:character ────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##      variable missing complete       n min max empty n_unique
 ##      charging       0  1882040 1882040  26  31     0        2
 ##          dvID       0  1882040 1882040   9  10     0       52
 ##            id       0  1882040 1882040  32  32     0       52
 ##  odometerFlag 1255614   626426 1882040   1   3     0        3
 ## 
-## ── Variable type:difftime ──────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:difftime ─────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  variable missing complete       n    min        max     median n_unique
 ##   timeChr       0  1882040 1882040 0 secs 86399 secs 44877 secs    86400
 ## 
-## ── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:numeric ──────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##                 variable missing complete       n    mean      sd     p0
 ##          charge_power_kw       0  1882040 1882040    1.59   63.73      0
 ##              odometer_km 1255614   626426 1882040 7789.97 8268.44 -62920
@@ -5308,7 +5308,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  2166.25 5309    11154    73607    ▁▁▁▇▇▁▁▁
 ##    56.31   70.41    83.05  1677.72 ▇▁▁▁▁▁▁▁
 ## 
-## ── Variable type:POSIXct ───────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:POSIXct ──────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##            variable missing complete       n        min        max
 ##          r_dateTime     137  1881903 1882040 2018-04-05 2019-03-01
 ##  r_dateTimeHalfHour     137  1881903 1882040 2018-04-05 2019-03-01
@@ -5324,7 +5324,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  n obs: 1074730 
 ##  n variables: 26 
 ## 
-## ── Variable type:character ─────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:character ────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##      variable missing complete       n min max empty n_unique
 ##    chargeFlag       2  1074728 1074730  17  25     0        5
 ##      charging       0  1074730 1074730  26  31     0        2
@@ -5333,13 +5333,13 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  odometerFlag  750182   324548 1074730   1   3     0        3
 ##      weekdays       0  1074730 1074730   8   8     0        2
 ## 
-## ── Variable type:Date ──────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:Date ─────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  variable missing complete       n        min        max     median
 ##      date       0  1074730 1074730 2018-10-01 2019-01-16 2018-11-22
 ##  n_unique
 ##       108
 ## 
-## ── Variable type:difftime ──────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:difftime ─────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##        variable missing complete       n    min          max     median
 ##             hms       0  1074730 1074730 0 secs   86399 secs 43858 secs
 ##           qHour       0  1074730 1074730 0 secs   85500 secs 43200 secs
@@ -5351,7 +5351,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##     11447
 ##     86394
 ## 
-## ── Variable type:factor ────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:factor ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##     variable missing complete       n n_unique
 ##   chargeType       0  1074730 1074730        3
 ##  day_of_week       0  1074730 1074730        7
@@ -5361,7 +5361,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  Fri: 173053, Wed: 170267, Thu: 165276, Tue: 156780    TRUE
 ##  Ear: 356511, Day: 347804, Eve: 163020, Lat: 147782   FALSE
 ## 
-## ── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:numeric ──────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##         variable missing complete       n    mean      sd     p0    p25
 ##  charge_power_kw       0  1074730 1074730    1.59    2.87      0    0  
 ##            month       0  1074730 1074730    9.71    3.42      1   10  
@@ -5377,7 +5377,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##    70.21   82.89    98.1  ▁▁▂▃▆▇▇▇
 ##     0       0       70.16 ▇▁▁▁▁▁▁▁
 ## 
-## ── Variable type:POSIXct ───────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:POSIXct ──────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##            variable missing complete       n        min        max
 ##          r_dateTime       0  1074730 1074730 2018-10-01 2019-01-16
 ##    r_dateTime1MinFl       0  1074730 1074730 2018-10-01 2019-01-16
@@ -5398,7 +5398,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  n obs: 2987 
 ##  n variables: 27 
 ## 
-## ── Variable type:character ─────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:character ────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##         variable missing complete    n min max empty n_unique
 ##       chargeFlag       0     2987 2987  25  25     0        1
 ##  chargeTypeError       0     2987 2987  31  37     0        4
@@ -5408,11 +5408,11 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##     odometerFlag    2367      620 2987   3   3     0        2
 ##         weekdays       0     2987 2987   8   8     0        2
 ## 
-## ── Variable type:Date ──────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:Date ─────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  variable missing complete    n        min        max     median n_unique
 ##      date       0     2987 2987 2018-10-01 2019-01-16 2018-11-22      108
 ## 
-## ── Variable type:difftime ──────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:difftime ─────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##        variable missing complete    n                   min
 ##         endTime       0     2987 2987 31 secs              
 ##             hms       0     2987 2987 40 secs              
@@ -5428,7 +5428,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  230025 secs          339 secs             1685
 ##   86246 secs          15:37:40             2872
 ## 
-## ── Variable type:factor ────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:factor ───────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##             variable missing complete    n n_unique
 ##           chargeType       0     2987 2987        2
 ##  chargeTypeCorrected       0     2987 2987        2
@@ -5442,7 +5442,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##       Sta: 2663, Rap: 324, Not: 0, NA: 0   FALSE
 ##  Day: 1147, Lat: 699, Eve: 556, Ear: 408   FALSE
 ## 
-## ── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:numeric ──────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##         variable missing complete    n    mean      sd        p0     p25
 ##  charge_power_kw       0     2987 2987    6.73   12.13      0.5     1.56
 ##            month       0     2987 2987    9.56    3.58      1      10   
@@ -5456,7 +5456,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##     0       0    37626    ▁▁▇▁▁▁▁▁
 ##    49.02   60.95    98.1  ▁▃▆▇▇▃▂▂
 ## 
-## ── Variable type:POSIXct ───────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:POSIXct ──────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##            variable missing complete    n        min        max     median
 ##          r_dateTime       0     2987 2987 2018-10-01 2019-01-16 2018-11-22
 ##  r_dateTimeHalfHour       0     2987 2987 2018-10-01 2019-01-16 2018-11-22
