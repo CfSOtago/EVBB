@@ -263,7 +263,7 @@ div.tocify {
 <h1 class="title toc-ignore">Analysis of electric vehicle usage patterns in New Zealand</h1>
 <h3 class="subtitle">Statistical report using Flip The Fleet data</h3>
 <h4 class="author">Rafferty Parker and Ben Anderson (<a href="https://www.otago.ac.nz/centre-sustainability/">Centre for Sustainability</a>, University of Otago, <a href="mailto:ben.anderson@otago.ac.nz" class="email">ben.anderson@otago.ac.nz</a>); Daniel Myall (Flip The Fleet, <a href="mailto:daniel@zeno.nz" class="email">daniel@zeno.nz</a>)</h4>
-<h4 class="date">Last run at: 2019-10-24 13:00:32</h4>
+<h4 class="date">Last run at: 2019-10-24 13:59:58</h4>
 
 </div>
 
@@ -2457,17 +2457,17 @@ Rapid charging
 <div id="time-of-charging" class="section level2">
 <h2><span class="header-section-number">5.1</span> Time of charging</h2>
 <p>It has been suggested that EV charging is more likely to occur in the early evening when drivers return from daily commutes or school pick-ups <span class="citation">(Langbroek, Franklin, and Susilo 2017)</span>.</p>
-<p>Figure <a href="#fig:chargeTimeCount"><strong>??</strong></a> plots the distribution of each charge type over time of day and confirms the very low incidence of rapid charging. It also supports the suggestion that standard charging (at home) does not appear to begin until later in the evening.</p>
-<div class="figure"><span id="fig:chargeTimeCount1"></span>
+<p>Figure <a href="#fig:chargeTimeCount">5.1</a> plots the distribution of each charge type over time of day and confirms the very low incidence of rapid charging. It also supports the suggestion that standard charging (at home) does not appear to begin until later in the evening. Figure <a href="#fig:chargeTimeCountLog">5.2</a> shows the same results but using a log10 transform of the y axis so that the tmeporal patterns of the (very few) rapid charging events is visible.</p>
+<div class="figure"><span id="fig:chargeTimeCount"></span>
 <img src="EVBB_report_v1_final_EVBB_processed_all_v2.0_20190604_files/figure-html/chargeTimeCount-1.png" alt="Frequency plot of charging start times during weekdays" width="672" />
 <p class="caption">
 Figure 5.1: Frequency plot of charging start times during weekdays
 </p>
 </div>
-<div class="figure"><span id="fig:chargeTimeCount2"></span>
-<img src="EVBB_report_v1_final_EVBB_processed_all_v2.0_20190604_files/figure-html/chargeTimeCount-2.png" alt="Frequency plot of charging start times during weekdays" width="672" />
+<div class="figure"><span id="fig:chargeTimeCountLog"></span>
+<img src="EVBB_report_v1_final_EVBB_processed_all_v2.0_20190604_files/figure-html/chargeTimeCountLog-1.png" alt="log(Frequency) plot of charging start times during weekdays" width="672" />
 <p class="caption">
-Figure 5.2: Frequency plot of charging start times during weekdays
+Figure 5.2: log(Frequency) plot of charging start times during weekdays
 </p>
 </div>
 <p>Figure <a href="#fig:chargeTimeDensity">5.3</a> extends this analysis by showing charging and non-charging observations at different times of day by weekday vs weekends using a density plot to show relative distributions over time within each type. The plot clearly shows non-charging during day-time use and also shows a bi-model distribution for rapid charging (non-corrected categorisation). Standard charging also shows a bi-modal distribution with a peak around 22:00 on weekdays and another at 01:00 presumably indicating the use of timed or ‘smart’ charging or trickle events.</p>
@@ -2508,7 +2508,7 @@ Figure 5.5: Density plot of charging start times where state of charge &lt; 90%
 Figure 5.6: Percent of vehicles charging in a given 15 minute period
 </p>
 </div>
-<p>These results are reported in Figure <a href="#fig:pcCharging">5.6</a> which shows the estimated mean % of EVs which were charging in each quarter-hour of the day by charge type. As we would expect the pattern of charging replicates that found in Figure <a href="#fig:chargeTimeCount"><strong>??</strong></a> and indicates the relative rarity of rapid charging.</p>
+<p>These results are reported in Figure <a href="#fig:pcCharging">5.6</a> which shows the estimated mean % of EVs which were charging in each quarter-hour of the day by charge type. As we would expect the pattern of charging replicates that found in Figure <a href="#fig:chargeTimeCount">5.1</a> and indicates the relative rarity of rapid charging.</p>
 </div>
 <div id="duration" class="section level2">
 <h2><span class="header-section-number">5.2</span> Charging duration</h2>
