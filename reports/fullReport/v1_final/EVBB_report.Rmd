@@ -849,7 +849,6 @@ p + labs(x = "Time of day", y = "Count per 15 minutes",
 p + scale_y_log10() + annotation_logticks() # so we can see rapid charge patterns
 ```
 
-
 Figure \@ref(fig:chargeTimeDensity) extends this analysis by showing charging and non-charging observations at different times of day by weekday vs weekends using a density plot to show relative distributions over time within each type. The plot clearly shows non-charging during day-time use and also shows a bi-model distribution for rapid charging (non-corrected categorisation). Standard charging also shows a bi-modal distribution with a peak around 22:00 on weekdays and another at 01:00 presumably indicating the use of timed or 'smart' charging or trickle events.
 
 ```{r chargeTimeDensity, fig.cap="Density plot of charging start times during weekdays"}
