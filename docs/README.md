@@ -1,6 +1,6 @@
 # evAnalysis
 
-Code used to analyse various EV performance & power flow datasets as part of the Centre for Sustainability's interest in energy demand in and around the home.
+Code used to analyse various EV performance & power flow datasets as part of the [Centre for Sustainability](https://www.otago.ac.nz/centre-sustainability)'s interest in energy demand in and around the home.
 
 ## Sources of data
 
@@ -17,7 +17,7 @@ Best viewed via [github pages](https://cfsotago.github.io/evAnalysis/).
 
 The analysis above has contributed to:
 
-  * Daniel Myall, Henrik Moller, Dima Ivanov, Hannah Gentle, Joe Barnett, Ben Anderson, Rafferty Parker , Michael Jack and Donald Love, (2019) ‘_Accelerating Electric Vehicle Uptake in New Zealand: an information gap analysis_’ [Flip the Fleet](http://flipthefleet.org/) Report No. 4 (Comissioned report to Parliamentary Commissioner for the Environment / [Te Kaitiaki Taiao a Te Whare Pāremata](https://www.pce.parliament.nz/)).
-  * Ben Anderson, Rafferty Parker, Daniel Myall, Henrik Moller, and Michael Jack (2020) ‘_Will Flipping the Fleet F**k the Grid?_’ In [IAEE Asia-Oceania 2020: Energy in Transition](https://iaee2020.nz/). Auckland, New Zealand.
+  * Daniel Myall, Henrik Moller, Dima Ivanov, Hannah Gentle, Joe Barnett, [Ben Anderson](https://twitter.com/dataknut), Rafferty Parker , Michael Jack and Donald Love, (2019) ‘_Accelerating Electric Vehicle Uptake in New Zealand: an information gap analysis_’ [Flip the Fleet](http://flipthefleet.org/) Report No. 4 (Comissioned report to Parliamentary Commissioner for the Environment / [Te Kaitiaki Taiao a Te Whare Pāremata](https://www.pce.parliament.nz/)).
+  * [Ben Anderson](https://twitter.com/dataknut), Rafferty Parker, Daniel Myall, Henrik Moller, and Michael Jack (2020) ‘_Will Flipping the Fleet F**k the Grid?_’ In [IAEE Asia-Oceania 2020: Energy in Transition](https://iaee2020.nz/). Auckland, New Zealand.
 
 
