@@ -4,7 +4,7 @@ Analysis of various EV performance & power flow datasets as part of the [Centre 
 
 ## Code
 
-Review, fork, clone & contribute at https://github.com/CfSOtago/evAnalysis (you might need some data though :-)
+Review, fork, clone & contribute via [github](https://github.com/CfSOtago/evAnalysis) (you might need some data though :-)
 
 ## Sources of data
 
