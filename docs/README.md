@@ -8,8 +8,6 @@ Code used to analyse various EV performance & power flow datasets as part of the
 
 ## Analysis
 
-Best viewed via [github pages](https://cfsotago.github.io/evAnalysis/).
-
  * Data notebook v1.0 - deprecated
  * [Data notebook v2.0](EVBB_report_v1_final_EVBB_processed_all_v2.0_20190604.html) - additional data & updated report. Note the health warnings in some of the sections. _Please do not_ re-use or cite without checking with the authors. _Please do_ cite the papers below :-)
  
