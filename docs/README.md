@@ -1,6 +1,6 @@
 # evAnalysis
 
-Code used to analyse various EV performance & power flow datasets as part of the Centre for Sustainability's interest in energy demand in and around the home.
+Code used to analyse various EV performance & power flow datasets as part of the [Centre for Sustainability](https://www.otago.ac.nz/centre-sustainability)'s interest in energy demand in and around the home.
 
 ## Sources of data
 
