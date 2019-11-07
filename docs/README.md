@@ -1,14 +1,12 @@
 # evAnalysis
 
-Code used to analyse various EV performance & power flow datasets as part of the Centre for Sustainability's interest in energy demand in and around the home.
+Code used to analyse various EV performance & power flow datasets as part of the [Centre for Sustainability](https://www.otago.ac.nz/centre-sustainability)'s interest in energy demand in and around the home.
 
 ## Sources of data
 
  * Sample of charging data collected by [FlipTheFleet](http://flipthefleet.org/) [Black Boxes](https://flipthefleet.org/ev-black-box/) in 2018 - 2019
 
 ## Analysis
-
-Best viewed via [github pages](https://cfsotago.github.io/evAnalysis/).
 
  * Data notebook v1.0 - deprecated
  * [Data notebook v2.0](EVBB_report_v1_final_EVBB_processed_all_v2.0_20190604.html) - additional data & updated report. Note the health warnings in some of the sections. _Please do not_ re-use or cite without checking with the authors. _Please do_ cite the papers below :-)
