@@ -1,20 +1,23 @@
 # evAnalysis
 
-Code used to analyse various EV performance & power flow datasets.
+Code used to analyse various EV performance & power flow datasets as part of the Centre for Sustainability's interest in energy demand in and around the home.
+
+## Sources of data
+
+ * Sample of charging data collected by [FlipTheFleet](http://flipthefleet.org/) [Black Boxes](https://flipthefleet.org/ev-black-box/) in 2018 - 2019
 
 ## Analysis
 
 Best viewed via [github pages](https://cfsotago.github.io/evAnalysis/).
 
- * Report v1.0 - deprecated
- * [Report v2.0](EVBB_report_v1_final_EVBB_processed_all_v2.0_20190604.html) - additional data & updated report
-
-## Structure
-
- * plots -> saved plots (not the ones found in reports)
- * R -> various R scripts and useful code
- * reports -> analytic reports
+ * Data notebook v1.0 - deprecated
+ * [Data notebook v2.0](EVBB_report_v1_final_EVBB_processed_all_v2.0_20190604.html) - additional data & updated report. Note the health warnings in some of the sections. Please do not re-use or cite without checking with the authors.
  
-## Sources of data
+## Reports and publications
 
- * Sample of charging data collected via [FlipTheFleet](http://flipthefleet.org/) [Black Boxes](https://flipthefleet.org/ev-black-box/)
+The analysis above has contributed to:
+
+  * Daniel Myall, Henrik Moller, Dima Ivanov, Hannah Gentle, Joe Barnett, Ben Anderson, Rafferty Parker , Michael Jack and Donald Love, (2019) ‘Accelerating Electric Vehicle Uptake in New Zealand: an information gap analysis’ [Flip the Fleet](http://flipthefleet.org/) Report No. 4 (Comissioned report to Parliamentary Commissioner for the Environment / [Te Kaitiaki Taiao a Te Whare Pāremata](https://www.pce.parliament.nz/)).
+  * Ben Anderson, Rafferty Parker, Daniel Myall, Henrik Moller, and Michael Jack (2020) ‘Will Flipping the Fleet F**k the Grid?’ In [IAEE Asia-Oceania 2020: Energy in Transition](https://iaee2020.nz/). Auckland, New Zealand.
+
+
