@@ -124,7 +124,7 @@ cleanDT[, weekdays := ifelse(day_of_week == "Sat" |
 # set Standard/Rapid charge type ----
 cleanDT[, chargeType := ifelse(charge_power_kw == 0, "Not charging", NA)]
 cleanDT[, chargeType := ifelse(charge_power_kw > 0, "Standard charging", chargeType)]
-cleanDT[, chargeType := ifelse(charge_power_kw > 7, "Rapid charging", chargeType)]
+cleanDT[, chargeType := ifelse(charge_power_kw > kwThreshold, "Rapid charging", chargeType)]
 
 # re-order factor so Standard plots to the left (makes more sense)
 cleanDT[, chargeType := forcats::lvls_reorder(chargeType, 3:1)]
@@ -530,9 +530,9 @@ kableExtra::kable(t[!is.na(Year)], digits = 2, caption = "Descriptive statistics
 
 ### Charge type{#chargeType}
 
-Charging data has been broadly separated into two separate categories, 'Standard' and 'Rapid'. Standard charging is defined to be when the charger is reading less than 7kW - this is considered the upper limit of ordinary home charging without an expensive wiring upgrade [@ConceptConsulting2018]. Rapid charging is defined as all charging equal to or greater than 7kW, and would likely occur at designated and purpose-built public charging stations.
+Charging data has been broadly separated into two separate categories, 'Standard' and 'Rapid'. Standard charging is defined to be when the charger is reading less than or equal to `r kwThreshold` kW - this is considered the upper limit of ordinary home charging without an expensive wiring upgrade [@ConceptConsulting2018]. Rapid charging is defined as all charging greater than `r kwThreshold` kW, and would probably occur at designated and purpose-built public charging stations.
 
-It should be noted that this method is not always accurate since we can identify apparent sequences of charging which start at > 7kW and decline to < 7kW over a relatively short period or vice versa (see Section \@ref(chargeFlagTest)). In this circumstance the first observation will be correctly classified as 'Rapid' but the lower observations, which we assume are lower power 'top-ups' at the end of a rapid charge will be incorrectly classified as 'Standard'.  As an example, we know that there are `r nrow(firstLastDT[chargeTypeError %like% "Error"])` sequences of charging events (out of a total of `r nrow(firstLastDT)`) where the first and last charge types do not match. 
+It should be noted that this method is not always accurate since we can identify apparent sequences of charging which start at > `r kwThreshold` kW and decline to < `r kwThreshold` kW over a relatively short period or vice versa (see Section \@ref(chargeFlagTest)). In this circumstance the first observation will be correctly classified as 'Rapid' but the lower observations, which we assume are lower power 'top-ups' at the end of a rapid charge will be incorrectly classified as 'Standard'.  As an example, we know that there are `r nrow(firstLastDT[chargeTypeError %like% "Error"])` sequences of charging events (out of a total of `r nrow(firstLastDT)`) where the first and last charge types do not match. 
 
 This is clarified and corrected in Section \@ref(codeSequences) for charging begin/end pairs (and thus in the results that use this data) but has yet to be resolved in other sections which use all charging observations. As a result we may currently be _under-estimating_ the number of rapid charge observations and _over-estimating_ the mean power demand of standard charges where we conduct analysis using all charging observations.
 
@@ -1756,7 +1756,7 @@ ggplot(t, aes( x = peakPeriod, y = pckWh, fill = chargeType)) +
 kableExtra::kable(t[, .("Peak period" = peakPeriod,
                         "Charge Type" = chargeType, 
                         "Total kWh" = sumkWh,
-                        "% of total kWh" = pckWh)][order(`Peak period`)], digits = 2, caption = "Total kWh per period by charge type") %>%
+                        "% of total kWh" = pckWh)][order(`Charge Type`)], digits = 2, caption = "Total kWh per period by charge type") %>%
   kable_styling()
 
 message("Summary % total kWh for PCE paper")
