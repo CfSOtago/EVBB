@@ -137,10 +137,14 @@ genDataDT <- getGenData(genFiles[all.files %like% 2018]) # the ones that we want
 rawDT <- loadData(dFile)
 
 # Report
+#version <- "v1_final"
+#kwThreshold <- 7
+
+version <- "1.1_7.4kW"
+kwThreshold <- 7.4
 rmd <- paste0(here::here(), "/reports/fullReport/v1_final/EVBB_report.Rmd")
-outF <- paste0(here::here(), "/docs/EVBB_report_v1_final_", dataFile ,'.html') # for easier github pages management
+outF <- paste0(here::here(), "/docs/EVBB_report_", version, "_", dataFile ,'.html') # for easier github pages management
 
 doReport(rmd, outF)
-
 
 
