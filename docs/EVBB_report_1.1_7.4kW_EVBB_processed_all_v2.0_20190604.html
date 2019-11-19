@@ -263,7 +263,7 @@ div.tocify {
 <h1 class="title toc-ignore">Analysis of electric vehicle usage patterns in New Zealand</h1>
 <h3 class="subtitle">Statistical report using Flip The Fleet data</h3>
 <h4 class="author">Rafferty Parker and Ben Anderson (<a href="https://www.otago.ac.nz/centre-sustainability/">Centre for Sustainability</a>, University of Otago, <a href="mailto:ben.anderson@otago.ac.nz" class="email">ben.anderson@otago.ac.nz</a>); Daniel Myall (Flip The Fleet, <a href="mailto:daniel@zeno.nz" class="email">daniel@zeno.nz</a>)</h4>
-<h4 class="date">Last run at: 2019-11-11 13:16:38</h4>
+<h4 class="date">Last run at: 2019-11-18 18:34:02</h4>
 
 </div>
 
@@ -3300,14 +3300,20 @@ Figure 5.10: Value of state of charge at beginning of charging sequence (chargeT
 <li>132 of 379 (34.83%) rapid charging sequences with intial SoC &lt; 90% started with greater than 50% charge;</li>
 <li>1166 of 2466 (47.28%) standard charging sequences with intial SoC &lt; 90% started with greater than 50% charge;</li>
 </ul>
-<div class="figure"><span id="fig:SoCplotTiming"></span>
+<div class="figure"><span id="fig:SoCplotTiming1"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/SoCplotTiming-1.png" alt="Mean state of charge at beginning of charge sequence by time of day (chargeType corrected, values &gt; 90% removed)" width="672" />
 <p class="caption">
 Figure 5.11: Mean state of charge at beginning of charge sequence by time of day (chargeType corrected, values &gt; 90% removed)
 </p>
 </div>
-<p>Finally, Figure <a href="#fig:SoCplotTiming">5.11</a> shows the mean % charge by time of first charging observation in a sequence using the cleaned and corrected inferred start/end of charging sequence data. The plot suggests that this capacity may be relatively stable throughout the day albiet with slightly higher mean capacity around the morning peak as we would expect given over-night charging. It is unlikely that this early morning capacity would be willingly made available for V2G since the EV may be used in the near future although this may not always be the case. However it is interesting to note that mean capacity at start of charge in the evening peak period is still roughly 50% indicating relatively substantial power availability.</p>
-<p>Making the assumption that each EV has a 24 kWh battery we can calculate the <em>available</em> kWh at the start of each charge for V2G purposes. This is shown in Table <a href="#tab:v2gEstimates">5.6</a> and Figure <a href="#fig:v2gEstimates">5.12</a>.</p>
+<div class="figure"><span id="fig:SoCplotTiming2"></span>
+<img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/SoCplotTiming-2.png" alt="Mean state of charge at beginning of charge sequence by time of day (chargeType corrected, values &gt; 90% removed)" width="672" />
+<p class="caption">
+Figure 5.12: Mean state of charge at beginning of charge sequence by time of day (chargeType corrected, values &gt; 90% removed)
+</p>
+</div>
+<p>Finally, Figure <a href="#fig:SoCplotTiming"><strong>??</strong></a> shows the mean % charge by time of first charging observation in a sequence using the cleaned and corrected inferred start/end of charging sequence data. The plot suggests that this capacity may be relatively stable throughout the day albiet with slightly higher mean capacity around the morning peak as we would expect given over-night charging. It is unlikely that this early morning capacity would be willingly made available for V2G since the EV may be used in the near future although this may not always be the case. However it is interesting to note that mean capacity at start of charge in the evening peak period is still roughly 50% indicating relatively substantial power availability.</p>
+<p>Making the assumption that each EV has a 24 kWh battery we can calculate the <em>available</em> kWh at the start of each charge for V2G purposes. This is shown in Table <a href="#tab:v2gEstimates">5.6</a> and Figure <a href="#fig:v2gEstimates">5.13</a>.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:v2gEstimates">Table 5.6: </span>Estimated kWh available by time period and charge type
@@ -3540,7 +3546,7 @@ Late evening
 <div class="figure"><span id="fig:v2gEstimates"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/v2gEstimates-1.png" alt="Estimates of available kWh by time period" width="672" />
 <p class="caption">
-Figure 5.12: Estimates of available kWh by time period
+Figure 5.13: Estimates of available kWh by time period
 </p>
 </div>
 <p>These show, for example, that the mean kWh available during the evening peak period is 11.67 with a range of 2.14 to 21.58 kWh. We can also see that similar values are available in the morning peak period but further analysis would be required to estimate how much of this could be used during the period without impacting subsequent use. Other analyses could include:</p>
@@ -3555,7 +3561,7 @@ Figure 5.12: Estimates of available kWh by time period
 </div>
 <div id="end-of-charging-sequence" class="section level3">
 <h3><span class="header-section-number">5.3.2</span> End of charging sequence</h3>
-<p>Figure <a href="#fig:SoCplotEnd">5.13</a> shows the state of charge at the end of a charging sequence using the cleaned and corrected inferred start/end of charging sequence data, We can now see that the majority of standard charge sequences end with close to 100% charge but most rapid charge sequences end with around 75-80% charge.</p>
+<p>Figure <a href="#fig:SoCplotEnd">5.14</a> shows the state of charge at the end of a charging sequence using the cleaned and corrected inferred start/end of charging sequence data, We can now see that the majority of standard charge sequences end with close to 100% charge but most rapid charge sequences end with around 75-80% charge.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:SoCplotEnd">Table 5.7: </span>Summary statistics for % state of charge on last charge in a sequence
@@ -3619,10 +3625,10 @@ Rapid charging
 <div class="figure"><span id="fig:SoCplotEnd"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/SoCplotEnd-1.png" alt="Value of state of charge at end of charging sequence (chargeType corrected, all values" width="672" />
 <p class="caption">
-Figure 5.13: Value of state of charge at end of charging sequence (chargeType corrected, all values
+Figure 5.14: Value of state of charge at end of charging sequence (chargeType corrected, all values
 </p>
 </div>
-<p>Figure <a href="#fig:SoCplotDiff">5.14</a> shows the difference in charge gain for all charge sequences where the starting charge was less than 90% (as above).</p>
+<p>Figure <a href="#fig:SoCplotDiff">5.15</a> shows the difference in charge gain for all charge sequences where the starting charge was less than 90% (as above).</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:SoCplotDiff">Table 5.8: </span>Summary statistics for % state of charge gain by last charge in a sequence
@@ -3686,7 +3692,7 @@ Rapid charging
 <div class="figure"><span id="fig:SoCplotDiff"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/SoCplotDiff-1.png" alt="Charge gain during charging sequence (chargeType corrected, all values" width="672" />
 <p class="caption">
-Figure 5.14: Charge gain during charging sequence (chargeType corrected, all values
+Figure 5.15: Charge gain during charging sequence (chargeType corrected, all values
 </p>
 </div>
 </div>
@@ -3698,47 +3704,47 @@ Figure 5.14: Charge gain during charging sequence (chargeType corrected, all val
 <blockquote>
 <p>The remaining results in this section are experimental and preliminary. Use with care (if at all) or just skip to the next section (<a href="#imputePower">5.5</a>).</p>
 </blockquote>
-<p>Figure <a href="#fig:nonRapidPowerPlotDT">5.15</a> shows the mean charging demand in kW calculated across all observations after setting rapid charge observations to 0 kW. As we would expect the kW load due to the EVs follows essentially the same shape as the charging event proportions shown above but with slightly more evidence of a 13:00 and 16:00 mini-peak and distinct differences between weekday and weekend mornings. As before, the apparent rapid increase in demand (and the pre-20:00 spike) are more likely to be due to decreasing numbers of ‘non-charging’ observations than increases in charging (see Figure <a href="#fig:chargeTimeDensity">5.3</a>.</p>
+<p>Figure <a href="#fig:nonRapidPowerPlotDT">5.16</a> shows the mean charging demand in kW calculated across all observations after setting rapid charge observations to 0 kW. As we would expect the kW load due to the EVs follows essentially the same shape as the charging event proportions shown above but with slightly more evidence of a 13:00 and 16:00 mini-peak and distinct differences between weekday and weekend mornings. As before, the apparent rapid increase in demand (and the pre-20:00 spike) are more likely to be due to decreasing numbers of ‘non-charging’ observations than increases in charging (see Figure <a href="#fig:chargeTimeDensity">5.3</a>.</p>
 <div class="figure"><span id="fig:nonRapidPowerPlotDT"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/nonRapidPowerPlotDT-1.png" alt="Mean kW per quarter hour (treating rapid charging as 0 kW)" width="672" />
 <p class="caption">
-Figure 5.15: Mean kW per quarter hour (treating rapid charging as 0 kW)
+Figure 5.16: Mean kW per quarter hour (treating rapid charging as 0 kW)
 </p>
 </div>
-<p>Figure <a href="#fig:rapidPowerPlotDT">5.16</a> repeats Figure <a href="#fig:nonRapidPowerPlotDT">5.15</a> but shows the mean charging demand in kW calculated across all observations after setting standard charge observations to 0 kW. Again, the kW load due to the EVs follows essentially the same shape as the charging event counts shown above and the low mean value should remind us that rapid charging was relatively rare in the data.</p>
+<p>Figure <a href="#fig:rapidPowerPlotDT">5.17</a> repeats Figure <a href="#fig:nonRapidPowerPlotDT">5.16</a> but shows the mean charging demand in kW calculated across all observations after setting standard charge observations to 0 kW. Again, the kW load due to the EVs follows essentially the same shape as the charging event counts shown above and the low mean value should remind us that rapid charging was relatively rare in the data.</p>
 <div class="figure"><span id="fig:rapidPowerPlotDT"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/rapidPowerPlotDT-1.png" alt="Mean kW per quarter hour (treating standard charging as 0 kW)" width="672" />
 <p class="caption">
-Figure 5.16: Mean kW per quarter hour (treating standard charging as 0 kW)
+Figure 5.17: Mean kW per quarter hour (treating standard charging as 0 kW)
 </p>
 </div>
 <p>In next plots we use transparency to indicate the number of EVs contributing to each of the mean calculations to give a guide to their reliability and indicate the relative proportion of sample EVs that contribute to each mean value. Dots with stronger colours indicate means calculated from a larger number of EVs and, given the data gaps noted in Section <a href="#background">4.1</a>, this therefore indicates patterns which are generally shared across a larger number of EVs. We would therefore expect darker dots (most vehicles) durng overnight charge times and lighter plots (fewer vehicles co-incidentally charging) through the day.</p>
-<p>Figure <a href="#fig:meanChargeByTimeStd">5.17</a> shows the mean power demand for standard charging observations by time of day and weekdays vs weekends for the selected time period. This plot appears to show that there are three peaks in standard charging, one at 10:00, one at 18:00 (possibly based on fewer EVs) and one after midnight on weekdays. There are also noticeable 07:00 and 16:00 charging blips. On the other hand at weekends the daytime peak shifts to 14:00. Thus, while our previous analysis suggested that charging events were more likely to start later in the evening, the power demand of earlier charging events may actually be relatively high and co-incide with existing peak demand periods.</p>
+<p>Figure <a href="#fig:meanChargeByTimeStd">5.18</a> shows the mean power demand for standard charging observations by time of day and weekdays vs weekends for the selected time period. This plot appears to show that there are three peaks in standard charging, one at 10:00, one at 18:00 (possibly based on fewer EVs) and one after midnight on weekdays. There are also noticeable 07:00 and 16:00 charging blips. On the other hand at weekends the daytime peak shifts to 14:00. Thus, while our previous analysis suggested that charging events were more likely to start later in the evening, the power demand of earlier charging events may actually be relatively high and co-incide with existing peak demand periods.</p>
 <div class="figure"><span id="fig:meanChargeByTimeStd"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/meanChargeByTimeStd-1.png" alt="Mean charging power demand (kW) by time of day ('standard' charging)" width="672" />
 <p class="caption">
-Figure 5.17: Mean charging power demand (kW) by time of day (‘standard’ charging)
+Figure 5.18: Mean charging power demand (kW) by time of day (‘standard’ charging)
 </p>
 </div>
-<p>Rapid charging however has no detectable pattern other than a clear increase in density during weekday daytimes (Figure <a href="#fig:meanChargeByTimeRapid">5.18</a>). However, we can now see the effect that rapid charging may have with significant EV uptake.</p>
+<p>Rapid charging however has no detectable pattern other than a clear increase in density during weekday daytimes (Figure <a href="#fig:meanChargeByTimeRapid">5.19</a>). However, we can now see the effect that rapid charging may have with significant EV uptake.</p>
 <div class="figure"><span id="fig:meanChargeByTimeRapid"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/meanChargeByTimeRapid-1.png" alt="Mean charging power demand (kW) by time of day ('rapid' charging)" width="672" />
 <p class="caption">
-Figure 5.18: Mean charging power demand (kW) by time of day (‘rapid’ charging)
+Figure 5.19: Mean charging power demand (kW) by time of day (‘rapid’ charging)
 </p>
 </div>
-<p>It is possible that the ‘standard charge’ day-time peak is skewed by mis-classified short low power ‘Rapid charge’ observations (see Section <a href="#chargeType">4.3.1</a>). Figure <a href="#fig:medianChargeByTime">5.19</a> attempts to allow for this misclassification by plotting the median rather than the mean. The plot more clearly shows the 10:00 weekday spike which, if we assume that the mis-classified ‘Rapid charges’ will be skewing the standard charge mean value upwards, is likely to be due to mis-classified ‘Rapid charging’. However the 18:00 peak persists as does the 14:00 weekend peak while overnight charging levels are relatively stable as we would expect from <a href="#fig:meanChargeByTimeStd">5.17</a>.</p>
+<p>It is possible that the ‘standard charge’ day-time peak is skewed by mis-classified short low power ‘Rapid charge’ observations (see Section <a href="#chargeType">4.3.1</a>). Figure <a href="#fig:medianChargeByTime">5.20</a> attempts to allow for this misclassification by plotting the median rather than the mean. The plot more clearly shows the 10:00 weekday spike which, if we assume that the mis-classified ‘Rapid charges’ will be skewing the standard charge mean value upwards, is likely to be due to mis-classified ‘Rapid charging’. However the 18:00 peak persists as does the 14:00 weekend peak while overnight charging levels are relatively stable as we would expect from <a href="#fig:meanChargeByTimeStd">5.18</a>.</p>
 <div class="figure"><span id="fig:medianChargeByTime"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/medianChargeByTime-1.png" alt="Median charging power demand (kW) by time of day" width="672" />
 <p class="caption">
-Figure 5.19: Median charging power demand (kW) by time of day
+Figure 5.20: Median charging power demand (kW) by time of day
 </p>
 </div>
-<p>Figure <a href="#fig:meanChargeByTimeMonth">5.20</a> repeats the median power-based analysis for ‘Standard charging’ but shows the results by month. While the sample size is probably too small to draw robust conclusions there appear to be differences between months with December showing few discernable peaks and September and January showing much lower daytime weekday charging. In addition, weekdays and weekends are much more similar in November and December.</p>
+<p>Figure <a href="#fig:meanChargeByTimeMonth">5.21</a> repeats the median power-based analysis for ‘Standard charging’ but shows the results by month. While the sample size is probably too small to draw robust conclusions there appear to be differences between months with December showing few discernable peaks and September and January showing much lower daytime weekday charging. In addition, weekdays and weekends are much more similar in November and December.</p>
 <div class="figure"><span id="fig:meanChargeByTimeMonth"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/meanChargeByTimeMonth-1.png" alt="Median charging power demand (kW) by time of day and month" width="672" />
 <p class="caption">
-Figure 5.20: Median charging power demand (kW) by time of day and month
+Figure 5.21: Median charging power demand (kW) by time of day and month
 </p>
 </div>
 <div id="power-demand-summary" class="section level3">
@@ -3968,7 +3974,7 @@ Max. :6.000
 <div class="figure"><span id="fig:make1minkW"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/make1minkW-1.png" alt="Histogram of number of observations per aggregated floor(1 minute) date time per EV" width="672" />
 <p class="caption">
-Figure 5.21: Histogram of number of observations per aggregated floor(1 minute) date time per EV
+Figure 5.22: Histogram of number of observations per aggregated floor(1 minute) date time per EV
 </p>
 </div>
 <p>Next we:</p>
@@ -3978,7 +3984,7 @@ Figure 5.21: Histogram of number of observations per aggregated floor(1 minute) 
 <div class="figure"><span id="fig:chargingKwProfile"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/chargingKwProfile-1.png" alt="Half-hourly mean kW for all EVs - testing for missing data" width="672" />
 <p class="caption">
-Figure 5.22: Half-hourly mean kW for all EVs - testing for missing data
+Figure 5.23: Half-hourly mean kW for all EVs - testing for missing data
 </p>
 </div>
 <p>NB: calculating a mean across these half-hourly observations requires knowing how many half-hours are missing and so can be set to 0.</p>
@@ -4445,7 +4451,7 @@ Rapid charging
 <div class="figure"><span id="fig:estimatekWhByPeak"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/estimatekWhByPeak-1.png" alt="% total mean kWh consumption per EV" width="672" />
 <p class="caption">
-Figure 5.23: % total mean kWh consumption per EV
+Figure 5.24: % total mean kWh consumption per EV
 </p>
 </div>
 <p>Table <a href="#tab:estimatekWhByPeak">5.11</a> and Figure <a href="#tab:estimatekWhByPeak">5.11</a> repeats this analysis but shows the results by peak period. Clearly rapid charging during the day dominates energy (kWh) consumption with standard charging during the evening peak being responsible for a mere 3-4% of the energy consumed by EV charging.</p>
@@ -4458,17 +4464,17 @@ Figure 5.23: % total mean kWh consumption per EV
 </ul>
 <p><img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/makeHalfHourlyKWh-1.png" width="672" /></p>
 <p>Next we simply sum these kWh values across all observations for different categories to get some idea of the relative proportions of energy being drawn in different contexts and charging situations</p>
-<p>Figure <a href="#fig:plotKWhWeekdays">5.24</a> shows the results of doing this for weekends and weekdays. Note that the totals have been ‘normalised’ to allow for the different numbers of weekdays vs weekend days but we make no checks as to whether the ‘right’ number of weekdays and weekend days are represented in the data (e.g. where we received no data due to inactivity - see above). This shows that the patterns of weekday vs weekend energy consumption are similar with overnight standard charging dominating. Consumption during morning peak periods is low but slightly higher in the evening peaks as the charging timing results above would imply. Rapid charging plays a larger role in day-time energy consumption but it’s rarity means that despite higher power demand (kW) it’s energy impact (kWh) is relatively low in this sample.</p>
+<p>Figure <a href="#fig:plotKWhWeekdays">5.25</a> shows the results of doing this for weekends and weekdays. Note that the totals have been ‘normalised’ to allow for the different numbers of weekdays vs weekend days but we make no checks as to whether the ‘right’ number of weekdays and weekend days are represented in the data (e.g. where we received no data due to inactivity - see above). This shows that the patterns of weekday vs weekend energy consumption are similar with overnight standard charging dominating. Consumption during morning peak periods is low but slightly higher in the evening peaks as the charging timing results above would imply. Rapid charging plays a larger role in day-time energy consumption but it’s rarity means that despite higher power demand (kW) it’s energy impact (kWh) is relatively low in this sample.</p>
 <div class="figure"><span id="fig:plotKWhWeekdays"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/plotKWhWeekdays-1.png" alt="Total normalised kWh by weekday and charge type" width="672" />
 <p class="caption">
-Figure 5.24: Total normalised kWh by weekday and charge type
+Figure 5.25: Total normalised kWh by weekday and charge type
 </p>
 </div>
 <div class="figure"><span id="fig:plotKWh"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/plotKWh-1.png" alt="% total kWh by charge type and peak period" width="672" />
 <p class="caption">
-Figure 5.25: % total kWh by charge type and peak period
+Figure 5.26: % total kWh by charge type and peak period
 </p>
 </div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -5190,7 +5196,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 <h1><span class="header-section-number">7</span> Summary</h1>
 <p>Based on a relatively small and probably non-representative sample of 48 domestic electric vehicles provided by our research partner <a href="https://flipthefleet.org/">FlipTheFleet</a> and which were monitored from Inf to -Inf we have found that:</p>
 <ul>
-<li><em>Power supplied</em>: The median power supplied during a charging event coded as ‘standard’ was 1.76 kW. The mean was slightly higher at 2.09 kW. Charging observations coded as ‘Rapid’ had a median of 1.76 kW (mean = 2.09 kW). Mean power when charging showed a complex temporal profile for weekday standard charging (Figure <a href="#fig:meanChargeByTimeStd">5.17</a>) with a peak of ~ 2.5kw at 10:00 and a second of the same value at around 18:00 with further peaks just after midnight. The inverse is seen on weekends with a charge peak during the middle of the day;</li>
+<li><em>Power supplied</em>: The median power supplied during a charging event coded as ‘standard’ was 1.76 kW. The mean was slightly higher at 2.09 kW. Charging observations coded as ‘Rapid’ had a median of 1.76 kW (mean = 2.09 kW). Mean power when charging showed a complex temporal profile for weekday standard charging (Figure <a href="#fig:meanChargeByTimeStd">5.18</a>) with a peak of ~ 2.5kw at 10:00 and a second of the same value at around 18:00 with further peaks just after midnight. The inverse is seen on weekends with a charge peak during the middle of the day;</li>
 <li><em>Charging duration</em>: Charging durations tended to fall into one of two groups. Longer ‘standard’ charges had a median duration of 207.12 minutes and a mean duration of 243.01 minutes. High power ‘Rapid’ charge events had a median duration of 14.26 minutes and a mean duration of 14.26 minutes;</li>
 <li><em>Time of day</em>: Standard charging events tended to be the most frequent around 22:00 on both weekdays and weekends, suggesting the drivers in our dataset utilise timers to take advantage of off-peak electricity although this is not universal with a substantial proportion of charging events starting earlier in the day and potentially at higher power levels (see above). Rapid charging events tended to begin at 11:30am on weekdays and 1pm during weekends;</li>
 <li><em>State of charge</em>: As has been previously shown <span class="citation">(Speidel and Bräunl 2014)</span>, any drivers begin recharging with greater than 50% charge still remaining in the battery for both standard and rapid charge events. This has clear implications both for the management of battery life and also for the potential for vehicle-to-grid power flows during peak demand periods where vehciles may be at or arriving home with substantial available charge.</li>
@@ -5215,17 +5221,17 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  n obs: 1882040 
 ##  n variables: 9 
 ## 
-## ── Variable type:character ───────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:character ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  variable missing complete       n min max empty n_unique
 ##  charging       0  1882040 1882040  26  31     0        2
 ##      dvID       0  1882040 1882040   9  10     0       52
 ##        id       0  1882040 1882040  32  32     0       52
 ## 
-## ── Variable type:difftime ────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:difftime ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  variable missing complete       n    min        max     median n_unique
 ##   timeChr       0  1882040 1882040 0 secs 86399 secs 44877 secs    86400
 ## 
-## ── Variable type:numeric ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:numeric ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##                 variable missing complete       n    mean      sd     p0
 ##          charge_power_kw       0  1882040 1882040    1.59   63.73      0
 ##              odometer_km 1255614   626426 1882040 7789.97 8268.44 -62920
@@ -5235,7 +5241,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  2166.25 5309    11154    73607    ▁▁▁▇▇▁▁▁
 ##    56.31   70.41    83.05  1677.72 ▇▁▁▁▁▁▁▁
 ## 
-## ── Variable type:POSIXct ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:POSIXct ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##            variable missing complete       n        min        max
 ##          r_dateTime     137  1881903 1882040 2018-04-05 2019-03-01
 ##  r_dateTimeHalfHour     137  1881903 1882040 2018-04-05 2019-03-01
@@ -5251,20 +5257,20 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  n obs: 1074730 
 ##  n variables: 24 
 ## 
-## ── Variable type:character ───────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:character ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##    variable missing complete       n min max empty n_unique
 ##  chargeFlag       2  1074728 1074730  17  25     0        5
 ##        dvID       0  1074730 1074730   9  10     0       48
 ##          id       0  1074730 1074730  32  32     0       48
 ##    weekdays       0  1074730 1074730   8   8     0        2
 ## 
-## ── Variable type:Date ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:Date ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  variable missing complete       n        min        max     median
 ##      date       0  1074730 1074730 2018-10-01 2019-01-16 2018-11-22
 ##  n_unique
 ##       108
 ## 
-## ── Variable type:difftime ────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:difftime ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##        variable missing complete       n    min          max     median
 ##             hms       0  1074730 1074730 0 secs   86399 secs 43858 secs
 ##           qHour       0  1074730 1074730 0 secs   85500 secs 43200 secs
@@ -5276,7 +5282,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##     11447
 ##     86394
 ## 
-## ── Variable type:factor ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:factor ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##     variable missing complete       n n_unique
 ##   chargeType       0  1074730 1074730        3
 ##  day_of_week       0  1074730 1074730        7
@@ -5286,7 +5292,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  Fri: 173053, Wed: 170267, Thu: 165276, Tue: 156780    TRUE
 ##  Ear: 356511, Day: 347804, Eve: 163020, Lat: 147782   FALSE
 ## 
-## ── Variable type:numeric ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:numeric ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##         variable missing complete       n    mean      sd     p0    p25
 ##  charge_power_kw       0  1074730 1074730    1.59    2.87      0    0  
 ##            month       0  1074730 1074730    9.71    3.42      1   10  
@@ -5302,7 +5308,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##    70.21   82.89    98.1  ▁▁▂▃▆▇▇▇
 ##     0       0       70.16 ▇▁▁▁▁▁▁▁
 ## 
-## ── Variable type:POSIXct ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:POSIXct ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##            variable missing complete       n        min        max
 ##          r_dateTime       0  1074730 1074730 2018-10-01 2019-01-16
 ##    r_dateTime1MinFl       0  1074730 1074730 2018-10-01 2019-01-16
@@ -5323,7 +5329,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  n obs: 2986 
 ##  n variables: 24 
 ## 
-## ── Variable type:character ───────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:character ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##         variable missing complete    n min max empty n_unique
 ##       chargeFlag       0     2986 2986  25  25     0        1
 ##  chargeTypeError       0     2986 2986  31  37     0        4
@@ -5331,11 +5337,11 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##               id       0     2986 2986  32  32     0       48
 ##         weekdays       0     2986 2986   8   8     0        2
 ## 
-## ── Variable type:Date ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:Date ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  variable missing complete    n        min        max     median n_unique
 ##      date       0     2986 2986 2018-10-01 2019-01-16 2018-11-22      108
 ## 
-## ── Variable type:difftime ────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:difftime ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##        variable missing complete    n                   min
 ##         endTime       0     2986 2986 31 secs              
 ##             hms       0     2986 2986 40 secs              
@@ -5351,7 +5357,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  230025 secs            339 secs               1685
 ##   86246 secs          56268 secs               2871
 ## 
-## ── Variable type:factor ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:factor ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##             variable missing complete    n n_unique
 ##           chargeType       0     2986 2986        2
 ##  chargeTypeCorrected       0     2986 2986        2
@@ -5365,7 +5371,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##       Sta: 2664, Rap: 322, Not: 0, NA: 0   FALSE
 ##  Day: 1147, Lat: 699, Eve: 556, Ear: 408   FALSE
 ## 
-## ── Variable type:numeric ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:numeric ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##         variable missing complete    n    mean      sd        p0     p25
 ##  charge_power_kw       0     2986 2986    6.73   12.14      0.5     1.56
 ##            month       0     2986 2986    9.56    3.58      1      10   
@@ -5379,7 +5385,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##     0       0    37626    ▁▁▇▁▁▁▁▁
 ##    49.02   60.92    98.1  ▁▃▆▇▇▃▂▂
 ## 
-## ── Variable type:POSIXct ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:POSIXct ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##    variable missing complete    n        min        max     median
 ##  r_dateTime       0     2986 2986 2018-10-01 2019-01-16 2018-11-22
 ##   startTime       0     2986 2986 2018-10-01 2019-01-16 2018-11-22
