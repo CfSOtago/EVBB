@@ -14,7 +14,7 @@ Review, fork, clone & contribute via [github](https://github.com/CfSOtago/evAnal
 
  * Data notebook v1.0 - deprecated
  * [Data notebook v2.0](EVBB_report_v1_final_EVBB_processed_all_v2.0_20190604.html) - additional data & updated report. Note the health warnings in some of the sections. _Please do not_ re-use or cite without checking with the authors. _Please do_ cite the papers below :-)
-* [Data notebook v2.0 7.4kW](EVBB_report_v1.1_7.4kW_EVBB_processed_all_v2.0_20190604.html) - amended standard vs rapid charging threshold to 7.4kW to cover more vehicles. Note the health warnings in some of the sections. _Please do not_ re-use or cite without checking with the authors. _Please do_ cite the papers below :-)
+* [Data notebook v2.0 7.4kW](EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604.html) - amended standard vs rapid charging threshold to 7.4kW to cover more vehicles. Note the health warnings in some of the sections. _Please do not_ re-use or cite without checking with the authors. _Please do_ cite the papers below :-)
  
 ## Reports and publications
 
