@@ -368,7 +368,7 @@ The subset of this data provided to the University of Otago was collected from `
 
 There are a number of important limitations to this data:
 
- * observations were only collected when the car was switched on and/or plugged in and charging. As a result no observations exist for periods when the EV is switched off and so there are large non-erroneous 'gaps' in the data which represent 'no charging' but which are not included as '0 power demand' in the analyses since to do so would require imputation of a very large number of missing timestamps for each vehicle. This means we are only able to analyse power demand profiles for vehicles that were known to be charging, _not for all vehicles in all time periods_;
+ * observations were only collected when the car was switched on and/or plugged in and charging. As a result no observations exist for periods when the EV is switched off and so there are large non-erroneous 'gaps' in the data which represent 'no charging' but which are not included as '0 power demand' in the analyses since to do so would require imputation of a very large number of missing time-stamps for each vehicle. This means we are only able to analyse power demand profiles for vehicles that were known to be charging, _not for all vehicles in all time periods_;
  * data upload relied on mobile 3G data signal and the extent to which gaps in the data are due to data upload errors rather than the vehicle being switched off (as above) is currently unclear;
  * these vehicles are driven by 'early adopters' who have opted to install the measuring devices in order to collect their vehicle usage data. As a result the data may not be representative of the usage patterns of current or future EV drivers [@rezvani_advances_2015;@li_review_2017].
 
@@ -1811,7 +1811,7 @@ pcStdEveningPeak <- t[chargeType %like% "Standard" &
                     sum(pckWh)]
 ```
 
-Table \@ref(tab:plotKWh) and Figure \@ref(tab:plotKWh) summarise the energy consumption across peak periods without weekday disaggregation. This shows that overall `r round(pcStdOffPeak)`% of the energy drawn was overnight off-peak standard charging. Day time standard charging was `r round(pcStdDay)`% of the total and day-time rapid only `r round(pcRapidDay)`%. Evenng peak standard charging was `r round(pcStdEveningPeak)`% of total energy.
+Table \@ref(tab:plotKWh) and Figure \@ref(tab:plotKWh) summarise the energy consumption across peak periods without weekday disaggregation. This shows that overall `r round(pcStdOffPeak)`% of the energy drawn was overnight off-peak standard charging. Day time standard charging was `r round(pcStdDay)`% of the total and day-time rapid only `r round(pcRapidDay)`%. Evening peak standard charging was `r round(pcStdEveningPeak)`% of total energy.
 
 Overall, the EVs in this sample drew relatively little energy during the potentially problematic evening peak period.
 
@@ -1929,7 +1929,7 @@ genPlotDT[, genkWh := sumkWh/nHalfHours]
 
 ### Summer
 
-Figure \@ref(fig:convertEVtoMWhSum) shows the result of this calculation for the summer period. This uses wholesale generation data from January, February and December 2018 and the EV charging data for the study period as reported above. We assume that the EV charging behaviour is not seasonally affected although this may not necessarily be true in practice. Note that the rarity of rpaid charging causes some zero values for this charge type.
+Figure \@ref(fig:convertEVtoMWhSum) shows the result of this calculation for the summer period. This uses wholesale generation data from January, February and December 2018 and the EV charging data for the study period as reported above. We assume that the EV charging behaviour is not seasonally affected although this may not necessarily be true in practice. Note that the rarity of rapid charging causes some zero values for this charge type.
 
 ```{r convertEVtoMWhSum, fig.cap = "Actual wholesale generation and estimated energy consumption under Scenario 1 for the study period during the summer."}
 
@@ -1977,7 +1977,7 @@ ggplot2::ggplot(dt[!(chargeType %like% "Not")], aes(x = halfHour, y = kWh/1000, 
 
 ### Winter
 
-Figure \@ref(fig:convertEVtoMWhWin) shows the result of this calculation for the summer period. This uses wholesale generation data from June, July and August 2018 and the EV charging data for the study period as reported above. as we do not have EV charing data for a winter period, we assume that the EV charging behaviour is not seasonally affected although this may not necessarily be true in practice. Note that the rarity of rpaid charging causes some zero values for this charge type.
+Figure \@ref(fig:convertEVtoMWhWin) shows the result of this calculation for the summer period. This uses wholesale generation data from June, July and August 2018 and the EV charging data for the study period as reported above. as we do not have EV charging data for a winter period, we assume that the EV charging behaviour is not seasonally affected although this may not necessarily be true in practice. Note that the rarity of rapid charging causes some zero values for this charge type.
 
 ```{r convertEVtoMWhWin, fig.cap = "Actual wholesale generation and estimated energy consumption under Scenario 1 during the winter."}
 
@@ -2070,11 +2070,11 @@ medianPowerRapid <- round(median(cleanDT[chargeType %like% "Rapid", charge_power
  * _Power supplied_: The median power supplied during a charging event coded as 'standard' was `r medianPowerStd` kW. The mean was slightly higher at `r meanPowerStd` kW. Charging observations coded as 'Rapid' had a median of `r medianPowerStd` kW (mean = `r meanPowerStd` kW). Mean power when charging showed a complex temporal profile for weekday standard charging (Figure \@ref(fig:meanChargeByTimeStd)) with a peak of ~ 2.5kw at 10:00 and a second of the same value at around 18:00 with further peaks just after midnight. The inverse is seen on weekends with a charge peak during the middle of the day;
  * _Charging duration_: Charging durations tended to fall into one of two groups. Longer 'standard' charges had a median duration of `r round(medianDurationStd,2)` minutes and a mean duration of `r round(meanDurationStd,2)` minutes. High power 'Rapid' charge events had a median duration of `r round(medianDurationRapid,2)` minutes and a mean duration of `r round(medianDurationRapid,2)` minutes;
  * _Time of day_: Standard charging events tended to be the most frequent around 22:00 on both weekdays and weekends, suggesting the drivers in our dataset utilise timers to take advantage of off-peak electricity although this is not universal with a substantial proportion of charging events starting earlier in the day and potentially at higher power levels (see above). Rapid charging events tended to begin at 11:30am on weekdays and 1pm during weekends;
- * _State of charge_: As has been previously shown [@speidel_driving_2014], any drivers begin recharging with greater than 50% charge still remaining in the battery for both standard and rapid charge events. This has clear implications both for the management of battery life and also for the potential for vehicle-to-grid power flows during peak demand periods where vehciles may be at or arriving home with substantial available charge.
+ * _State of charge_: As has been previously shown [@speidel_driving_2014], any drivers begin recharging with greater than 50% charge still remaining in the battery for both standard and rapid charge events. This has clear implications both for the management of battery life and also for the potential for vehicle-to-grid power flows during peak demand periods where vehicles may be at or arriving home with substantial available charge.
   
 In the data provided for this study, most charging occurs at home using either a 1.8kw or 3kW charger, and commonly occurs both in the evening peak period and through the night. In addition, many vehicles begin charging with significant battery capacity remaining, providing them with the ability to provide vehicle to grid energy transfer should that technology become widely available. 
 
-These preliminary findings support recent modelling work [@ConceptConsulting2018] that suggests that any negative effects electric vehicles may have on the evening national electricity grid peaks should be mitigable through 'smart' charging methods. In addition, our analysis indicates that this may already be occurring to some extent in this sample of EV owners. If later adopters of electric vehicles can be induced to follow the same 'smart' charging patterns as those displayed in some of our data sample, it is likely that the effects that electric vehicles are otherwise likely to have on the electricity grid may be mitigated.
+These preliminary findings support recent modelling work [@ConceptConsulting2018] that suggests that any negative effects electric vehicles may have on the evening national electricity grid peaks should be mitigatable through 'smart' charging methods. In addition, our analysis indicates that this may already be occurring to some extent in this sample of EV owners. If later adopters of electric vehicles can be induced to follow the same 'smart' charging patterns as those displayed in some of our data sample, it is likely that the effects that electric vehicles are otherwise likely to have on the electricity grid may be mitigated.
 
 # Statistical Annex
 
@@ -2314,7 +2314,7 @@ p
 
 ### Charge type
 
-`chargeType` is used to classify charging events into standard vs rapid using the 7 kW threshold. But there may be misclassfications where a sequence starts on a rapid charger but power demand declines below the threshold. We can check this and have corrected it in some sections above using the start/end pairs.
+`chargeType` is used to classify charging events into standard vs rapid using the 7 kW threshold. But there may be mis-classifications where a sequence starts on a rapid charger but power demand declines below the threshold. We can check this and have corrected it in some sections above using the start/end pairs.
 
 ```{r checkChargeType}
 # Check chargeType ----

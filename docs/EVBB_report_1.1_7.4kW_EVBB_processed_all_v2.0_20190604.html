@@ -263,7 +263,7 @@ div.tocify {
 <h1 class="title toc-ignore">Analysis of electric vehicle usage patterns in New Zealand</h1>
 <h3 class="subtitle">Statistical report using Flip The Fleet data</h3>
 <h4 class="author">Rafferty Parker and Ben Anderson (<a href="https://www.otago.ac.nz/centre-sustainability/">Centre for Sustainability</a>, University of Otago, <a href="mailto:ben.anderson@otago.ac.nz" class="email">ben.anderson@otago.ac.nz</a>); Daniel Myall (Flip The Fleet, <a href="mailto:daniel@zeno.nz" class="email">daniel@zeno.nz</a>)</h4>
-<h4 class="date">Last run at: 2019-11-18 18:34:02</h4>
+<h4 class="date">Last run at: 2019-11-19 13:33:03</h4>
 
 </div>
 
@@ -320,7 +320,7 @@ div.tocify {
 <p>The subset of this data provided to the University of Otago was collected from 52 domestic electric vehicles monitored from Inf to -Inf. The data consisted of 1,882,040 1 minute interval observations of timestamped odometer readings (in km) together with measurements of charging power (kW) and battery charge state (% charged) linked by a unique anonymised vehicle identifier. The data received contained <em>all</em> available observations but charging was set to 0 kW if the vehicle was non-stationary (speed &gt; 0 km/h) prior to data delivery to the University. This enabled us to automatically exclude charging through regenerative braking from the analysis.</p>
 <p>There are a number of important limitations to this data:</p>
 <ul>
-<li>observations were only collected when the car was switched on and/or plugged in and charging. As a result no observations exist for periods when the EV is switched off and so there are large non-erroneous ‘gaps’ in the data which represent ‘no charging’ but which are not included as ‘0 power demand’ in the analyses since to do so would require imputation of a very large number of missing timestamps for each vehicle. This means we are only able to analyse power demand profiles for vehicles that were known to be charging, <em>not for all vehicles in all time periods</em>;</li>
+<li>observations were only collected when the car was switched on and/or plugged in and charging. As a result no observations exist for periods when the EV is switched off and so there are large non-erroneous ‘gaps’ in the data which represent ‘no charging’ but which are not included as ‘0 power demand’ in the analyses since to do so would require imputation of a very large number of missing time-stamps for each vehicle. This means we are only able to analyse power demand profiles for vehicles that were known to be charging, <em>not for all vehicles in all time periods</em>;</li>
 <li>data upload relied on mobile 3G data signal and the extent to which gaps in the data are due to data upload errors rather than the vehicle being switched off (as above) is currently unclear;</li>
 <li>these vehicles are driven by ‘early adopters’ who have opted to install the measuring devices in order to collect their vehicle usage data. As a result the data may not be representative of the usage patterns of current or future EV drivers <span class="citation">(Rezvani, Jansson, and Bodin 2015; Li et al. 2017)</span>.</li>
 </ul>
@@ -4649,7 +4649,7 @@ Rapid charging
 ##         max
 ## 1: 39.72797
 ## 2: 84.97989</code></pre>
-<p>Table <a href="#tab:plotKWh">5.12</a> and Figure <a href="#tab:plotKWh">5.12</a> summarise the energy consumption across peak periods without weekday disaggregation. This shows that overall 55% of the energy drawn was overnight off-peak standard charging. Day time standard charging was 19% of the total and day-time rapid only 9%. Evenng peak standard charging was 12% of total energy.</p>
+<p>Table <a href="#tab:plotKWh">5.12</a> and Figure <a href="#tab:plotKWh">5.12</a> summarise the energy consumption across peak periods without weekday disaggregation. This shows that overall 55% of the energy drawn was overnight off-peak standard charging. Day time standard charging was 19% of the total and day-time rapid only 9%. Evening peak standard charging was 12% of total energy.</p>
 <p>Overall, the EVs in this sample drew relatively little energy during the potentially problematic evening peak period.</p>
 </div>
 </div>
@@ -4833,7 +4833,7 @@ Rapid charging
 <p>To determine whether this is a significant proportion of New Zealand national demand we convert the mean the MW values to MWh per half-hour for comparison with mean MWh per half-hour national generation values sourced from the EA’s EMI XX reference XXX.</p>
 <div id="summer" class="section level3">
 <h3><span class="header-section-number">6.1.1</span> Summer</h3>
-<p>Figure <a href="#fig:convertEVtoMWhSum"><strong>??</strong></a> shows the result of this calculation for the summer period. This uses wholesale generation data from January, February and December 2018 and the EV charging data for the study period as reported above. We assume that the EV charging behaviour is not seasonally affected although this may not necessarily be true in practice. Note that the rarity of rpaid charging causes some zero values for this charge type.</p>
+<p>Figure <a href="#fig:convertEVtoMWhSum"><strong>??</strong></a> shows the result of this calculation for the summer period. This uses wholesale generation data from January, February and December 2018 and the EV charging data for the study period as reported above. We assume that the EV charging behaviour is not seasonally affected although this may not necessarily be true in practice. Note that the rarity of rapid charging causes some zero values for this charge type.</p>
 <div class="figure"><span id="fig:convertEVtoMWhSum1"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/convertEVtoMWhSum-1.png" alt="Actual wholesale generation and estimated energy consumption under Scenario 1 for the study period during the summer." width="672" />
 <p class="caption">
@@ -5012,7 +5012,7 @@ Figure 6.3: Actual wholesale generation and estimated energy consumption under S
 </div>
 <div id="winter" class="section level3">
 <h3><span class="header-section-number">6.1.2</span> Winter</h3>
-<p>Figure <a href="#fig:convertEVtoMWhWin"><strong>??</strong></a> shows the result of this calculation for the summer period. This uses wholesale generation data from June, July and August 2018 and the EV charging data for the study period as reported above. as we do not have EV charing data for a winter period, we assume that the EV charging behaviour is not seasonally affected although this may not necessarily be true in practice. Note that the rarity of rpaid charging causes some zero values for this charge type.</p>
+<p>Figure <a href="#fig:convertEVtoMWhWin"><strong>??</strong></a> shows the result of this calculation for the summer period. This uses wholesale generation data from June, July and August 2018 and the EV charging data for the study period as reported above. as we do not have EV charging data for a winter period, we assume that the EV charging behaviour is not seasonally affected although this may not necessarily be true in practice. Note that the rarity of rapid charging causes some zero values for this charge type.</p>
 <div class="figure"><span id="fig:convertEVtoMWhWin1"></span>
 <img src="EVBB_report_1.1_7.4kW_EVBB_processed_all_v2.0_20190604_files/figure-html/convertEVtoMWhWin-1.png" alt="Actual wholesale generation and estimated energy consumption under Scenario 1 during the winter." width="672" />
 <p class="caption">
@@ -5199,10 +5199,10 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 <li><em>Power supplied</em>: The median power supplied during a charging event coded as ‘standard’ was 1.76 kW. The mean was slightly higher at 2.09 kW. Charging observations coded as ‘Rapid’ had a median of 1.76 kW (mean = 2.09 kW). Mean power when charging showed a complex temporal profile for weekday standard charging (Figure <a href="#fig:meanChargeByTimeStd">5.18</a>) with a peak of ~ 2.5kw at 10:00 and a second of the same value at around 18:00 with further peaks just after midnight. The inverse is seen on weekends with a charge peak during the middle of the day;</li>
 <li><em>Charging duration</em>: Charging durations tended to fall into one of two groups. Longer ‘standard’ charges had a median duration of 207.12 minutes and a mean duration of 243.01 minutes. High power ‘Rapid’ charge events had a median duration of 14.26 minutes and a mean duration of 14.26 minutes;</li>
 <li><em>Time of day</em>: Standard charging events tended to be the most frequent around 22:00 on both weekdays and weekends, suggesting the drivers in our dataset utilise timers to take advantage of off-peak electricity although this is not universal with a substantial proportion of charging events starting earlier in the day and potentially at higher power levels (see above). Rapid charging events tended to begin at 11:30am on weekdays and 1pm during weekends;</li>
-<li><em>State of charge</em>: As has been previously shown <span class="citation">(Speidel and Bräunl 2014)</span>, any drivers begin recharging with greater than 50% charge still remaining in the battery for both standard and rapid charge events. This has clear implications both for the management of battery life and also for the potential for vehicle-to-grid power flows during peak demand periods where vehciles may be at or arriving home with substantial available charge.</li>
+<li><em>State of charge</em>: As has been previously shown <span class="citation">(Speidel and Bräunl 2014)</span>, any drivers begin recharging with greater than 50% charge still remaining in the battery for both standard and rapid charge events. This has clear implications both for the management of battery life and also for the potential for vehicle-to-grid power flows during peak demand periods where vehicles may be at or arriving home with substantial available charge.</li>
 </ul>
 <p>In the data provided for this study, most charging occurs at home using either a 1.8kw or 3kW charger, and commonly occurs both in the evening peak period and through the night. In addition, many vehicles begin charging with significant battery capacity remaining, providing them with the ability to provide vehicle to grid energy transfer should that technology become widely available.</p>
-<p>These preliminary findings support recent modelling work <span class="citation">(Concept Consulting 2018)</span> that suggests that any negative effects electric vehicles may have on the evening national electricity grid peaks should be mitigable through ‘smart’ charging methods. In addition, our analysis indicates that this may already be occurring to some extent in this sample of EV owners. If later adopters of electric vehicles can be induced to follow the same ‘smart’ charging patterns as those displayed in some of our data sample, it is likely that the effects that electric vehicles are otherwise likely to have on the electricity grid may be mitigated.</p>
+<p>These preliminary findings support recent modelling work <span class="citation">(Concept Consulting 2018)</span> that suggests that any negative effects electric vehicles may have on the evening national electricity grid peaks should be mitigatable through ‘smart’ charging methods. In addition, our analysis indicates that this may already be occurring to some extent in this sample of EV owners. If later adopters of electric vehicles can be induced to follow the same ‘smart’ charging patterns as those displayed in some of our data sample, it is likely that the effects that electric vehicles are otherwise likely to have on the electricity grid may be mitigated.</p>
 </div>
 <div id="statistical-annex" class="section level1">
 <h1><span class="header-section-number">8</span> Statistical Annex</h1>
@@ -5221,17 +5221,17 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  n obs: 1882040 
 ##  n variables: 9 
 ## 
-## ── Variable type:character ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:character ─────────────────────────────────────────────────────────────────────────────────────────
 ##  variable missing complete       n min max empty n_unique
 ##  charging       0  1882040 1882040  26  31     0        2
 ##      dvID       0  1882040 1882040   9  10     0       52
 ##        id       0  1882040 1882040  32  32     0       52
 ## 
-## ── Variable type:difftime ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:difftime ──────────────────────────────────────────────────────────────────────────────────────────
 ##  variable missing complete       n    min        max     median n_unique
 ##   timeChr       0  1882040 1882040 0 secs 86399 secs 44877 secs    86400
 ## 
-## ── Variable type:numeric ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────
 ##                 variable missing complete       n    mean      sd     p0
 ##          charge_power_kw       0  1882040 1882040    1.59   63.73      0
 ##              odometer_km 1255614   626426 1882040 7789.97 8268.44 -62920
@@ -5241,7 +5241,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  2166.25 5309    11154    73607    ▁▁▁▇▇▁▁▁
 ##    56.31   70.41    83.05  1677.72 ▇▁▁▁▁▁▁▁
 ## 
-## ── Variable type:POSIXct ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:POSIXct ───────────────────────────────────────────────────────────────────────────────────────────
 ##            variable missing complete       n        min        max
 ##          r_dateTime     137  1881903 1882040 2018-04-05 2019-03-01
 ##  r_dateTimeHalfHour     137  1881903 1882040 2018-04-05 2019-03-01
@@ -5257,20 +5257,20 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  n obs: 1074730 
 ##  n variables: 24 
 ## 
-## ── Variable type:character ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:character ─────────────────────────────────────────────────────────────────────────────────────────
 ##    variable missing complete       n min max empty n_unique
 ##  chargeFlag       2  1074728 1074730  17  25     0        5
 ##        dvID       0  1074730 1074730   9  10     0       48
 ##          id       0  1074730 1074730  32  32     0       48
 ##    weekdays       0  1074730 1074730   8   8     0        2
 ## 
-## ── Variable type:Date ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:Date ──────────────────────────────────────────────────────────────────────────────────────────────
 ##  variable missing complete       n        min        max     median
 ##      date       0  1074730 1074730 2018-10-01 2019-01-16 2018-11-22
 ##  n_unique
 ##       108
 ## 
-## ── Variable type:difftime ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:difftime ──────────────────────────────────────────────────────────────────────────────────────────
 ##        variable missing complete       n    min          max     median
 ##             hms       0  1074730 1074730 0 secs   86399 secs 43858 secs
 ##           qHour       0  1074730 1074730 0 secs   85500 secs 43200 secs
@@ -5282,7 +5282,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##     11447
 ##     86394
 ## 
-## ── Variable type:factor ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:factor ────────────────────────────────────────────────────────────────────────────────────────────
 ##     variable missing complete       n n_unique
 ##   chargeType       0  1074730 1074730        3
 ##  day_of_week       0  1074730 1074730        7
@@ -5292,7 +5292,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  Fri: 173053, Wed: 170267, Thu: 165276, Tue: 156780    TRUE
 ##  Ear: 356511, Day: 347804, Eve: 163020, Lat: 147782   FALSE
 ## 
-## ── Variable type:numeric ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────
 ##         variable missing complete       n    mean      sd     p0    p25
 ##  charge_power_kw       0  1074730 1074730    1.59    2.87      0    0  
 ##            month       0  1074730 1074730    9.71    3.42      1   10  
@@ -5308,7 +5308,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##    70.21   82.89    98.1  ▁▁▂▃▆▇▇▇
 ##     0       0       70.16 ▇▁▁▁▁▁▁▁
 ## 
-## ── Variable type:POSIXct ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:POSIXct ───────────────────────────────────────────────────────────────────────────────────────────
 ##            variable missing complete       n        min        max
 ##          r_dateTime       0  1074730 1074730 2018-10-01 2019-01-16
 ##    r_dateTime1MinFl       0  1074730 1074730 2018-10-01 2019-01-16
@@ -5329,7 +5329,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  n obs: 2986 
 ##  n variables: 24 
 ## 
-## ── Variable type:character ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:character ─────────────────────────────────────────────────────────────────────────────────────────
 ##         variable missing complete    n min max empty n_unique
 ##       chargeFlag       0     2986 2986  25  25     0        1
 ##  chargeTypeError       0     2986 2986  31  37     0        4
@@ -5337,11 +5337,11 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##               id       0     2986 2986  32  32     0       48
 ##         weekdays       0     2986 2986   8   8     0        2
 ## 
-## ── Variable type:Date ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:Date ──────────────────────────────────────────────────────────────────────────────────────────────
 ##  variable missing complete    n        min        max     median n_unique
 ##      date       0     2986 2986 2018-10-01 2019-01-16 2018-11-22      108
 ## 
-## ── Variable type:difftime ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:difftime ──────────────────────────────────────────────────────────────────────────────────────────
 ##        variable missing complete    n                   min
 ##         endTime       0     2986 2986 31 secs              
 ##             hms       0     2986 2986 40 secs              
@@ -5357,7 +5357,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##  230025 secs            339 secs               1685
 ##   86246 secs          56268 secs               2871
 ## 
-## ── Variable type:factor ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:factor ────────────────────────────────────────────────────────────────────────────────────────────
 ##             variable missing complete    n n_unique
 ##           chargeType       0     2986 2986        2
 ##  chargeTypeCorrected       0     2986 2986        2
@@ -5371,7 +5371,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##       Sta: 2664, Rap: 322, Not: 0, NA: 0   FALSE
 ##  Day: 1147, Lat: 699, Eve: 556, Ear: 408   FALSE
 ## 
-## ── Variable type:numeric ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────
 ##         variable missing complete    n    mean      sd        p0     p25
 ##  charge_power_kw       0     2986 2986    6.73   12.14      0.5     1.56
 ##            month       0     2986 2986    9.56    3.58      1      10   
@@ -5385,7 +5385,7 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 ##     0       0    37626    ▁▁▇▁▁▁▁▁
 ##    49.02   60.92    98.1  ▁▃▆▇▇▃▂▂
 ## 
-## ── Variable type:POSIXct ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Variable type:POSIXct ───────────────────────────────────────────────────────────────────────────────────────────
 ##    variable missing complete    n        min        max     median
 ##  r_dateTime       0     2986 2986 2018-10-01 2019-01-16 2018-11-22
 ##   startTime       0     2986 2986 2018-10-01 2019-01-16 2018-11-22
@@ -6906,7 +6906,7 @@ Figure 8.6: Histogram of charge power deltas by peak/not peak period
 </div>
 <div id="charge-type" class="section level3">
 <h3><span class="header-section-number">8.3.2</span> Charge type</h3>
-<p><code>chargeType</code> is used to classify charging events into standard vs rapid using the 7 kW threshold. But there may be misclassfications where a sequence starts on a rapid charger but power demand declines below the threshold. We can check this and have corrected it in some sections above using the start/end pairs.</p>
+<p><code>chargeType</code> is used to classify charging events into standard vs rapid using the 7 kW threshold. But there may be mis-classifications where a sequence starts on a rapid charger but power demand declines below the threshold. We can check this and have corrected it in some sections above using the start/end pairs.</p>
 <pre class="r"><code># Check chargeType ----
 
 t &lt;- table(firstLastDT$chargeTypeError, firstLastDT$chargeType, useNA = &quot;always&quot;)
