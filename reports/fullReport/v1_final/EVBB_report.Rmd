@@ -1141,7 +1141,7 @@ Statistics:
 
 
 
-```{r SoCplotTiming, fig.cap= "Mean state of charge at beginning of charge sequence by time of day (chargeType corrected, values > 90% removed)"}
+```{r SoCplotTiming90pc, fig.cap= "Mean state of charge at beginning of charge sequence by time of day (chargeType corrected, values > 90% removed)"}
 
 dataDT <- firstCleanDT[SoC_percent < 90]
 plotDT <- dataDT[, .(meanChargePC = mean(SoC_percent),
@@ -1163,16 +1163,18 @@ p <- ggplot(plotDT, aes(x = qHour, y = meanChargePC, colour = weekdays, alpha = 
   facet_grid(chargeTypeCorrected ~ ., scales = "free")
 yMin <- min(plotDT$meanChargePC)
 yMax <- max(plotDT$meanChargePC)
-addPeaks(p)
+#addPeaks(p)
 ggsave(paste0(here::here(), "/docs/plots/SOC_Time_when_charging_begins_90pcObs.png"))
+```
 
+```{r SoCplotTimingAll, fig.cap="Mean state of charge at beginning of charge sequence by time of day (chargeType corrected, all observations)"}
 # rebuild for all data
 
 plotDT <- firstCleanDT[, .(meanChargePC = mean(SoC_percent),
                  nEVs = uniqueN(dvID)), keyby = .(qHour, weekdays, chargeTypeCorrected)]
 
 myCap <- paste0(cleanCap,
-                 "\n First charging observation in a sequence, corrected charge type, state of charge < 90%",
+                 "\n First charging observation in a sequence, corrected charge type, all observations,
                 "\n n observations: ", tidyNum(nrow(dataDT)),
                  "\n n EVs: ", uniqueN(dataDT$dvID)
 )
@@ -1189,9 +1191,12 @@ yMin <- min(plotDT$meanChargePC)
 yMax <- max(plotDT$meanChargePC)
 addPeaks(p)
 ggsave(paste0(here::here(), "/docs/plots/SOC_Time_when_charging_begins_allObs.png"))
+
 ```
 
-Finally, Figure \@ref(fig:SoCplotTiming) shows the mean % charge by time of first charging observation in a sequence using the cleaned and corrected inferred start/end of charging sequence data. The plot suggests that this capacity may be relatively stable throughout the day albiet with slightly higher mean capacity around the morning peak as we would expect given over-night charging. It is unlikely that this early morning capacity would be willingly made available for V2G since the EV may be used in the near future although this may not always be the case. However it is interesting to note that mean capacity at start of charge in the evening peak period is still roughly 50% indicating relatively substantial power availability.
+Finally, Figure \@ref(fig:SoCplotTimingAll) shows the mean % charge at the time of first charging observation in a sequence using the cleaned and corrected inferred start/end of charging sequence data. This includes _all_ events, even the brief 'top-up' early morning events to indicate when the stored energy is available at the start of a charge sequence.
+
+The plot suggests that available capacity may be relatively stable throughout the day albiet with a higher mean capacity around the morning peak as we would expect given over-night charging. It is unlikely that this early morning capacity would be willingly made available for V2G since the EV may be used in the near future although this may not always be the case. However it is interesting to note that mean capacity at start of charge in the evening peak period is still roughly 50% indicating relatively good power availability even when we might expect the vehicle to have recently returned home.
 
 ```{r setCapacity}
 batteryCapacity <- 24
