@@ -1143,9 +1143,11 @@ Statistics:
 
 ```{r SoCplotTiming90pc, fig.cap= "Mean state of charge at beginning of charge sequence by time of day (chargeType corrected, values > 90% removed)"}
 
-dataDT <- firstCleanDT[SoC_percent < 90]
-plotDT <- dataDT[, .(meanChargePC = mean(SoC_percent),
-                 nEVs = uniqueN(dvID)), keyby = .(qHour, weekdays, chargeTypeCorrected)]
+dataDT <- firstCleanDT[SoC_percent < 90] # need this for caption counts
+plotDT <- dataDT[,
+                 .(meanChargePC = mean(SoC_percent),
+                         nEVs = uniqueN(dvID)), 
+                 keyby = .(qHour, weekdays, chargeTypeCorrected)]
 
 myCap <- paste0(cleanCap,
                  "\n First charging observation in a sequence, corrected charge type, state of charge < 90%",
@@ -1170,14 +1172,16 @@ ggsave(paste0(here::here(), "/docs/plots/SOC_Time_when_charging_begins_90pcObs.p
 ```{r SoCplotTimingAll, fig.cap="Mean state of charge at beginning of charge sequence by time of day (chargeType corrected, all observations)"}
 # rebuild for all data
 
-plotDT <- firstCleanDT[, .(meanChargePC = mean(SoC_percent),
-                 nEVs = uniqueN(dvID)), keyby = .(qHour, weekdays, chargeTypeCorrected)]
+plotDT <- firstCleanDT[, 
+                       .(meanChargePC = mean(SoC_percent),
+                         nEVs = uniqueN(dvID)), 
+                 keyby = .(qHour, weekdays, chargeTypeCorrected)]
 
 myCap <- paste0(cleanCap,
-                 "\n First charging observation in a sequence, corrected charge type, all observations,
-                "\n n observations: ", tidyNum(nrow(dataDT)),
-                 "\n n EVs: ", uniqueN(dataDT$dvID)
-)
+                 "\n First charging observation in a sequence, corrected charge type, all observations",
+                "\n n observations: ", tidyNum(nrow(firstCleanDT)),
+                 "\n n EVs: ", uniqueN(firstCleanDT$dvID)
+                 )
 
 p <- ggplot(plotDT, aes(x = qHour, y = meanChargePC, colour = weekdays, alpha = nEVs)) + 
   geom_smooth() +
