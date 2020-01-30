@@ -1770,7 +1770,7 @@ ggplot(tWD, aes( x = peakPeriod, y = sumkWhNdays, fill = chargeType)) +
   geom_col() +
   facet_grid(weekdays ~ .) +
   scale_fill_discrete(name = "Charge Type")+
-  labs(y = "Total kWh (normalised)", x = "Peak period")
+  labs(y = "Total kWh (normalised)", x = "Time period")
 ```
 
 
@@ -1785,9 +1785,9 @@ t[, pckWh := 100 * (sumkWh/totkWh)]
 ggplot(t, aes( x = peakPeriod, y = pckWh, fill = chargeType)) + 
   geom_col() +
   scale_fill_discrete(name = "Charge Type")+
-  labs(y = "% total kWh drawn", x = "Peak period")
+  labs(y = "% total kWh drawn", x = "Time period")
 
-kableExtra::kable(t[, .("Peak period" = peakPeriod,
+kableExtra::kable(t[, .("Time period" = peakPeriod,
                         "Charge Type" = chargeType, 
                         "Total kWh" = sumkWh,
                         "% of total kWh" = pckWh)][order(`Charge Type`)], digits = 2, caption = "Total kWh per period by charge type") %>%
