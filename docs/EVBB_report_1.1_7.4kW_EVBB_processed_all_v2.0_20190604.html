@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -151,6 +150,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -182,6 +182,12 @@ summary {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -263,7 +269,7 @@ div.tocify {
 <h1 class="title toc-ignore">Analysis of electric vehicle usage patterns in New Zealand</h1>
 <h3 class="subtitle">Statistical report using Flip The Fleet data</h3>
 <h4 class="author">Rafferty Parker and Ben Anderson (<a href="https://www.otago.ac.nz/centre-sustainability/">Centre for Sustainability</a>, University of Otago, <a href="mailto:ben.anderson@otago.ac.nz" class="email">ben.anderson@otago.ac.nz</a>); Daniel Myall (Flip The Fleet, <a href="mailto:daniel@zeno.nz" class="email">daniel@zeno.nz</a>)</h4>
-<h4 class="date">Last run at: 2019-11-19 16:20:26</h4>
+<h4 class="date">Last run at: 2020-01-30 17:56:51</h4>
 
 </div>
 
@@ -279,7 +285,7 @@ div.tocify {
 <div id="citation" class="section level2">
 <h2><span class="header-section-number">2.1</span> Citation</h2>
 <ul>
-<li>Parker, R., Anderson, B., and Myall, D. (2019) <em>Analysis of electric vehicle usage patterns in New Zealand: Statistical report using Flip The Fleet data</em>. University of Otago: <a href="https://www.otago.ac.nz/centre-sustainability/index.html">Centre for Sustainability</a></li>
+<li>Parker, R., Anderson, B., and Myall, D. (2020) <em>Analysis of electric vehicle usage patterns in New Zealand: Statistical report using Flip The Fleet data</em>. University of Otago: <a href="https://www.otago.ac.nz/centre-sustainability/index.html">Centre for Sustainability</a></li>
 </ul>
 </div>
 <div id="license" class="section level2">
@@ -4479,7 +4485,7 @@ Figure 5.25: % total kWh by charge type and peak period
 <thead>
 <tr>
 <th style="text-align:left;">
-Peak period
+Time period
 </th>
 <th style="text-align:left;">
 Charge Type
@@ -4638,12 +4644,9 @@ Rapid charging
 <pre><code>##           chargeType % of total kWh
 ## 1: Standard charging       87.56199
 ## 2:    Rapid charging       12.43801</code></pre>
-<pre><code>##           chargeType Mean daily kWh where any charging   median      min
-## 1: Standard charging                          8.111444 7.380983 0.008349
-## 2:    Rapid charging                         10.137124 6.767287 0.125158
-##         max
-## 1: 39.72797
-## 2: 84.97989</code></pre>
+<pre><code>##           chargeType Mean daily kWh where any charging   median      min      max
+## 1: Standard charging                          8.111444 7.380983 0.008349 39.72797
+## 2:    Rapid charging                         10.137124 6.767287 0.125158 84.97989</code></pre>
 <p>Table <a href="#tab:plotKWh">5.12</a> and Figure <a href="#tab:plotKWh">5.12</a> summarise the energy consumption across peak periods without weekday disaggregation. This shows that overall 55% of the energy drawn was overnight off-peak standard charging. Day time standard charging was 19% of the total and day-time rapid only 9%. Evening peak standard charging was 12% of total energy.</p>
 <p>Overall, the EVs in this sample drew relatively little energy during the potentially problematic evening peak period.</p>
 </div>
@@ -5212,186 +5215,2363 @@ Figure 6.5: Actual wholesale generation and estimated energy consumption under S
 <h3><span class="header-section-number">8.1.1</span> Raw data</h3>
 <p>Data description for original data supplied (before processing or filtering).</p>
 <pre class="r"><code>skimr::skim(rawDT)</code></pre>
-<pre><code>## Skim summary statistics
-##  n obs: 1882040 
-##  n variables: 9 
-## 
-## ── Variable type:character ─────────────────────────────────────────────────────────────────────────────────────────────
-##  variable missing complete       n min max empty n_unique
-##  charging       0  1882040 1882040  26  31     0        2
-##      dvID       0  1882040 1882040   9  10     0       52
-##        id       0  1882040 1882040  32  32     0       52
-## 
-## ── Variable type:difftime ──────────────────────────────────────────────────────────────────────────────────────────────
-##  variable missing complete       n    min        max     median n_unique
-##   timeChr       0  1882040 1882040 0 secs 86399 secs 44877 secs    86400
-## 
-## ── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────────
-##                 variable missing complete       n    mean      sd     p0
-##          charge_power_kw       0  1882040 1882040    1.59   63.73      0
-##              odometer_km 1255614   626426 1882040 7789.97 8268.44 -62920
-##  state_of_charge_percent       0  1882040 1882040   69      20.66      0
-##      p25     p50      p75     p100     hist
-##     0       1.3      1.85 74940.42 ▇▁▁▁▁▁▁▁
-##  2166.25 5309    11154    73607    ▁▁▁▇▇▁▁▁
-##    56.31   70.41    83.05  1677.72 ▇▁▁▁▁▁▁▁
-## 
-## ── Variable type:POSIXct ───────────────────────────────────────────────────────────────────────────────────────────────
-##            variable missing complete       n        min        max
-##          r_dateTime     137  1881903 1882040 2018-04-05 2019-03-01
-##  r_dateTimeHalfHour     137  1881903 1882040 2018-04-05 2019-03-01
-##      median n_unique
-##  2018-11-25  1784161
-##  2018-11-25    12831</code></pre>
+<table style='width: auto;'
+        class='table table-condensed'>
+<caption>
+<span id="tab:ftfRawDataSkim">Table 8.1: </span>Data summary
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Name
+</td>
+<td style="text-align:left;">
+rawDT
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of rows
+</td>
+<td style="text-align:left;">
+1882040
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of columns
+</td>
+<td style="text-align:left;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+_______________________
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Column type frequency:
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+character
+</td>
+<td style="text-align:left;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+difftime
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+POSIXct
+</td>
+<td style="text-align:left;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+________________________
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Group variables
+</td>
+<td style="text-align:left;">
+None
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:right;">
+min
+</th>
+<th style="text-align:right;">
+max
+</th>
+<th style="text-align:right;">
+empty
+</th>
+<th style="text-align:right;">
+n_unique
+</th>
+<th style="text-align:right;">
+whitespace
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+id
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dvID
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+charging
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: difftime</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:left;">
+min
+</th>
+<th style="text-align:left;">
+max
+</th>
+<th style="text-align:left;">
+median
+</th>
+<th style="text-align:right;">
+n_unique
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+timeChr
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0 secs
+</td>
+<td style="text-align:left;">
+86399 secs
+</td>
+<td style="text-align:left;">
+44877 secs
+</td>
+<td style="text-align:right;">
+86400
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:right;">
+sd
+</th>
+<th style="text-align:right;">
+p0
+</th>
+<th style="text-align:right;">
+p25
+</th>
+<th style="text-align:right;">
+p50
+</th>
+<th style="text-align:right;">
+p75
+</th>
+<th style="text-align:right;">
+p100
+</th>
+<th style="text-align:left;">
+hist
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+charge_power_kw
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+1.59
+</td>
+<td style="text-align:right;">
+63.73
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+<td style="text-align:right;">
+1.85
+</td>
+<td style="text-align:right;">
+74940.42
+</td>
+<td style="text-align:left;">
+▇▁▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+state_of_charge_percent
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+69.00
+</td>
+<td style="text-align:right;">
+20.66
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+56.31
+</td>
+<td style="text-align:right;">
+70.41
+</td>
+<td style="text-align:right;">
+83.05
+</td>
+<td style="text-align:right;">
+1677.72
+</td>
+<td style="text-align:left;">
+▇▁▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+odometer_km
+</td>
+<td style="text-align:right;">
+1255614
+</td>
+<td style="text-align:right;">
+0.33
+</td>
+<td style="text-align:right;">
+7789.97
+</td>
+<td style="text-align:right;">
+8268.44
+</td>
+<td style="text-align:right;">
+-62920
+</td>
+<td style="text-align:right;">
+2166.25
+</td>
+<td style="text-align:right;">
+5309.00
+</td>
+<td style="text-align:right;">
+11154.00
+</td>
+<td style="text-align:right;">
+73607.00
+</td>
+<td style="text-align:left;">
+▁▁▇▁▁
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: POSIXct</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:left;">
+min
+</th>
+<th style="text-align:left;">
+max
+</th>
+<th style="text-align:left;">
+median
+</th>
+<th style="text-align:right;">
+n_unique
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+r_dateTime
+</td>
+<td style="text-align:right;">
+137
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2018-04-05 10:34:41
+</td>
+<td style="text-align:left;">
+2019-03-01 17:42:35
+</td>
+<td style="text-align:left;">
+2018-11-25 21:21:08
+</td>
+<td style="text-align:right;">
+1784161
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+r_dateTimeHalfHour
+</td>
+<td style="text-align:right;">
+137
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2018-04-05 10:30:00
+</td>
+<td style="text-align:left;">
+2019-03-01 17:30:00
+</td>
+<td style="text-align:left;">
+2018-11-25 21:00:00
+</td>
+<td style="text-align:right;">
+12831
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="processedCheck" class="section level3">
 <h3><span class="header-section-number">8.1.2</span> Processed and cleaned data</h3>
 <p>Data description for cleaned data (all observations).</p>
 <pre class="r"><code>skimr::skim(cleanDT)</code></pre>
-<pre><code>## Skim summary statistics
-##  n obs: 1074730 
-##  n variables: 24 
-## 
-## ── Variable type:character ─────────────────────────────────────────────────────────────────────────────────────────────
-##    variable missing complete       n min max empty n_unique
-##  chargeFlag       2  1074728 1074730  17  25     0        5
-##        dvID       0  1074730 1074730   9  10     0       48
-##          id       0  1074730 1074730  32  32     0       48
-##    weekdays       0  1074730 1074730   8   8     0        2
-## 
-## ── Variable type:Date ──────────────────────────────────────────────────────────────────────────────────────────────────
-##  variable missing complete       n        min        max     median
-##      date       0  1074730 1074730 2018-10-01 2019-01-16 2018-11-22
-##  n_unique
-##       108
-## 
-## ── Variable type:difftime ──────────────────────────────────────────────────────────────────────────────────────────────
-##        variable missing complete       n    min          max     median
-##             hms       0  1074730 1074730 0 secs   86399 secs 43858 secs
-##           qHour       0  1074730 1074730 0 secs   85500 secs 43200 secs
-##  r_dateTimeDiff      14  1074716 1074730 0 secs 2486002 secs    50 secs
-##         timeChr       0  1074730 1074730 0 secs   86399 secs 43858 secs
-##  n_unique
-##     86394
-##        96
-##     11447
-##     86394
-## 
-## ── Variable type:factor ────────────────────────────────────────────────────────────────────────────────────────────────
-##     variable missing complete       n n_unique
-##   chargeType       0  1074730 1074730        3
-##  day_of_week       0  1074730 1074730        7
-##   peakPeriod       0  1074730 1074730        5
-##                                          top_counts ordered
-##          Sta: 716907, Not: 350923, Rap: 6900, NA: 0   FALSE
-##  Fri: 173053, Wed: 170267, Thu: 165276, Tue: 156780    TRUE
-##  Ear: 356511, Day: 347804, Eve: 163020, Lat: 147782   FALSE
-## 
-## ── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────────
-##         variable missing complete       n    mean      sd     p0    p25
-##  charge_power_kw       0  1074730 1074730    1.59    2.87      0    0  
-##            month       0  1074730 1074730    9.71    3.42      1   10  
-##      odometer_km  750182   324548 1074730 7287.47 8339.26 -62920 1991  
-##     odometerDiff  756512   318218 1074730    1.59 2499.84 -64324    0  
-##      SoC_percent      41  1074689 1074730   68.81   18.58      0   56.1
-##           tempkW       0  1074730 1074730    0.2     2.66      0    0  
-##      p50     p75     p100     hist
-##     1.47    1.92    70.16 ▇▁▁▁▁▁▁▁
-##    11      12       12    ▂▁▁▁▁▁▃▇
-##  4752    9142    69394    ▁▁▁▆▇▂▁▁
-##     0       1    64261    ▁▁▁▁▇▁▁▁
-##    70.21   82.89    98.1  ▁▁▂▃▆▇▇▇
-##     0       0       70.16 ▇▁▁▁▁▁▁▁
-## 
-## ── Variable type:POSIXct ───────────────────────────────────────────────────────────────────────────────────────────────
-##            variable missing complete       n        min        max
-##          r_dateTime       0  1074730 1074730 2018-10-01 2019-01-16
-##    r_dateTime1MinFl       0  1074730 1074730 2018-10-01 2019-01-16
-##     r_dateTime1MinR       0  1074730 1074730 2018-10-01 2019-01-16
-##  r_dateTimeHalfHour       0  1074730 1074730 2018-10-01 2019-01-16
-##     r_dateTimeQhour       0  1074730 1074730 2018-10-01 2019-01-16
-##           startTime       0  1074730 1074730 2018-10-01 2019-01-16
-##      median n_unique
-##  2018-11-22  1011415
-##  2018-11-22   152837
-##  2018-11-22   152843
-##  2018-11-22     5135
-##  2018-11-22    10253
-##  2018-11-22  1011415</code></pre>
+<table style='width: auto;'
+        class='table table-condensed'>
+<caption>
+<span id="tab:ftfCleanDataSkim">Table 8.2: </span>Data summary
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Name
+</td>
+<td style="text-align:left;">
+cleanDT
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of rows
+</td>
+<td style="text-align:left;">
+1074730
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of columns
+</td>
+<td style="text-align:left;">
+24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+_______________________
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Column type frequency:
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+character
+</td>
+<td style="text-align:left;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Date
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+difftime
+</td>
+<td style="text-align:left;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+factor
+</td>
+<td style="text-align:left;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+POSIXct
+</td>
+<td style="text-align:left;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+________________________
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Group variables
+</td>
+<td style="text-align:left;">
+None
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:right;">
+min
+</th>
+<th style="text-align:right;">
+max
+</th>
+<th style="text-align:right;">
+empty
+</th>
+<th style="text-align:right;">
+n_unique
+</th>
+<th style="text-align:right;">
+whitespace
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+id
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dvID
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+weekdays
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+chargeFlag
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: Date</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:left;">
+min
+</th>
+<th style="text-align:left;">
+max
+</th>
+<th style="text-align:left;">
+median
+</th>
+<th style="text-align:right;">
+n_unique
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+date
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2018-10-01
+</td>
+<td style="text-align:left;">
+2019-01-16
+</td>
+<td style="text-align:left;">
+2018-11-22
+</td>
+<td style="text-align:right;">
+108
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: difftime</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:left;">
+min
+</th>
+<th style="text-align:left;">
+max
+</th>
+<th style="text-align:left;">
+median
+</th>
+<th style="text-align:right;">
+n_unique
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+timeChr
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0 secs
+</td>
+<td style="text-align:left;">
+86399 secs
+</td>
+<td style="text-align:left;">
+43858 secs
+</td>
+<td style="text-align:right;">
+86394
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hms
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0 secs
+</td>
+<td style="text-align:left;">
+86399 secs
+</td>
+<td style="text-align:left;">
+43858 secs
+</td>
+<td style="text-align:right;">
+86394
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+qHour
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0 secs
+</td>
+<td style="text-align:left;">
+85500 secs
+</td>
+<td style="text-align:left;">
+43200 secs
+</td>
+<td style="text-align:right;">
+96
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+r_dateTimeDiff
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0 secs
+</td>
+<td style="text-align:left;">
+2486002 secs
+</td>
+<td style="text-align:left;">
+50 secs
+</td>
+<td style="text-align:right;">
+11447
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:left;">
+ordered
+</th>
+<th style="text-align:right;">
+n_unique
+</th>
+<th style="text-align:left;">
+top_counts
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+day_of_week
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+Fri: 173053, Wed: 170267, Thu: 165276, Tue: 156780
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+chargeType
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+Sta: 716907, Not: 350923, Rap: 6900
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+peakPeriod
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Ear: 356511, Day: 347804, Eve: 163020, Lat: 147782
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:right;">
+sd
+</th>
+<th style="text-align:right;">
+p0
+</th>
+<th style="text-align:right;">
+p25
+</th>
+<th style="text-align:right;">
+p50
+</th>
+<th style="text-align:right;">
+p75
+</th>
+<th style="text-align:right;">
+p100
+</th>
+<th style="text-align:left;">
+hist
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+charge_power_kw
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.0
+</td>
+<td style="text-align:right;">
+1.59
+</td>
+<td style="text-align:right;">
+2.87
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+1.47
+</td>
+<td style="text-align:right;">
+1.92
+</td>
+<td style="text-align:right;">
+70.16
+</td>
+<td style="text-align:left;">
+▇▁▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SoC_percent
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+1.0
+</td>
+<td style="text-align:right;">
+68.81
+</td>
+<td style="text-align:right;">
+18.58
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+56.1
+</td>
+<td style="text-align:right;">
+70.21
+</td>
+<td style="text-align:right;">
+82.89
+</td>
+<td style="text-align:right;">
+98.10
+</td>
+<td style="text-align:left;">
+▁▂▅▇▇
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+odometer_km
+</td>
+<td style="text-align:right;">
+750182
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:right;">
+7287.47
+</td>
+<td style="text-align:right;">
+8339.26
+</td>
+<td style="text-align:right;">
+-62920
+</td>
+<td style="text-align:right;">
+1991.0
+</td>
+<td style="text-align:right;">
+4752.00
+</td>
+<td style="text-align:right;">
+9142.00
+</td>
+<td style="text-align:right;">
+69394.00
+</td>
+<td style="text-align:left;">
+▁▁▇▂▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+month
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.0
+</td>
+<td style="text-align:right;">
+9.71
+</td>
+<td style="text-align:right;">
+3.42
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+10.0
+</td>
+<td style="text-align:right;">
+11.00
+</td>
+<td style="text-align:right;">
+12.00
+</td>
+<td style="text-align:right;">
+12.00
+</td>
+<td style="text-align:left;">
+▁▁▁▁▇
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+odometerDiff
+</td>
+<td style="text-align:right;">
+756512
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:right;">
+1.59
+</td>
+<td style="text-align:right;">
+2499.84
+</td>
+<td style="text-align:right;">
+-64324
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+64261.00
+</td>
+<td style="text-align:left;">
+▁▁▇▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tempkW
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.0
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+2.66
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+70.16
+</td>
+<td style="text-align:left;">
+▇▁▁▁▁
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: POSIXct</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:left;">
+min
+</th>
+<th style="text-align:left;">
+max
+</th>
+<th style="text-align:left;">
+median
+</th>
+<th style="text-align:right;">
+n_unique
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+r_dateTime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2018-10-01 13:00:10
+</td>
+<td style="text-align:left;">
+2019-01-16 12:59:55
+</td>
+<td style="text-align:left;">
+2018-11-22 12:00:37
+</td>
+<td style="text-align:right;">
+1011415
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+startTime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2018-10-01 13:00:10
+</td>
+<td style="text-align:left;">
+2019-01-16 12:59:55
+</td>
+<td style="text-align:left;">
+2018-11-22 12:00:37
+</td>
+<td style="text-align:right;">
+1011415
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+r_dateTimeHalfHour
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2018-10-01 13:00:00
+</td>
+<td style="text-align:left;">
+2019-01-16 12:30:00
+</td>
+<td style="text-align:left;">
+2018-11-22 12:00:00
+</td>
+<td style="text-align:right;">
+5135
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+r_dateTimeQhour
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2018-10-01 13:00:00
+</td>
+<td style="text-align:left;">
+2019-01-16 12:45:00
+</td>
+<td style="text-align:left;">
+2018-11-22 12:00:00
+</td>
+<td style="text-align:right;">
+10253
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+r_dateTime1MinFl
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2018-10-01 13:00:00
+</td>
+<td style="text-align:left;">
+2019-01-16 12:59:00
+</td>
+<td style="text-align:left;">
+2018-11-22 12:00:00
+</td>
+<td style="text-align:right;">
+152837
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+r_dateTime1MinR
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2018-10-01 13:00:00
+</td>
+<td style="text-align:left;">
+2019-01-16 13:00:00
+</td>
+<td style="text-align:left;">
+2018-11-22 12:00:30
+</td>
+<td style="text-align:right;">
+152843
+</td>
+</tr>
+</tbody>
+</table>
 <p>Data description for cleaned data (first observations in a charging sequence).</p>
 <pre class="r"><code>skimr::skim(firstCleanDT)</code></pre>
-<pre><code>## Skim summary statistics
-##  n obs: 2986 
-##  n variables: 24 
-## 
-## ── Variable type:character ─────────────────────────────────────────────────────────────────────────────────────────────
-##         variable missing complete    n min max empty n_unique
-##       chargeFlag       0     2986 2986  25  25     0        1
-##  chargeTypeError       0     2986 2986  31  37     0        4
-##             dvID       0     2986 2986   9  10     0       48
-##               id       0     2986 2986  32  32     0       48
-##         weekdays       0     2986 2986   8   8     0        2
-## 
-## ── Variable type:Date ──────────────────────────────────────────────────────────────────────────────────────────────────
-##  variable missing complete    n        min        max     median n_unique
-##      date       0     2986 2986 2018-10-01 2019-01-16 2018-11-22      108
-## 
-## ── Variable type:difftime ──────────────────────────────────────────────────────────────────────────────────────────────
-##        variable missing complete    n                   min
-##         endTime       0     2986 2986 31 secs              
-##             hms       0     2986 2986 40 secs              
-##    pairDuration       0     2986 2986       0.01666667 mins
-##           qHour       0     2986 2986  0 secs              
-##  r_dateTimeDiff       0     2986 2986  0 secs              
-##         timeChr       0     2986 2986 40 secs              
-##                   max               median n_unique
-##   86342 secs               40739.5 secs        2921
-##   86246 secs          56268 secs               2871
-##         1616.717 mins        181.7333 mins     2752
-##   85500 secs          55800 secs                 96
-##  230025 secs            339 secs               1685
-##   86246 secs          56268 secs               2871
-## 
-## ── Variable type:factor ────────────────────────────────────────────────────────────────────────────────────────────────
-##             variable missing complete    n n_unique
-##           chargeType       0     2986 2986        2
-##  chargeTypeCorrected       0     2986 2986        2
-##          day_of_week       0     2986 2986        7
-##              endType       0     2986 2986        2
-##           peakPeriod       0     2986 2986        5
-##                               top_counts ordered
-##       Sta: 2607, Rap: 379, Not: 0, NA: 0   FALSE
-##       Sta: 2594, Rap: 392, Not: 0, NA: 0   FALSE
-##   Fri: 474, Wed: 451, Mon: 445, Thu: 443    TRUE
-##       Sta: 2664, Rap: 322, Not: 0, NA: 0   FALSE
-##  Day: 1147, Lat: 699, Eve: 556, Ear: 408   FALSE
-## 
-## ── Variable type:numeric ───────────────────────────────────────────────────────────────────────────────────────────────
-##         variable missing complete    n    mean      sd        p0     p25
-##  charge_power_kw       0     2986 2986    6.73   12.14      0.5     1.56
-##            month       0     2986 2986    9.56    3.58      1      10   
-##      odometer_km    2367      619 2986 6641.21 7567.25 -52352    1775   
-##     odometerDiff    2382      604 2986   54.21 2410.82 -18760       0   
-##      SoC_percent       0     2986 2986   50.28   19.22      4.11   36.28
-##      p50     p75     p100     hist
-##     2.08    3.3     70.16 ▇▁▁▁▁▁▁▁
-##    11      12       12    ▂▁▁▁▁▁▃▇
-##  4342    9440    38453    ▁▁▁▁▇▆▂▁
-##     0       0    37626    ▁▁▇▁▁▁▁▁
-##    49.02   60.92    98.1  ▁▃▆▇▇▃▂▂
-## 
-## ── Variable type:POSIXct ───────────────────────────────────────────────────────────────────────────────────────────────
-##    variable missing complete    n        min        max     median
-##  r_dateTime       0     2986 2986 2018-10-01 2019-01-16 2018-11-22
-##   startTime       0     2986 2986 2018-10-01 2019-01-16 2018-11-22
-##  n_unique
-##      2986
-##      2986</code></pre>
+<table style='width: auto;'
+        class='table table-condensed'>
+<caption>
+<span id="tab:ftfFirstCleanDataSkim">Table 8.3: </span>Data summary
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Name
+</td>
+<td style="text-align:left;">
+firstCleanDT
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of rows
+</td>
+<td style="text-align:left;">
+2986
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of columns
+</td>
+<td style="text-align:left;">
+24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+_______________________
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Column type frequency:
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+character
+</td>
+<td style="text-align:left;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Date
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+difftime
+</td>
+<td style="text-align:left;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+factor
+</td>
+<td style="text-align:left;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+POSIXct
+</td>
+<td style="text-align:left;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+________________________
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Group variables
+</td>
+<td style="text-align:left;">
+None
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:right;">
+min
+</th>
+<th style="text-align:right;">
+max
+</th>
+<th style="text-align:right;">
+empty
+</th>
+<th style="text-align:right;">
+n_unique
+</th>
+<th style="text-align:right;">
+whitespace
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+id
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dvID
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+weekdays
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+chargeFlag
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+chargeTypeError
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: Date</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:left;">
+min
+</th>
+<th style="text-align:left;">
+max
+</th>
+<th style="text-align:left;">
+median
+</th>
+<th style="text-align:right;">
+n_unique
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+date
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2018-10-01
+</td>
+<td style="text-align:left;">
+2019-01-16
+</td>
+<td style="text-align:left;">
+2018-11-22
+</td>
+<td style="text-align:right;">
+108
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: difftime</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:left;">
+min
+</th>
+<th style="text-align:left;">
+max
+</th>
+<th style="text-align:left;">
+median
+</th>
+<th style="text-align:right;">
+n_unique
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+timeChr
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+40 secs
+</td>
+<td style="text-align:left;">
+86246 secs
+</td>
+<td style="text-align:left;">
+56268.0 secs
+</td>
+<td style="text-align:right;">
+2871
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hms
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+40 secs
+</td>
+<td style="text-align:left;">
+86246 secs
+</td>
+<td style="text-align:left;">
+56268.0 secs
+</td>
+<td style="text-align:right;">
+2871
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+qHour
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0 secs
+</td>
+<td style="text-align:left;">
+85500 secs
+</td>
+<td style="text-align:left;">
+55800.0 secs
+</td>
+<td style="text-align:right;">
+96
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+r_dateTimeDiff
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0 secs
+</td>
+<td style="text-align:left;">
+230025 secs
+</td>
+<td style="text-align:left;">
+339.0 secs
+</td>
+<td style="text-align:right;">
+1685
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+endTime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+31 secs
+</td>
+<td style="text-align:left;">
+86342 secs
+</td>
+<td style="text-align:left;">
+40739.5 secs
+</td>
+<td style="text-align:right;">
+2921
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pairDuration
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+1 secs
+</td>
+<td style="text-align:left;">
+97003 secs
+</td>
+<td style="text-align:left;">
+10904.0 secs
+</td>
+<td style="text-align:right;">
+2752
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:left;">
+ordered
+</th>
+<th style="text-align:right;">
+n_unique
+</th>
+<th style="text-align:left;">
+top_counts
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+day_of_week
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+Fri: 474, Wed: 451, Mon: 445, Thu: 443
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+chargeType
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Sta: 2607, Rap: 379, Not: 0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+peakPeriod
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Day: 1147, Lat: 699, Eve: 556, Ear: 408
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+endType
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Sta: 2664, Rap: 322, Not: 0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+chargeTypeCorrected
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Sta: 2594, Rap: 392, Not: 0
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:right;">
+sd
+</th>
+<th style="text-align:right;">
+p0
+</th>
+<th style="text-align:right;">
+p25
+</th>
+<th style="text-align:right;">
+p50
+</th>
+<th style="text-align:right;">
+p75
+</th>
+<th style="text-align:right;">
+p100
+</th>
+<th style="text-align:left;">
+hist
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+charge_power_kw
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+6.73
+</td>
+<td style="text-align:right;">
+12.14
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+<td style="text-align:right;">
+1.56
+</td>
+<td style="text-align:right;">
+2.08
+</td>
+<td style="text-align:right;">
+3.30
+</td>
+<td style="text-align:right;">
+70.16
+</td>
+<td style="text-align:left;">
+▇▁▁▁▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SoC_percent
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+50.28
+</td>
+<td style="text-align:right;">
+19.22
+</td>
+<td style="text-align:right;">
+4.11
+</td>
+<td style="text-align:right;">
+36.28
+</td>
+<td style="text-align:right;">
+49.02
+</td>
+<td style="text-align:right;">
+60.92
+</td>
+<td style="text-align:right;">
+98.10
+</td>
+<td style="text-align:left;">
+▁▆▇▃▂
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+odometer_km
+</td>
+<td style="text-align:right;">
+2367
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+6641.21
+</td>
+<td style="text-align:right;">
+7567.25
+</td>
+<td style="text-align:right;">
+-52352.00
+</td>
+<td style="text-align:right;">
+1775.00
+</td>
+<td style="text-align:right;">
+4342.00
+</td>
+<td style="text-align:right;">
+9440.00
+</td>
+<td style="text-align:right;">
+38453.00
+</td>
+<td style="text-align:left;">
+▁▁▃▇▁
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+month
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+9.56
+</td>
+<td style="text-align:right;">
+3.58
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+10.00
+</td>
+<td style="text-align:right;">
+11.00
+</td>
+<td style="text-align:right;">
+12.00
+</td>
+<td style="text-align:right;">
+12.00
+</td>
+<td style="text-align:left;">
+▂▁▁▁▇
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+odometerDiff
+</td>
+<td style="text-align:right;">
+2382
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+54.21
+</td>
+<td style="text-align:right;">
+2410.82
+</td>
+<td style="text-align:right;">
+-18760.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+37626.00
+</td>
+<td style="text-align:left;">
+▁▇▁▁▁
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: POSIXct</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:left;">
+min
+</th>
+<th style="text-align:left;">
+max
+</th>
+<th style="text-align:left;">
+median
+</th>
+<th style="text-align:right;">
+n_unique
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+r_dateTime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2018-10-01 13:27:27
+</td>
+<td style="text-align:left;">
+2019-01-16 12:33:43
+</td>
+<td style="text-align:left;">
+2018-11-22 21:33:13
+</td>
+<td style="text-align:right;">
+2986
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+startTime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2018-10-01 13:27:27
+</td>
+<td style="text-align:left;">
+2019-01-16 12:33:43
+</td>
+<td style="text-align:left;">
+2018-11-22 21:33:13
+</td>
+<td style="text-align:right;">
+2986
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="odometer-data-checks" class="section level2">
 <h2><span class="header-section-number">8.2</span> Odometer data checks</h2>
-<p>There are many NAs in the odometer data and also -ve values as Table <a href="#tab:checkOdometer">8.1</a> shows. Given the apparently poor quality of the data we do not use odometer data in this report.</p>
+<p>There are many NAs in the odometer data and also -ve values as Table <a href="#tab:checkOdometer">8.4</a> shows. Given the apparently poor quality of the data we do not use odometer data in this report.</p>
 <pre class="r"><code>rawDT[odometer_km &lt; 0, odometerFlag := &quot;-ve&quot; ]
 rawDT[odometer_km == 0, odometerFlag := &quot;0&quot; ]
 rawDT[odometer_km &gt; 0, odometerFlag := &quot;+ve&quot; ]
@@ -5403,7 +7583,7 @@ kableExtra::kable(t, caption = &quot;Count of -ve, 0, +ve and NA odometer readin
   kable_styling()</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:checkOdometer">Table 8.1: </span>Count of -ve, 0, +ve and NA odometer readings by vehicle (original data)
+<span id="tab:checkOdometer">Table 8.4: </span>Count of -ve, 0, +ve and NA odometer readings by vehicle (original data)
 </caption>
 <thead>
 <tr>
@@ -6337,7 +8517,7 @@ NA
   kable_styling()</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:checkChargeFlagMethods">Table 8.2: </span>Charge sequence flags (120 second rule)
+<span id="tab:checkChargeFlagMethods">Table 8.5: </span>Charge sequence flags (120 second rule)
 </caption>
 <thead>
 <tr>
@@ -6483,7 +8663,7 @@ NA
   kable_styling()</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:checkChargeFlagMethods">Table 8.2: </span>Charge sequence flags (no 120 second rule)
+<span id="tab:checkChargeFlagMethods">Table 8.5: </span>Charge sequence flags (no 120 second rule)
 </caption>
 <thead>
 <tr>
@@ -6621,7 +8801,7 @@ kableExtra::kable(t, caption = &quot;chargeFlag errors (clean data)&quot;) %&gt;
   kable_styling()</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:checkChargeFlags">Table 8.3: </span>chargeFlag errors (clean data)
+<span id="tab:checkChargeFlags">Table 8.6: </span>chargeFlag errors (clean data)
 </caption>
 <thead>
 <tr>
@@ -6910,7 +9090,7 @@ kableExtra::kable(t, caption = &quot;chargeType errors detected&quot;) %&gt;%
   kable_styling()</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:checkChargeType">Table 8.4: </span>chargeType errors detected
+<span id="tab:checkChargeType">Table 8.7: </span>chargeType errors detected
 </caption>
 <thead>
 <tr>
